@@ -1,0 +1,106 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "print(7 / 2)",
+    "options": [
+      {
+        "text": "`3.5`",
+        "correct": true
+      },
+      {
+        "text": "`3`",
+        "explain": "`/` always gives a float. The whole-number version is `//`."
+      },
+      {
+        "text": "`4`",
+        "explain": "Python does not round `/`. The result is the exact value 3.5."
+      }
+    ],
+    "explanation": "`/` is true division; `//` is floor division."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens when this runs?",
+    "code": "print(\"5\" + 5)",
+    "options": [
+      {
+        "text": "A `TypeError`: you cannot add a string and an int",
+        "correct": true
+      },
+      {
+        "text": "It prints `10`",
+        "explain": "Python never converts text to a number automatically. You would write `int(\"5\") + 5`."
+      },
+      {
+        "text": "It prints `55`",
+        "explain": "Unlike JavaScript, Python refuses to mix the two types with `+`."
+      }
+    ],
+    "explanation": "Python is strict about types: convert explicitly with `int()` or `str()`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator that gives the whole-number result of 7 divided by 2.",
+    "code": "print(7 ___ 2)",
+    "answer": "//",
+    "checks": [
+      {
+        "regex": "^/$",
+        "not": true,
+        "explain": "`7 / 2` gives `3.5`. Floor division, which drops the decimals, is written `//`."
+      },
+      {
+        "regex": "^%$",
+        "not": true,
+        "explain": "`%` gives the remainder (1), not the quotient."
+      }
+    ],
+    "run": {
+      "template": "print(7 {{code}} 2)",
+      "output": "3"
+    },
+    "hint": "Two slashes.",
+    "explanation": "`//` divides and rounds down."
+  },
+  {
+    "type": "fix",
+    "prompt": "This prints something like `<built-in method upper ...>` instead of `ABC`. Type the corrected line.",
+    "code": "text = \"abc\"\nprint(text.upper)",
+    "answer": "print(text.upper())",
+    "checks": [
+      {
+        "regex": "upper\\s*\\)\\s*$",
+        "not": true,
+        "explain": "Without parentheses you get the method itself. Add `()` to call it."
+      }
+    ],
+    "run": {
+      "template": "text = \"abc\"\n{{code}}",
+      "output": "ABC"
+    },
+    "solution": "print(text.upper())",
+    "explanation": "Methods are called with parentheses: `text.upper()`."
+  },
+  {
+    "type": "write",
+    "prompt": "`price = 19.99` and `qty = 3` are given. Print the total price rounded to 2 decimals (use `round(value, 2)`).",
+    "checks": [
+      {
+        "has": "round",
+        "explain": "Your code should contain `round`."
+      },
+      {
+        "has": "print",
+        "explain": "Your code should contain `print`."
+      }
+    ],
+    "run": {
+      "template": "price = 19.99\nqty = 3\n{{code}}",
+      "output": "59.97"
+    },
+    "solution": "print(round(price * qty, 2))",
+    "hint": "`round(number, 2)` keeps two decimals.",
+    "explanation": "`round(x, 2)` rounds to two decimal places."
+  }
+]

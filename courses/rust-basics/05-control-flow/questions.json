@@ -1,0 +1,151 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Why does this code fail to compile?",
+    "code": "let n = 3;\nif n {\n    println!(\"yes\");\n}",
+    "options": [
+      {
+        "text": "The condition must be a `bool`; Rust doesn't convert numbers to true/false",
+        "correct": true
+      },
+      {
+        "text": "The condition needs parentheses: `if (n)`",
+        "explain": "Rust doesn't need parentheses around conditions at all (and style tools usually remove them). The problem is the *type* of the condition."
+      },
+      {
+        "text": "An `if` must always have an `else`",
+        "explain": "`else` is optional when `if` is used as a statement. The problem is that `n` is a number, not a `bool`."
+      },
+      {
+        "text": "`n` must be mutable",
+        "explain": "Reading a variable never requires `mut`. The condition simply has the wrong type."
+      }
+    ],
+    "explanation": "Write an explicit comparison such as `if n > 0` or `if n != 0`."
+  },
+  {
+    "type": "choice",
+    "prompt": "How many numbers does `for i in 1..4` go through?",
+    "options": [
+      {
+        "text": "3 numbers: 1, 2, 3",
+        "correct": true
+      },
+      {
+        "text": "4 numbers: 1, 2, 3, 4",
+        "explain": "That would be `1..=4`. In `a..b` the end value is *excluded*."
+      },
+      {
+        "text": "4 numbers: 0, 1, 2, 3",
+        "explain": "A range starts at the first number you give (1 here), not automatically at 0."
+      },
+      {
+        "text": "It runs forever",
+        "explain": "A range has a fixed end, so the loop stops. Endless loops are made with `loop`."
+      }
+    ],
+    "explanation": "`1..4` includes the start and excludes the end: 1, 2, 3."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the keyword so the second branch runs when the condition is false.",
+    "code": "let label = if score > 50 { \"pass\" } ___ { \"fail\" };",
+    "answer": "else",
+    "checks": [
+      {
+        "regex": "^(elif|elseif|else if)$",
+        "not": true,
+        "explain": "Rust has no `elif`/`elseif`. A plain `else` introduces the branch that runs when the condition is false (use `else if` only when you add another condition)."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let score = 70;\n    let label = if score > 50 { \"pass\" } {{code}} { \"fail\" };\n    println!(\"{}\", label);\n}",
+      "output": "pass"
+    },
+    "hint": "It's the same word English uses: \"if ..., otherwise ...\".",
+    "explanation": "`if ... { a } else { b }` is an expression: it evaluates to `a` or `b`."
+  },
+  {
+    "type": "fix",
+    "prompt": "This loop never ends because `i` never changes. Type the line you would add **inside** the loop, after the `println!`.",
+    "code": "let mut i = 0;\nwhile i < 3 {\n    println!(\"{}\", i);\n}",
+    "answer": [
+      "i += 1;",
+      "i = i + 1;"
+    ],
+    "checks": [
+      {
+        "regex": "\\+\\+",
+        "not": true,
+        "explain": "Rust has no `++` operator. Use `i += 1;` instead."
+      },
+      {
+        "regex": "^i\\s*\\+\\s*1\\s*;$",
+        "not": true,
+        "explain": "`i + 1;` calculates a value but throws it away. Store it back with `i += 1;`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let mut i = 0;\n    while i < 3 {\n        println!(\"{}\", i);\n        {{code}}\n    }\n}",
+      "output": "0\n1\n2"
+    },
+    "solution": "i += 1;",
+    "hint": "Add 1 to `i` and store the result back in `i`.",
+    "explanation": "The condition `i < 3` can only become false if `i` grows each time around the loop."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this program print?",
+    "code": "let mut count = 0;\nlet result = loop {\n    count += 1;\n    if count == 3 {\n        break count * 2;\n    }\n};\nprintln!(\"{}\", result);",
+    "options": [
+      {
+        "text": "6",
+        "correct": true
+      },
+      {
+        "text": "3",
+        "explain": "`count` is 3 when the loop stops, but `break count * 2` hands back `count * 2`, which is 6."
+      },
+      {
+        "text": "It never finishes",
+        "explain": "When `count` reaches 3, the `break` runs and the loop ends."
+      },
+      {
+        "text": "Compile error: `loop` can't return a value",
+        "explain": "`loop` can return a value: write `break value;`. (`while` and `for` can't.)"
+      }
+    ],
+    "explanation": "`break count * 2;` ends the loop and makes `result` equal to 6."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a `for` loop that prints the numbers 1 to 5 (including 5) using `println!`.",
+    "checks": [
+      {
+        "regex": "\\.\\.\\s*5\\s*\\{",
+        "not": true,
+        "explain": "`1..5` stops *before* 5 because the end of a range is excluded. Use `1..=5` (or `1..6`)."
+      },
+      {
+        "regex": "\\bfor\\b",
+        "enforce": true,
+        "explain": "The task asks for a `for` loop. Start with `for i in ...`."
+      },
+      {
+        "regex": "for\\s+\\w+\\s+in\\s+(1\\s*\\.\\.=\\s*5|1\\s*\\.\\.\\s*6)\\s*\\{",
+        "explain": "Start with a range loop such as `for i in 1..=5 {`. The `=` makes the range include 5."
+      },
+      {
+        "regex": "println!\\(",
+        "explain": "Print each number inside the loop with `println!`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n}",
+      "output": "1\n2\n3\n4\n5"
+    },
+    "solution": "for i in 1..=5 {\n    println!(\"{}\", i);\n}",
+    "hint": "`a..=b` includes `b`.",
+    "explanation": "`for i in 1..=5` runs with i = 1, 2, 3, 4, 5."
+  }
+]

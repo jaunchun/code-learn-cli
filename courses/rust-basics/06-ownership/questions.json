@@ -1,0 +1,142 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What happens when you compile this code?",
+    "code": "let s1 = String::from(\"hi\");\nlet s2 = s1;\nprintln!(\"{}\", s1);",
+    "options": [
+      {
+        "text": "Compile error: `s1` was moved to `s2`",
+        "correct": true
+      },
+      {
+        "text": "It prints `hi`",
+        "explain": "`let s2 = s1;` moves the String into `s2`, so `s1` is no longer valid. Rust won't silently copy heap data."
+      },
+      {
+        "text": "It prints an empty line",
+        "explain": "Rust doesn't leave `s1` empty at runtime - it refuses to compile code that uses a moved value."
+      },
+      {
+        "text": "It compiles, then crashes at runtime",
+        "explain": "Use-after-move is caught at compile time. That's the point of ownership: no crashes from invalid memory."
+      }
+    ],
+    "explanation": "A `String` is moved on assignment. The old variable can't be used afterwards."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which change keeps both `s1` and `s2` usable?",
+    "code": "let s1 = String::from(\"hi\");\nlet s2 = s1;   // <- change this line",
+    "options": [
+      {
+        "text": "`let s2 = s1.clone();`",
+        "correct": true
+      },
+      {
+        "text": "`let s2 = copy(s1);`",
+        "explain": "There is no built-in `copy` function, and passing `s1` to a function would move it anyway. The explicit deep copy is the `.clone()` method."
+      },
+      {
+        "text": "`let s2 = *s1;`",
+        "explain": "`*` dereferences a reference or smart pointer. `s1` is a plain `String`, so this doesn't compile and wouldn't copy anything."
+      },
+      {
+        "text": "`let mut s2 = s1;`",
+        "explain": "`mut` only controls whether `s2` can be changed. The value is still moved out of `s1`."
+      }
+    ],
+    "explanation": "`.clone()` makes a full copy of the data, so each variable owns its own String."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which of these types is `Copy` - meaning assigning it to another variable does NOT move it?",
+    "options": [
+      {
+        "text": "`i32`",
+        "correct": true
+      },
+      {
+        "text": "`String`",
+        "explain": "A `String` owns text on the heap, so assigning it moves ownership. You need `.clone()` to duplicate it."
+      },
+      {
+        "text": "`Vec<i32>`",
+        "explain": "A `Vec` owns a buffer on the heap, so it is moved on assignment, not copied."
+      }
+    ],
+    "explanation": "Integers, floats, `bool` and `char` are small and cheap, so Rust copies them automatically."
+  },
+  {
+    "type": "fix",
+    "prompt": "`a` is used after being moved. Type the corrected **second** line so both `a` and `b` stay usable.",
+    "code": "let a = String::from(\"rust\");\nlet b = a;\nprintln!(\"{} {}\", a, b);",
+    "answer": "let b = a.clone();",
+    "checks": [
+      {
+        "regex": "\\.copy\\(\\)",
+        "not": true,
+        "explain": "Strings have no `.copy()` method. The method that duplicates data is `.clone()`."
+      },
+      {
+        "regex": "^let b\\s*=\\s*a\\s*;$",
+        "not": true,
+        "explain": "That's the original line: it moves `a` into `b`. Ask for a duplicate instead, with `.clone()`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let a = String::from(\"rust\");\n    {{code}}\n    println!(\"{} {}\", a, b);\n}",
+      "output": "rust rust"
+    },
+    "solution": "let b = a.clone();",
+    "hint": "You need an independent copy of the text.",
+    "explanation": "`a.clone()` copies the String, so `a` keeps its own data and `b` gets another."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why does this program fail to compile?",
+    "code": "fn consume(s: String) {\n    println!(\"{}\", s);\n}\n\nfn main() {\n    let name = String::from(\"Ana\");\n    consume(name);\n    println!(\"{}\", name);\n}",
+    "options": [
+      {
+        "text": "`consume(name)` moved ownership into the function, so `name` is no longer valid",
+        "correct": true
+      },
+      {
+        "text": "`consume` doesn't return anything",
+        "explain": "A function without a return value is fine. The problem is that the String was moved into `consume` and dropped there."
+      },
+      {
+        "text": "`println!` can't print a `String`",
+        "explain": "`println!` prints Strings without trouble. The error is about using `name` after it was moved."
+      },
+      {
+        "text": "`name` must be declared with `mut`",
+        "explain": "Nothing is being changed, so `mut` isn't needed. Mutability has nothing to do with moves."
+      }
+    ],
+    "explanation": "Passing a String by value gives the function ownership. The caller can't use it afterwards unless it gets a clone (or, later, a borrow)."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the method name that makes a copy of `s`, so both `s` and `t` stay valid.",
+    "code": "let s = String::from(\"hello\");\nlet t = s.___();",
+    "answer": "clone",
+    "checks": [
+      {
+        "regex": "^clone\\(\\)$",
+        "not": true,
+        "explain": "The parentheses are already in the code after the blank. Type just the method name."
+      },
+      {
+        "regex": "^(copy|duplicate|dup)$",
+        "not": true,
+        "explain": "Those aren't `String` methods. The standard method for an independent copy is spelled `clone`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let s = String::from(\"hello\");\n    let t = s.{{code}}();\n    println!(\"{} {}\", s, t);\n}",
+      "output": "hello hello"
+    },
+    "hint": "Biology uses this word for an exact genetic copy.",
+    "explanation": "`.clone()` performs a deep copy of the heap data."
+  }
+]

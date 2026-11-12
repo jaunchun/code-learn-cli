@@ -1,0 +1,17 @@
+{
+  "title": "Even or odd",
+  "difficulty": "easy",
+  "prompt": "Write a function `parity(n: i32) -> String` that returns `\"even\"` if `n` is even and `\"odd\"` if it is odd.\n\n```text\nparity(4)  -> even\nparity(7)  -> odd\nparity(-3) -> odd\n```\n\nZero and negative numbers count too.",
+  "starter": "fn parity(n: i32) -> String {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for n in [4, 7, 0, -3, -8, 1001] {\n        println!(\"{}\", parity(n));\n    }\n}",
+    "output": "even\nodd\neven\nodd\neven\nodd"
+  },
+  "hints": [
+    "The remainder operator is `%`. `n % 2` is 0 for even numbers.",
+    "Careful with negatives: in Rust `-3 % 2` is `-1`, not `1`. So compare with `0`, not with `1`.",
+    "Use `if n % 2 == 0 { ... } else { ... }`. Text values can be made with `String::from(\"even\")` or `\"even\".to_string()`."
+  ],
+  "solution": "fn parity(n: i32) -> String {\n    if n % 2 == 0 {\n        String::from(\"even\")\n    } else {\n        String::from(\"odd\")\n    }\n}",
+  "explanation": "`n % 2 == 0` works for negative numbers too, because `-8 % 2` is `0`. Checking `n % 2 == 1` would wrongly call `-3` even, since `-3 % 2` is `-1`."
+}

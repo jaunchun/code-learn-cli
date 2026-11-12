@@ -1,0 +1,18 @@
+{
+  "title": "FizzBuzz",
+  "difficulty": "easy",
+  "prompt": "Write `fizzbuzz` for a number `n`:\n\n- a multiple of 3 **and** 5 -> `FizzBuzz`\n- a multiple of 3 -> `Fizz`\n- a multiple of 5 -> `Buzz`\n- anything else -> the number as text\n\n```text\nfizzbuzz(3)  -> Fizz\nfizzbuzz(10) -> Buzz\nfizzbuzz(15) -> FizzBuzz\nfizzbuzz(7)  -> 7\n```\n\nSignature: `function fizzbuzz(n)`",
+  "starter": "function fizzbuzz(n) {\n  $0\n}",
+  "run": {
+    "template": "{{code}}\n\nconsole.log(fizzbuzz(1));\nconsole.log(fizzbuzz(3));\nconsole.log(fizzbuzz(5));\nconsole.log(fizzbuzz(15));\nconsole.log(fizzbuzz(7));\n",
+    "output": "1\nFizz\nBuzz\nFizzBuzz\n7"
+  },
+  "hints": [
+    "A number is a multiple of 3 when `n % 3 == 0` (the remainder after dividing is 0).",
+    "Check the \"both\" case first. If you test for 3 before 15, then 15 would stop at `Fizz`.",
+    "Chain `if / else if / else`. Remember the last case has to turn the number into text.",
+    "`String(n)` or `` `${n}` `` turns a number into text."
+  ],
+  "solution": "function fizzbuzz(n) {\n  if (n % 15 === 0) return \"FizzBuzz\";\n  if (n % 3 === 0) return \"Fizz\";\n  if (n % 5 === 0) return \"Buzz\";\n  return String(n);\n}",
+  "explanation": "The order of the branches matters: the most specific case (a multiple of both 3 and 5) has to be checked first."
+}

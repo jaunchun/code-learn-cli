@@ -1,0 +1,102 @@
+[
+  {
+    "type": "choice",
+    "prompt": "In a C++ `class`, members are by default...",
+    "options": [
+      {
+        "text": "`private`",
+        "correct": true
+      },
+      {
+        "text": "`public`",
+        "explain": "That is the default for a `struct`. A `class` hides its members unless you write `public:`."
+      },
+      {
+        "text": "`protected`",
+        "explain": "`protected` is something you must ask for explicitly (it matters for inheritance)."
+      },
+      {
+        "text": "It depends on the compiler",
+        "explain": "The language defines it exactly: private for `class`, public for `struct`."
+      }
+    ],
+    "explanation": "The only difference between `struct` and `class` is the default access."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is a constructor?",
+    "options": [
+      {
+        "text": "A special function with the name of the class that runs when an object is created",
+        "correct": true
+      },
+      {
+        "text": "A function that deletes an object",
+        "explain": "That is a destructor (`~ClassName()`). A constructor runs at creation."
+      },
+      {
+        "text": "A method that must be called `init`",
+        "explain": "C++ has no `init`. The constructor is named after the class itself."
+      },
+      {
+        "text": "A function that returns the size of the object",
+        "explain": "That would be `sizeof`. A constructor sets up a new object."
+      }
+    ],
+    "explanation": "Constructors give objects a valid starting state."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the name of the constructor.",
+    "code": "class Counter {\npublic:\n    int value;\n    ___() : value(0) {}\n};",
+    "answer": "Counter",
+    "checks": [
+      {
+        "regex": "^(init|constructor|new)$",
+        "not": true,
+        "explain": "In C++ the constructor has the same name as the class."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nclass Counter {\npublic:\n    int value;\n    {{code}}() : value(0) {}\n};\n\nint main() {\n    Counter c;\n    cout << c.value << endl;\n    return 0;\n}",
+      "output": "0"
+    },
+    "hint": "It is named exactly like the class.",
+    "explanation": "The constructor shares the class name and has no return type."
+  },
+  {
+    "type": "fix",
+    "prompt": "`d.name` cannot be accessed because class members are private by default. Type the line to add above `string name`.",
+    "code": "class Dog {\n    string name = \"Rex\";\n};",
+    "answer": "public:",
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nclass Dog {\n    {{code}}\n    string name = \"Rex\";\n};\n\nint main() {\n    Dog d;\n    cout << d.name << endl;\n    return 0;\n}",
+      "output": "Rex"
+    },
+    "solution": "public:",
+    "hint": "An access specifier.",
+    "explanation": "`public:` makes the members after it accessible from outside the class."
+  },
+  {
+    "type": "write",
+    "prompt": "Define a struct `Point` with two `int` members `x` and `y`.",
+    "checks": [
+      {
+        "regex": "\\}\\s*$",
+        "not": true,
+        "explain": "A struct definition must end with a semicolon after the closing brace: `};`."
+      },
+      {
+        "has": "struct Point",
+        "explain": "Your code should contain `struct Point`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\n{{code}}\n\nint main() {\n    Point p;\n    p.x = 3;\n    p.y = 4;\n    cout << p.x + p.y << endl;\n    return 0;\n}",
+      "output": "7"
+    },
+    "solution": "struct Point {\n    int x;\n    int y;\n};",
+    "hint": "`struct Name { type member; ... };` - do not forget the final semicolon.",
+    "explanation": "A struct is a group of named values."
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which flag adds a development dependency?",
+    "options": [
+      {
+        "text": "-D",
+        "correct": true
+      },
+      {
+        "text": "-G",
+        "explain": "`-D` is shorthand for `--save-dev`."
+      },
+      {
+        "text": "-R",
+        "explain": "`-D` is shorthand for `--save-dev`."
+      },
+      {
+        "text": "-L",
+        "explain": "`-D` is shorthand for `--save-dev`."
+      }
+    ],
+    "explanation": "`-D` is shorthand for `--save-dev`."
+  },
+  {
+    "type": "choice",
+    "prompt": "Where are npm scripts declared?",
+    "options": [
+      {
+        "text": "scripts",
+        "correct": true
+      },
+      {
+        "text": "commands",
+        "explain": "The scripts object maps names to shell commands."
+      },
+      {
+        "text": "tasks",
+        "explain": "The scripts object maps names to shell commands."
+      },
+      {
+        "text": "entrypoints",
+        "explain": "The scripts object maps names to shell commands."
+      }
+    ],
+    "explanation": "The scripts object maps names to shell commands."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is a runtime dependency?",
+    "options": [
+      {
+        "text": "A package needed by the application when it runs",
+        "correct": true
+      },
+      {
+        "text": "A package used only to format source",
+        "explain": "Runtime dependencies are needed by the app's functionality."
+      },
+      {
+        "text": "A Git remote",
+        "explain": "Runtime dependencies are needed by the app's functionality."
+      },
+      {
+        "text": "A Node version",
+        "explain": "Runtime dependencies are needed by the app's functionality."
+      }
+    ],
+    "explanation": "Runtime dependencies are needed by the app's functionality."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which command adds a package as a dev dependency?",
+    "options": [
+      {
+        "text": "npm install -D eslint",
+        "correct": true
+      },
+      {
+        "text": "npm run eslint",
+        "explain": "The -D option saves it under devDependencies."
+      },
+      {
+        "text": "node install eslint",
+        "explain": "The -D option saves it under devDependencies."
+      },
+      {
+        "text": "npm init -D eslint",
+        "explain": "The -D option saves it under devDependencies."
+      }
+    ],
+    "explanation": "The -D option saves it under devDependencies."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why inspect package scripts before running them?",
+    "options": [
+      {
+        "text": "Scripts can execute commands on your machine",
+        "correct": true
+      },
+      {
+        "text": "Scripts are always harmless",
+        "explain": "Package scripts are commands, so only run projects and commands you trust."
+      },
+      {
+        "text": "Scripts only change colors",
+        "explain": "Package scripts are commands, so only run projects and commands you trust."
+      },
+      {
+        "text": "Scripts cannot access files",
+        "explain": "Package scripts are commands, so only run projects and commands you trust."
+      }
+    ],
+    "explanation": "Package scripts are commands, so only run projects and commands you trust."
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "title": "Count the vowels",
+  "difficulty": "medium",
+  "prompt": "Write `count_vowels(s: &str) -> usize` that counts the vowels `a e i o u` in a piece of text. Upper and lower case both count.\n\n```text\ncount_vowels(\"hello\")  -> 2\ncount_vowels(\"RUST\")   -> 1\ncount_vowels(\"xyz\")    -> 0\n```",
+  "starter": "fn count_vowels(s: &str) -> usize {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for text in [\"hello\", \"RUST\", \"xyz\", \"\", \"AEIOUaeiou\", \"Programming is fun\"] {\n        println!(\"{}\", count_vowels(text));\n    }\n}",
+    "output": "2\n1\n0\n0\n10\n5"
+  },
+  "hints": [
+    "`for c in s.chars()` walks through the text one character at a time.",
+    "`match c { 'a' | 'e' | 'i' | 'o' | 'u' => ..., _ => ... }` tests several characters in one arm (`|` means \"or\").",
+    "To handle uppercase letters, convert each character first with `c.to_ascii_lowercase()`."
+  ],
+  "solution": "fn count_vowels(s: &str) -> usize {\n    let mut count = 0;\n    for c in s.chars() {\n        match c.to_ascii_lowercase() {\n            'a' | 'e' | 'i' | 'o' | 'u' => count += 1,\n            _ => {}\n        }\n    }\n    count\n}",
+  "explanation": "Lower-casing each character first means one `match` handles both cases. The `_ => {}` arm does nothing for every other character."
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which operator means greater than or equal to? ",
+    "options": [
+      {
+        "text": ">=",
+        "correct": true
+      },
+      {
+        "text": "=>",
+        "explain": "`>=` compares magnitude and includes equality."
+      },
+      {
+        "text": "==",
+        "explain": "`>=` compares magnitude and includes equality."
+      },
+      {
+        "text": "&&",
+        "explain": "`>=` compares magnitude and includes equality."
+      }
+    ],
+    "explanation": "`>=` compares magnitude and includes equality."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `else` represent?",
+    "options": [
+      {
+        "text": "The alternative branch",
+        "correct": true
+      },
+      {
+        "text": "A loop",
+        "explain": "Else runs when the if condition is false."
+      },
+      {
+        "text": "A type declaration",
+        "explain": "Else runs when the if condition is false."
+      },
+      {
+        "text": "A function parameter",
+        "explain": "Else runs when the if condition is false."
+      }
+    ],
+    "explanation": "Else runs when the if condition is false."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which operator means logical AND?",
+    "options": [
+      {
+        "text": "&&",
+        "correct": true
+      },
+      {
+        "text": "||",
+        "explain": "C++ uses && to require both conditions to be true."
+      },
+      {
+        "text": "!=",
+        "explain": "C++ uses && to require both conditions to be true."
+      },
+      {
+        "text": ">>",
+        "explain": "C++ uses && to require both conditions to be true."
+      }
+    ],
+    "explanation": "C++ uses && to require both conditions to be true."
+  },
+  {
+    "type": "choice",
+    "prompt": "If coins is 10, is `coins >= 25` true?",
+    "options": [
+      {
+        "text": "No",
+        "correct": true
+      },
+      {
+        "text": "Yes",
+        "explain": "Ten is less than twenty-five."
+      },
+      {
+        "text": "It changes coins",
+        "explain": "Ten is less than twenty-five."
+      },
+      {
+        "text": "It always crashes",
+        "explain": "Ten is less than twenty-five."
+      }
+    ],
+    "explanation": "Ten is less than twenty-five."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why use braces around an if body?",
+    "options": [
+      {
+        "text": "To group the statements controlled by the condition",
+        "correct": true
+      },
+      {
+        "text": "To declare a string",
+        "explain": "Braces define a block containing one or more statements."
+      },
+      {
+        "text": "To include a header",
+        "explain": "Braces define a block containing one or more statements."
+      },
+      {
+        "text": "To end the program",
+        "explain": "Braces define a block containing one or more statements."
+      }
+    ],
+    "explanation": "Braces define a block containing one or more statements."
+  }
+]

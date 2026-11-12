@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does `git switch -c feature/search` do?",
+    "options": [
+      {
+        "text": "Creates and switches to a new branch",
+        "correct": true
+      },
+      {
+        "text": "Deletes a branch",
+        "explain": "`-c` creates the branch before switching to it."
+      },
+      {
+        "text": "Pushes a branch to a server",
+        "explain": "`-c` creates the branch before switching to it."
+      },
+      {
+        "text": "Commits all files",
+        "explain": "`-c` creates the branch before switching to it."
+      }
+    ],
+    "explanation": "`-c` creates the branch before switching to it."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `git merge feature/search` do?",
+    "options": [
+      {
+        "text": "Merges that branch into the current branch",
+        "correct": true
+      },
+      {
+        "text": "Switches to it",
+        "explain": "Merge integrates the named branch into the current branch."
+      },
+      {
+        "text": "Deletes it",
+        "explain": "Merge integrates the named branch into the current branch."
+      },
+      {
+        "text": "Downloads a package",
+        "explain": "Merge integrates the named branch into the current branch."
+      }
+    ],
+    "explanation": "Merge integrates the named branch into the current branch."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is a merge conflict?",
+    "options": [
+      {
+        "text": "Git cannot automatically reconcile overlapping changes",
+        "correct": true
+      },
+      {
+        "text": "A failed npm install",
+        "explain": "Conflicts require a person to choose the correct combined content."
+      },
+      {
+        "text": "A deleted remote",
+        "explain": "Conflicts require a person to choose the correct combined content."
+      },
+      {
+        "text": "A missing Git command",
+        "explain": "Conflicts require a person to choose the correct combined content."
+      }
+    ],
+    "explanation": "Conflicts require a person to choose the correct combined content."
+  },
+  {
+    "type": "choice",
+    "prompt": "After resolving a conflict, what should you do?",
+    "options": [
+      {
+        "text": "Inspect and stage the resolved files",
+        "correct": true
+      },
+      {
+        "text": "Delete the repository",
+        "explain": "The resolution must be staged before the merge can be completed."
+      },
+      {
+        "text": "Run git init again",
+        "explain": "The resolution must be staged before the merge can be completed."
+      },
+      {
+        "text": "Rename the main branch",
+        "explain": "The resolution must be staged before the merge can be completed."
+      }
+    ],
+    "explanation": "The resolution must be staged before the merge can be completed."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why use a feature branch?",
+    "options": [
+      {
+        "text": "To isolate work before integrating it",
+        "correct": true
+      },
+      {
+        "text": "To avoid making commits",
+        "explain": "Branches let work progress independently from the stable line."
+      },
+      {
+        "text": "To disable history",
+        "explain": "Branches let work progress independently from the stable line."
+      },
+      {
+        "text": "To replace remotes",
+        "explain": "Branches let work progress independently from the stable line."
+      }
+    ],
+    "explanation": "Branches let work progress independently from the stable line."
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line prints `Hello` in Node.js?",
+    "options": [
+      {
+        "text": "`console.log(\"Hello\");`",
+        "correct": true
+      },
+      {
+        "text": "`print(\"Hello\");`",
+        "explain": "JavaScript has no global `print` function for the terminal (that is Python). Use `console.log`."
+      },
+      {
+        "text": "`echo \"Hello\";`",
+        "explain": "`echo` belongs to shells and PHP. In JavaScript you print with `console.log`."
+      },
+      {
+        "text": "`System.out.println(\"Hello\");`",
+        "explain": "That is Java. JavaScript uses `console.log`."
+      }
+    ],
+    "explanation": "`console.log` is the standard way to print in JavaScript."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens when this code runs?",
+    "code": "const total = 5;\ntotal = 6;",
+    "options": [
+      {
+        "text": "A TypeError: Assignment to constant variable",
+        "correct": true
+      },
+      {
+        "text": "`total` becomes 6",
+        "explain": "A `const` can never be given a new value, so the second line fails instead of changing `total`."
+      },
+      {
+        "text": "The second line is silently ignored",
+        "explain": "JavaScript does not ignore it: reassigning a `const` throws an error and stops the program."
+      },
+      {
+        "text": "A SyntaxError because `total` is declared twice",
+        "explain": "The variable is declared only once. Assigning to it later is a runtime TypeError; redeclaring it with `let` twice would be the SyntaxError."
+      }
+    ],
+    "explanation": "`const` means the variable cannot be reassigned. Use `let` if the value has to change."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the keyword that declares a variable.",
+    "code": "___ name = \"Ana\";\nconsole.log(name);",
+    "answer": [
+      "const",
+      "let",
+      "var"
+    ],
+    "checks": [
+      {
+        "regex": "^(int|string|String|dim|auto)$",
+        "not": true,
+        "explain": "JavaScript has no type keyword like `int` or `String` for variables. You declare them with `const` or `let`."
+      }
+    ],
+    "run": {
+      "template": "{{code}} name = \"Ana\";\nconsole.log(name);",
+      "output": "Ana"
+    },
+    "hint": "Use the keyword for a value that will not be reassigned.",
+    "explanation": "`const` and `let` declare variables. Prefer `const` unless you need to reassign."
+  },
+  {
+    "type": "fix",
+    "prompt": "This should print `Hello, Ana!` but it prints the characters `${name}`. Type the corrected line.",
+    "code": "const name = \"Ana\";\nconsole.log(\"Hello, ${name}!\");",
+    "answer": [
+      "console.log(`Hello, ${name}!`);",
+      "console.log(\"Hello, \" + name + \"!\");"
+    ],
+    "checks": [
+      {
+        "regex": "^console\\.log\\(\"Hello, \\$\\{name\\}!\"\\);?$",
+        "not": true,
+        "explain": "That is the original line. `${...}` only works inside **backticks** (`` ` ``), not inside normal quotes."
+      }
+    ],
+    "run": {
+      "template": "const name = \"Ana\";\n{{code}}",
+      "output": "Hello, Ana!"
+    },
+    "solution": "console.log(`Hello, ${name}!`);",
+    "hint": "Template literals use backticks.",
+    "explanation": "Only backtick strings interpolate `${...}`. Joining with `+` also works."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare constants `price` (12) and `count` (5), then print `price * count`.",
+    "checks": [
+      {
+        "has": "price",
+        "explain": "Your code should contain `price`."
+      },
+      {
+        "has": "count",
+        "explain": "Your code should contain `count`."
+      },
+      {
+        "has": "console.log",
+        "explain": "Your code should contain `console.log`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\nconsole.log(typeof price, typeof count);",
+      "output": "60\nnumber number"
+    },
+    "solution": "const price = 12;\nconst count = 5;\nconsole.log(price * count);",
+    "hint": "Two `const` lines, then one `console.log`.",
+    "explanation": "Variables hold values; `*` multiplies them."
+  }
+]

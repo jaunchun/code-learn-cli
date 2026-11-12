@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does `git clone` do?",
+    "options": [
+      {
+        "text": "Creates a local copy of a remote repository",
+        "correct": true
+      },
+      {
+        "text": "Deletes a remote",
+        "explain": "Clone downloads repository history and checks out a working copy."
+      },
+      {
+        "text": "Creates a commit",
+        "explain": "Clone downloads repository history and checks out a working copy."
+      },
+      {
+        "text": "Stages files",
+        "explain": "Clone downloads repository history and checks out a working copy."
+      }
+    ],
+    "explanation": "Clone downloads repository history and checks out a working copy."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `git push` do?",
+    "options": [
+      {
+        "text": "Sends local commits to a remote",
+        "correct": true
+      },
+      {
+        "text": "Downloads commits",
+        "explain": "Push publishes local commits to the configured remote branch."
+      },
+      {
+        "text": "Stages a file",
+        "explain": "Push publishes local commits to the configured remote branch."
+      },
+      {
+        "text": "Shows status",
+        "explain": "Push publishes local commits to the configured remote branch."
+      }
+    ],
+    "explanation": "Push publishes local commits to the configured remote branch."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `git pull` do?",
+    "options": [
+      {
+        "text": "Fetches and integrates remote changes",
+        "correct": true
+      },
+      {
+        "text": "Deletes local commits",
+        "explain": "Pull combines fetching with integration into the current branch."
+      },
+      {
+        "text": "Creates a new repository",
+        "explain": "Pull combines fetching with integration into the current branch."
+      },
+      {
+        "text": "Changes a commit message",
+        "explain": "Pull combines fetching with integration into the current branch."
+      }
+    ],
+    "explanation": "Pull combines fetching with integration into the current branch."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is `origin` commonly used for?",
+    "options": [
+      {
+        "text": "The default name for a remote",
+        "correct": true
+      },
+      {
+        "text": "The current commit",
+        "explain": "Origin is a conventional remote name, not a special required keyword."
+      },
+      {
+        "text": "A staging area",
+        "explain": "Origin is a conventional remote name, not a special required keyword."
+      },
+      {
+        "text": "A branch protection rule",
+        "explain": "Origin is a conventional remote name, not a special required keyword."
+      }
+    ],
+    "explanation": "Origin is a conventional remote name, not a special required keyword."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why synchronize before pushing shared work?",
+    "options": [
+      {
+        "text": "To integrate teammates' newer commits and reduce push conflicts",
+        "correct": true
+      },
+      {
+        "text": "To erase local history",
+        "explain": "Updating first helps your branch include the latest shared history."
+      },
+      {
+        "text": "To remove all branches",
+        "explain": "Updating first helps your branch include the latest shared history."
+      },
+      {
+        "text": "To disable remotes",
+        "explain": "Updating first helps your branch include the latest shared history."
+      }
+    ],
+    "explanation": "Updating first helps your branch include the latest shared history."
+  }
+]

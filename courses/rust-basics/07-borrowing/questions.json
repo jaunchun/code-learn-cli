@@ -1,0 +1,151 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does the `&` do in `let r = &s;`?",
+    "options": [
+      {
+        "text": "It creates a reference that borrows `s` without taking ownership",
+        "correct": true
+      },
+      {
+        "text": "It moves `s` into `r`",
+        "explain": "A move is what happens *without* the `&` (`let r = s;`). With `&`, `s` keeps ownership."
+      },
+      {
+        "text": "It makes a full copy of the data in `s`",
+        "explain": "A reference doesn't copy anything - it points to the original data. Copying is done with `.clone()`."
+      },
+      {
+        "text": "It deletes `s` after the line runs",
+        "explain": "Borrowing never deletes anything. `s` is still valid, and still the owner, afterwards."
+      }
+    ],
+    "explanation": "A reference lets you use a value without owning it."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol so the function **borrows** the String instead of taking ownership.",
+    "code": "fn print_len(s: ___String) {\n    println!(\"{}\", s.len());\n}",
+    "answer": "&",
+    "checks": [
+      {
+        "regex": "^\\*$",
+        "not": true,
+        "explain": "`*` is the dereference operator, used to follow a reference to its value. A reference *type* is written with `&`."
+      },
+      {
+        "regex": "^&mut$",
+        "not": true,
+        "explain": "`&mut` would allow the function to change the String. This function only reads its length, so a plain `&` is enough."
+      }
+    ],
+    "run": {
+      "template": "fn print_len(s: {{code}}String) {\n    println!(\"{}\", s.len());\n}\n\nfn main() {\n    let name = String::from(\"Ana\");\n    print_len(&name);\n    println!(\"{}\", name);\n}",
+      "output": "3\nAna"
+    },
+    "hint": "It's the ampersand sign.",
+    "explanation": "A parameter of type `&String` borrows the caller's String."
+  },
+  {
+    "type": "choice",
+    "prompt": "Does this code compile?",
+    "code": "let mut s = String::from(\"hi\");\nlet r1 = &s;\nlet r2 = &s;\nprintln!(\"{} {}\", r1, r2);",
+    "options": [
+      {
+        "text": "Yes - you may have any number of shared (`&`) references at once",
+        "correct": true
+      },
+      {
+        "text": "No - only one reference to a value may exist at a time",
+        "explain": "That limit applies to *mutable* references. Any number of read-only references can exist together."
+      },
+      {
+        "text": "No - `r2` must be declared `mut`",
+        "explain": "`mut` on the *variable* `r2` has nothing to do with borrowing rules. Shared references are read-only and can't conflict."
+      },
+      {
+        "text": "Yes - but only because `s` is declared `mut`",
+        "explain": "`mut` isn't needed for shared references; they would work on an immutable `s` too."
+      }
+    ],
+    "explanation": "Many readers at once is fine, because nobody can change the value while they read."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why does this code fail to compile?",
+    "code": "let mut s = String::from(\"hi\");\nlet r1 = &mut s;\nlet r2 = &mut s;\nprintln!(\"{} {}\", r1, r2);",
+    "options": [
+      {
+        "text": "You can't have two mutable references to the same value at the same time",
+        "correct": true
+      },
+      {
+        "text": "`&mut` can only be used with numbers",
+        "explain": "`&mut` works with any type, including `String`. The problem is having two of them alive at once."
+      },
+      {
+        "text": "`s` was moved by the first borrow",
+        "explain": "Borrowing never moves a value; `s` still owns its data. The error is about two simultaneous mutable borrows."
+      },
+      {
+        "text": "`println!` can't print references",
+        "explain": "`println!` prints references just fine. The compile error is raised earlier, by the borrow checker."
+      }
+    ],
+    "explanation": "Only one `&mut` at a time guarantees nobody else can touch the data while it's being changed."
+  },
+  {
+    "type": "fix",
+    "prompt": "This function tries to change the String through a read-only reference. Type the corrected signature line.",
+    "code": "fn add_exclaim(s: &String) {\n    s.push_str(\"!\");\n}",
+    "checks": [
+      {
+        "regex": "s\\s*:\\s*mut\\s*&",
+        "not": true,
+        "explain": "The order is `&mut`, not `mut &`: write the type as `&mut String`."
+      },
+      {
+        "regex": "s\\s*:\\s*&\\s*String",
+        "not": true,
+        "explain": "That's still a shared (read-only) reference. To modify the String, ask for a mutable reference: `&mut String`."
+      },
+      {
+        "regex": "^fn add_exclaim\\(\\s*s\\s*:\\s*&\\s*mut\\s+String\\s*\\)\\s*\\{?$",
+        "explain": "The signature should be `fn add_exclaim(s: &mut String) {` - a mutable reference to a String."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n    s.push_str(\"!\");\n}\n\nfn main() {\n    let mut t = String::from(\"hi\");\n    add_exclaim(&mut t);\n    println!(\"{}\", t);\n}",
+      "output": "hi!"
+    },
+    "solution": "fn add_exclaim(s: &mut String) {",
+    "hint": "A reference that allows changes is written `&mut`.",
+    "explanation": "To modify a borrowed value you need `&mut`. (The caller then writes `add_exclaim(&mut text)`, and `text` must be declared with `let mut`.)"
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `length` that **borrows** a `String` called `s` and returns its length as a `usize`. (`s.len()` gives the length.)",
+    "checks": [
+      {
+        "regex": "s\\s*:\\s*String",
+        "not": true,
+        "explain": "Taking `String` by value would move the caller's string into the function. Borrow it with `&String`."
+      },
+      {
+        "regex": "fn\\s+length\\s*\\(\\s*s\\s*:\\s*&\\s*String\\s*\\)\\s*->\\s*usize\\s*\\{",
+        "explain": "The signature should be `fn length(s: &String) -> usize {` - borrow with `&` and return `usize`."
+      },
+      {
+        "regex": "s\\.len\\(\\)",
+        "explain": "Use `s.len()` to get the length of the String."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n\nfn main() {\n    let name = String::from(\"Ana\");\n    let n = length(&name);\n    println!(\"{} {}\", name, n);\n}",
+      "output": "Ana 3"
+    },
+    "solution": "fn length(s: &String) -> usize {\n    s.len()\n}",
+    "hint": "Signature: `fn length(s: &String) -> usize`. The body is one expression with no semicolon.",
+    "explanation": "Because `s` is a reference, the caller keeps ownership and can keep using its String."
+  }
+]

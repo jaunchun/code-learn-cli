@@ -1,0 +1,108 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does `new Dog(\"Rex\")` do?",
+    "options": [
+      {
+        "text": "Creates a new Dog object and runs its constructor",
+        "correct": true
+      },
+      {
+        "text": "Declares a variable called `Dog`",
+        "explain": "Declaring a variable looks like `Dog d;`. The `new` keyword creates an actual object."
+      },
+      {
+        "text": "Calls a static method named `new`",
+        "explain": "`new` is a keyword, not a method. It allocates the object and then calls the constructor."
+      },
+      {
+        "text": "Copies an existing Dog",
+        "explain": "Nothing is copied. A brand-new object is built from the class blueprint."
+      }
+    ],
+    "explanation": "`new` + constructor = a fresh object."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why are fields usually made `private`?",
+    "options": [
+      {
+        "text": "So other code has to go through methods, which can check and protect the data",
+        "correct": true
+      },
+      {
+        "text": "Because Java requires every field to be private",
+        "explain": "Java allows any access level. Private is a design choice (a good one)."
+      },
+      {
+        "text": "It makes the program run faster",
+        "explain": "Access modifiers have no meaningful effect on speed."
+      },
+      {
+        "text": "It hides the class from the compiler",
+        "explain": "The compiler sees everything. `private` only restricts which *code* may use the field."
+      }
+    ],
+    "explanation": "Encapsulation keeps objects in a valid state."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the name of the constructor.",
+    "code": "class Counter {\n    int value;\n    ___() {\n        value = 0;\n    }\n}",
+    "answer": "Counter",
+    "checks": [
+      {
+        "regex": "^(init|constructor|new|__init__)$",
+        "not": true,
+        "explain": "In Java the constructor has exactly the same name as the class (and no return type)."
+      }
+    ],
+    "run": {
+      "template": "class Counter {\n    int value;\n    {{code}}() {\n        value = 0;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Counter c = new Counter();\n        System.out.println(c.value);\n    }\n}",
+      "output": "0"
+    },
+    "hint": "Exactly the class name.",
+    "explanation": "A constructor shares the class name."
+  },
+  {
+    "type": "fix",
+    "prompt": "The constructor assigns the parameter to itself, so the field stays `null`. Type the corrected line.",
+    "code": "Dog(String name) {\n    name = name;\n}",
+    "answer": "this.name = name;",
+    "checks": [
+      {
+        "regex": "^name\\s*=\\s*name\\s*;?$",
+        "not": true,
+        "explain": "That is the original line: it assigns the parameter to itself. Use `this.name` for the field."
+      }
+    ],
+    "run": {
+      "template": "class Dog {\n    String name;\n    Dog(String name) {\n        {{code}}\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Dog d = new Dog(\"Rex\");\n        System.out.println(d.name);\n    }\n}",
+      "output": "Rex"
+    },
+    "solution": "this.name = name;",
+    "hint": "Use `this.` for the field.",
+    "explanation": "`this.name` is the field, `name` is the parameter."
+  },
+  {
+    "type": "write",
+    "prompt": "Define a class `Point` with `int` fields `x` and `y` and a constructor `Point(int x, int y)`.",
+    "checks": [
+      {
+        "has": "class Point",
+        "explain": "Your code should contain `class Point`."
+      },
+      {
+        "has": "Point(",
+        "explain": "Your code should contain `Point(`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n\npublic class Main {\n    public static void main(String[] args) {\n        Point p = new Point(3, 4);\n        System.out.println(p.x + p.y);\n    }\n}",
+      "output": "7"
+    },
+    "solution": "class Point {\n    int x;\n    int y;\n\n    Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n}",
+    "hint": "Two fields, then a constructor that copies the parameters into them with `this`.",
+    "explanation": "Constructors set up the object's fields."
+  }
+]

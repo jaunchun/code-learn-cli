@@ -1,0 +1,104 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "int[] a = new int[3];\nSystem.out.println(a[0]);",
+    "options": [
+      {
+        "text": "`0`",
+        "correct": true
+      },
+      {
+        "text": "`null`",
+        "explain": "`null` is for object references. An `int` array is filled with the number 0 automatically."
+      },
+      {
+        "text": "Some random garbage",
+        "explain": "Unlike C, Java always initializes array elements: numbers to 0, booleans to false, objects to null."
+      },
+      {
+        "text": "It throws an exception",
+        "explain": "Index 0 is valid in an array of size 3."
+      }
+    ],
+    "explanation": "New arrays are filled with default values."
+  },
+  {
+    "type": "choice",
+    "prompt": "How should you compare the text of two Strings?",
+    "options": [
+      {
+        "text": "`a.equals(b)`",
+        "correct": true
+      },
+      {
+        "text": "`a == b`",
+        "explain": "`==` compares whether both variables refer to the very same object. Two equal texts can be different objects."
+      },
+      {
+        "text": "`a === b`",
+        "explain": "`===` does not exist in Java. Use `.equals`."
+      },
+      {
+        "text": "`a.compare(b)`",
+        "explain": "There is no `compare` method on String. The method is `equals` (or `compareTo` for ordering)."
+      }
+    ],
+    "explanation": "`equals` compares the characters."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the ArrayList method that adds an item.",
+    "code": "list.add(1);\nlist.___(2);\nSystem.out.println(list.size());",
+    "answer": "add",
+    "checks": [
+      {
+        "regex": "^(push|append|insert|put)$",
+        "not": true,
+        "explain": "The `ArrayList` method that adds an element is just `add`."
+      }
+    ],
+    "run": {
+      "template": "import java.util.ArrayList;\n\npublic class Main {\n    public static void main(String[] args) {\n        ArrayList<Integer> list = new ArrayList<>();\n        list.add(1);\n        list.{{code}}(2);\n        System.out.println(list.size());\n    }\n}",
+      "output": "2"
+    },
+    "hint": "Same name as the first call.",
+    "explanation": "`add` appends an element to the list."
+  },
+  {
+    "type": "fix",
+    "prompt": "`length` of an array is a field, not a method. Type the corrected line.",
+    "code": "System.out.println(arr.length());",
+    "answer": "System.out.println(arr.length);",
+    "checks": [
+      {
+        "regex": "length\\(\\)",
+        "not": true,
+        "explain": "For arrays `length` has no parentheses. (`length()` is for Strings.)"
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        int[] arr = {1, 2, 3};\n        {{code}}\n    }\n}",
+      "output": "3"
+    },
+    "solution": "System.out.println(arr.length);",
+    "explanation": "`arr.length` (field) vs `str.length()` (method)."
+  },
+  {
+    "type": "write",
+    "prompt": "The array `nums` is given. Print its largest value.",
+    "checks": [
+      {
+        "has": "System.out.println",
+        "explain": "Your code should contain `System.out.println`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        int[] nums = {4, 8, 15, 16, 23, 42};\n        {{code}}\n    }\n}",
+      "output": "42"
+    },
+    "solution": "int max = nums[0];\nfor (int n : nums) {\n    if (n > max) {\n        max = n;\n    }\n}\nSystem.out.println(max);",
+    "hint": "Start with the first number as the maximum, then compare each other number.",
+    "explanation": "Keep the best value seen so far."
+  }
+]

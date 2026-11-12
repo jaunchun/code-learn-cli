@@ -1,0 +1,6 @@
+{
+  "title": "Rust Basics",
+  "language": "rust",
+  "description": "From your first program to ownership, structs and enums",
+  "order": 3
+}

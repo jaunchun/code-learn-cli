@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which command creates a repository?",
+    "options": [
+      {
+        "text": "git init",
+        "correct": true
+      },
+      {
+        "text": "git start",
+        "explain": "`git init` initializes a new local repository."
+      },
+      {
+        "text": "git create",
+        "explain": "`git init` initializes a new local repository."
+      },
+      {
+        "text": "git commit",
+        "explain": "`git init` initializes a new local repository."
+      }
+    ],
+    "explanation": "`git init` initializes a new local repository."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which command shows changed and untracked files?",
+    "options": [
+      {
+        "text": "git status",
+        "correct": true
+      },
+      {
+        "text": "git log",
+        "explain": "`git status` summarizes the working tree and staging area."
+      },
+      {
+        "text": "git push",
+        "explain": "`git status` summarizes the working tree and staging area."
+      },
+      {
+        "text": "git branch",
+        "explain": "`git status` summarizes the working tree and staging area."
+      }
+    ],
+    "explanation": "`git status` summarizes the working tree and staging area."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `git add` do?",
+    "options": [
+      {
+        "text": "Stages changes",
+        "correct": true
+      },
+      {
+        "text": "Uploads changes",
+        "explain": "Staging selects changes for the next commit."
+      },
+      {
+        "text": "Deletes history",
+        "explain": "Staging selects changes for the next commit."
+      },
+      {
+        "text": "Creates a remote",
+        "explain": "Staging selects changes for the next commit."
+      }
+    ],
+    "explanation": "Staging selects changes for the next commit."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does a commit represent?",
+    "options": [
+      {
+        "text": "A recorded snapshot of staged changes",
+        "correct": true
+      },
+      {
+        "text": "A live server",
+        "explain": "Commits form the repository's history."
+      },
+      {
+        "text": "A package install",
+        "explain": "Commits form the repository's history."
+      },
+      {
+        "text": "A text editor",
+        "explain": "Commits form the repository's history."
+      }
+    ],
+    "explanation": "Commits form the repository's history."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why write a clear commit message?",
+    "options": [
+      {
+        "text": "To explain the purpose of the change",
+        "correct": true
+      },
+      {
+        "text": "To change file permissions",
+        "explain": "Useful messages make project history easier to understand."
+      },
+      {
+        "text": "To encrypt the repository",
+        "explain": "Useful messages make project history easier to understand."
+      },
+      {
+        "text": "To install Git",
+        "explain": "Useful messages make project history easier to understand."
+      }
+    ],
+    "explanation": "Useful messages make project history easier to understand."
+  }
+]

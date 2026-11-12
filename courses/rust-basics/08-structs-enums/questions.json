@@ -1,0 +1,153 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which code correctly defines a struct `User` with a `name` (String) and an `age` (u32)?",
+    "options": [
+      {
+        "text": "`struct User { name: String, age: u32 }`",
+        "correct": true
+      },
+      {
+        "text": "`struct User { String name, u32 age }`",
+        "explain": "In Rust the field name comes first, then a colon, then the type: `name: String`. (The type-first style belongs to languages like C and Java.)"
+      },
+      {
+        "text": "`struct User(name: String, age: u32)`",
+        "explain": "Parentheses are for *tuple structs*, which list only types and no field names: `struct User(String, u32);`. Named fields go inside curly braces."
+      },
+      {
+        "text": "`class User { name: String, age: u32 }`",
+        "explain": "Rust has no `class` keyword. Data types are declared with `struct` (or `enum`)."
+      }
+    ],
+    "explanation": "A struct is `struct Name { field: Type, ... }` with fields separated by commas."
+  },
+  {
+    "type": "choice",
+    "prompt": "`Point` has an associated function `new(x: i32, y: i32) -> Point` (no `self`). How do you call it?",
+    "options": [
+      {
+        "text": "`Point::new(1, 2)`",
+        "correct": true
+      },
+      {
+        "text": "`Point.new(1, 2)`",
+        "explain": "A dot calls a *method* on an existing value. `new` has no `self`, so it belongs to the type itself and is called with `::`."
+      },
+      {
+        "text": "`new Point(1, 2)`",
+        "explain": "Rust has no `new` keyword. Constructors are just ordinary associated functions, by convention named `new`."
+      },
+      {
+        "text": "`Point->new(1, 2)`",
+        "explain": "`->` is only used to write a function's return type. Associated functions are called with `::`."
+      }
+    ],
+    "explanation": "`Type::function()` calls an associated function; `value.method()` calls a method."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the first parameter so `area` **borrows** the rectangle (read-only) instead of consuming it.",
+    "code": "struct Rectangle { width: u32, height: u32 }\n\nimpl Rectangle {\n    fn area(___) -> u32 {\n        self.width * self.height\n    }\n}",
+    "answer": "&self",
+    "checks": [
+      {
+        "regex": "^self$",
+        "not": true,
+        "explain": "Plain `self` takes ownership of the rectangle, so it would be unusable after calling `area`. We only need to read it, so borrow it with `&self`."
+      },
+      {
+        "regex": "^&mut\\s*self$",
+        "not": true,
+        "explain": "`&mut self` is for methods that *change* the struct. `area` only reads, so a plain `&self` is the right choice."
+      }
+    ],
+    "run": {
+      "template": "struct Rectangle { width: u32, height: u32 }\n\nimpl Rectangle {\n    fn area({{code}}) -> u32 {\n        self.width * self.height\n    }\n}\n\nfn main() {\n    let r = Rectangle { width: 3, height: 4 };\n    println!(\"{}\", r.area());\n    println!(\"{}\", r.area());\n}",
+      "output": "12\n12"
+    },
+    "hint": "A reference to `self` - the ampersand goes first.",
+    "explanation": "`&self` lets the method read the struct while the caller keeps ownership."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why doesn't this code compile?",
+    "code": "enum Light { Red, Yellow, Green }\n\nfn act(l: Light) {\n    match l {\n        Light::Red => println!(\"stop\"),\n        Light::Green => println!(\"go\"),\n    }\n}",
+    "options": [
+      {
+        "text": "The `match` doesn't cover `Light::Yellow`",
+        "correct": true
+      },
+      {
+        "text": "`match` can't be used with enums",
+        "explain": "Matching on enums is the most common use of `match`. The problem is a missing variant."
+      },
+      {
+        "text": "Arms must be separated by semicolons",
+        "explain": "Match arms are separated by commas, which this code already uses correctly."
+      },
+      {
+        "text": "`act` is missing a `return` statement",
+        "explain": "`act` returns nothing, so no `return` is needed. The compile error is about the incomplete `match`."
+      }
+    ],
+    "explanation": "A `match` must be exhaustive: every variant needs an arm (or a catch-all `_` arm)."
+  },
+  {
+    "type": "fix",
+    "prompt": "Type the missing `match` arm for `Light::Yellow`, so the match covers every variant. (Print anything you like.)",
+    "code": "match l {\n    Light::Red => println!(\"stop\"),\n    Light::Green => println!(\"go\"),\n}",
+    "checks": [
+      {
+        "regex": "Light::Yellow\\s*->",
+        "not": true,
+        "explain": "Match arms use the fat arrow `=>`, not `->`."
+      },
+      {
+        "regex": "Light::Yellow\\s*=>\\s*\\S",
+        "explain": "Write an arm like `Light::Yellow => println!(\"slow down\"),` - the pattern, a fat arrow `=>`, then what to do."
+      }
+    ],
+    "run": {
+      "template": "enum Light { Red, Yellow, Green }\n\nfn act(l: Light) {\n    match l {\n        Light::Red => println!(\"stop\"),\n        Light::Green => println!(\"go\"),\n        {{code}}\n    }\n}\n\nfn main() {\n    act(Light::Yellow);\n}"
+    },
+    "solution": "Light::Yellow => println!(\"slow down\"),",
+    "hint": "Follow the pattern of the other two arms: `pattern => result,`",
+    "explanation": "With all three variants covered the `match` is exhaustive and the code compiles."
+  },
+  {
+    "type": "write",
+    "prompt": "Define a struct `Point` with two `i32` fields: `x` and `y`.",
+    "checks": [
+      {
+        "regex": "\\}\\s*;\\s*$",
+        "not": true,
+        "explain": "A struct with named fields isn't followed by a semicolon after the closing brace. (Only tuple structs like `struct P(i32, i32);` end with `;`.)"
+      },
+      {
+        "regex": "(x|y)\\s*:\\s*i32\\s*;",
+        "not": true,
+        "explain": "Fields are separated by commas, not semicolons."
+      },
+      {
+        "regex": "struct\\s+Point\\s*\\{.*\\}",
+        "explain": "Start with `struct Point {` and close it with `}`."
+      },
+      {
+        "regex": "\\bx\\s*:\\s*i32",
+        "explain": "Add the field `x: i32`."
+      },
+      {
+        "regex": "\\by\\s*:\\s*i32",
+        "explain": "Add the field `y: i32`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n\nfn main() {\n    let p = Point { x: 1, y: 2 };\n    println!(\"{} {}\", p.x, p.y);\n}",
+      "output": "1 2"
+    },
+    "solution": "struct Point {\n    x: i32,\n    y: i32,\n}",
+    "hint": "Each field is `name: Type,` inside curly braces.",
+    "explanation": "Fields are `name: Type`, separated by commas, inside the struct's braces."
+  }
+]

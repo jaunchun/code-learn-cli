@@ -1,0 +1,103 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "const a = [10, 20, 30];\nconsole.log(a[1]);",
+    "options": [
+      {
+        "text": "`20`",
+        "correct": true
+      },
+      {
+        "text": "`10`",
+        "explain": "Indexes start at 0, so index 0 is the first item (10). Index 1 is the second item."
+      },
+      {
+        "text": "`30`",
+        "explain": "Index 2 would be 30. Index 1 is the second item."
+      },
+      {
+        "text": "`undefined`",
+        "explain": "Index 1 exists in an array with three items, so you get a real value."
+      }
+    ],
+    "explanation": "Array indexes start at 0, so `a[1]` is the second item."
+  },
+  {
+    "type": "choice",
+    "prompt": "Does this code run without an error?",
+    "code": "const person = { name: \"Ana\" };\nperson.age = 30;",
+    "options": [
+      {
+        "text": "Yes - `const` stops reassigning `person`, not changing what is inside it",
+        "correct": true
+      },
+      {
+        "text": "No - a `const` object is frozen",
+        "explain": "`const` only protects the variable. The object it points to can still be changed (use `Object.freeze` for that)."
+      },
+      {
+        "text": "No - an object cannot get new properties after it is created",
+        "explain": "JavaScript objects are open: you can add properties any time."
+      }
+    ],
+    "explanation": "Changing a property is not the same as reassigning the variable."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the array method that adds an item to the end.",
+    "code": "const nums = [1, 2, 3];\nnums.___(4);\nconsole.log(nums.length);",
+    "answer": "push",
+    "checks": [
+      {
+        "regex": "^(add|append|insert)$",
+        "not": true,
+        "explain": "JavaScript arrays do not have `add` or `append`. The method that adds to the end is `push`."
+      }
+    ],
+    "run": {
+      "template": "const nums = [1, 2, 3];\nnums.{{code}}(4);\nconsole.log(nums.length);",
+      "output": "4"
+    },
+    "hint": "Think of pushing onto a stack.",
+    "explanation": "`push` adds one or more items to the end of an array."
+  },
+  {
+    "type": "fix",
+    "prompt": "This `map` returns `undefined` for every item, because the `{ }` body has no `return`. Type the corrected line.",
+    "code": "const doubled = nums.map((n) => { n * 2 });",
+    "answer": [
+      "const doubled = nums.map((n) => n * 2);",
+      "const doubled = nums.map((n) => { return n * 2; });",
+      "const doubled = nums.map(n => n * 2);"
+    ],
+    "run": {
+      "template": "const nums = [1, 2, 3];\n{{code}}\nconsole.log(doubled.join(\",\"));",
+      "output": "2,4,6"
+    },
+    "solution": "const doubled = nums.map((n) => n * 2);",
+    "hint": "Either drop the braces, or add `return`.",
+    "explanation": "An arrow function with `{ }` needs `return`; without braces the value is returned automatically."
+  },
+  {
+    "type": "write",
+    "prompt": "Given `const scores = [60, 80, 100];` print the average of the scores.",
+    "checks": [
+      {
+        "has": "scores",
+        "explain": "Your code should contain `scores`."
+      },
+      {
+        "has": "console.log",
+        "explain": "Your code should contain `console.log`."
+      }
+    ],
+    "run": {
+      "template": "const scores = [60, 80, 100];\n{{code}}",
+      "output": "80"
+    },
+    "solution": "const total = scores.reduce((sum, n) => sum + n, 0);\nconsole.log(total / scores.length);",
+    "hint": "Add the numbers up (a loop or `reduce`), then divide by `scores.length`.",
+    "explanation": "Average = sum / count."
+  }
+]

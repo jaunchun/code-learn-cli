@@ -1,0 +1,17 @@
+{
+  "title": "FizzBuzz",
+  "difficulty": "easy",
+  "prompt": "Write `fizzbuzz` for a number `n`:\n\n- a multiple of 3 **and** 5 -> `FizzBuzz`\n- a multiple of 3 -> `Fizz`\n- a multiple of 5 -> `Buzz`\n- anything else -> the number as text\n\n```text\nfizzbuzz(3)  -> Fizz\nfizzbuzz(10) -> Buzz\nfizzbuzz(15) -> FizzBuzz\nfizzbuzz(7)  -> 7\n```\n\nSignature: `void fizzbuzz(int n)   // print the result followed by a new line`",
+  "starter": "void fizzbuzz(int n) {\n    $0\n}",
+  "run": {
+    "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    fizzbuzz(1);\n    fizzbuzz(3);\n    fizzbuzz(5);\n    fizzbuzz(15);\n    fizzbuzz(7);\n    return 0;\n}",
+    "output": "1\nFizz\nBuzz\nFizzBuzz\n7"
+  },
+  "hints": [
+    "A number is a multiple of 3 when `n % 3 == 0` (the remainder after dividing is 0).",
+    "Check the \"both\" case first. If you test for 3 before 15, then 15 would stop at `Fizz`.",
+    "Chain `if / else if / else`. Remember the last case has to turn the number into text."
+  ],
+  "solution": "void fizzbuzz(int n) {\n    if (n % 15 == 0) printf(\"FizzBuzz\\n\");\n    else if (n % 3 == 0) printf(\"Fizz\\n\");\n    else if (n % 5 == 0) printf(\"Buzz\\n\");\n    else printf(\"%d\\n\", n);\n}",
+  "explanation": "The order of the branches matters: the most specific case (a multiple of both 3 and 5) has to be checked first."
+}

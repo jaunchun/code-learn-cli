@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which type stores text?",
+    "options": [
+      {
+        "text": "string",
+        "correct": true
+      },
+      {
+        "text": "int",
+        "explain": "string stores text."
+      },
+      {
+        "text": "bool",
+        "explain": "string stores text."
+      },
+      {
+        "text": "float64",
+        "explain": "string stores text."
+      }
+    ],
+    "explanation": "string stores text."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `:=` infer?",
+    "options": [
+      {
+        "text": "The variable's type from its initial value",
+        "correct": true
+      },
+      {
+        "text": "The package name",
+        "explain": "Short declarations infer a variable type from the right-hand expression."
+      },
+      {
+        "text": "The function return value",
+        "explain": "Short declarations infer a variable type from the right-hand expression."
+      },
+      {
+        "text": "The program exit code",
+        "explain": "Short declarations infer a variable type from the right-hand expression."
+      }
+    ],
+    "explanation": "Short declarations infer a variable type from the right-hand expression."
+  },
+  {
+    "type": "choice",
+    "prompt": "Can a string variable later hold a boolean?",
+    "options": [
+      {
+        "text": "No",
+        "correct": true
+      },
+      {
+        "text": "Yes, always",
+        "explain": "Go is statically typed; a variable's type does not change."
+      },
+      {
+        "text": "Only with fmt",
+        "explain": "Go is statically typed; a variable's type does not change."
+      },
+      {
+        "text": "Only in main",
+        "explain": "Go is statically typed; a variable's type does not change."
+      }
+    ],
+    "explanation": "Go is statically typed; a variable's type does not change."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which value has type bool?",
+    "options": [
+      {
+        "text": "true",
+        "correct": true
+      },
+      {
+        "text": "\"true\"",
+        "explain": "The unquoted literal true is a boolean."
+      },
+      {
+        "text": "42",
+        "explain": "The unquoted literal true is a boolean."
+      },
+      {
+        "text": "3.14",
+        "explain": "The unquoted literal true is a boolean."
+      }
+    ],
+    "explanation": "The unquoted literal true is a boolean."
+  },
+  {
+    "type": "choice",
+    "prompt": "Where is `:=` commonly used?",
+    "options": [
+      {
+        "text": "Inside functions",
+        "correct": true
+      },
+      {
+        "text": "At package scope",
+        "explain": "Short variable declarations are used inside functions, not at package scope."
+      },
+      {
+        "text": "Inside import paths",
+        "explain": "Short variable declarations are used inside functions, not at package scope."
+      },
+      {
+        "text": "In comments",
+        "explain": "Short variable declarations are used inside functions, not at package scope."
+      }
+    ],
+    "explanation": "Short variable declarations are used inside functions, not at package scope."
+  }
+]

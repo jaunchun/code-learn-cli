@@ -1,0 +1,17 @@
+{
+  "title": "Collatz steps",
+  "difficulty": "hard",
+  "prompt": "Start with any positive number. If it is even, halve it. If it is odd, multiply by 3 and add 1. Repeat until you reach 1.\n\nWrite `collatz(n: u64) -> u32` that returns how many steps it takes to reach 1.\n\n```text\ncollatz(1) -> 0\ncollatz(2) -> 1       (2 -> 1)\ncollatz(6) -> 8       (6 -> 3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1)\n```\n\n`n` is always at least 1.",
+  "starter": "fn collatz(n: u64) -> u32 {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for n in [1, 2, 6, 7, 27, 97] {\n        println!(\"{}\", collatz(n));\n    }\n}",
+    "output": "0\n1\n8\n16\n111\n118"
+  },
+  "hints": [
+    "Keep a mutable copy of `n` (for example `let mut current = n;`) and a step counter that starts at 0.",
+    "Use `while current != 1 { ... }`. Inside, decide with `if current % 2 == 0 { ... } else { ... }`.",
+    "Even: `current /= 2;`. Odd: `current = 3 * current + 1;`. Add 1 to the step counter on every pass through the loop."
+  ],
+  "solution": "fn collatz(n: u64) -> u32 {\n    let mut current = n;\n    let mut steps = 0;\n    while current != 1 {\n        if current % 2 == 0 {\n            current /= 2;\n        } else {\n            current = 3 * current + 1;\n        }\n        steps += 1;\n    }\n    steps\n}",
+  "explanation": "The Collatz conjecture says every positive starting number eventually reaches 1. It has been checked for enormous numbers, but nobody has proven it yet."
+}

@@ -1,0 +1,17 @@
+{
+  "title": "A Counter struct",
+  "difficulty": "medium",
+  "prompt": "Create a `Counter` struct that remembers a number.\n\n- `Counter::new()` starts at 0\n- `increment(&mut self)` adds 1\n- `add(&mut self, amount: i32)` adds `amount` (it can be negative)\n- `get(&self) -> i32` returns the current value\n\n```text\nlet mut c = Counter::new();\nc.increment();\nc.add(10);\nc.get()  -> 11\n```",
+  "starter": "struct Counter {\n    $0\n}\n\nimpl Counter {\n    // new, increment, add and get go here\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    let mut c = Counter::new();\n    println!(\"{}\", c.get());\n    c.increment();\n    c.increment();\n    println!(\"{}\", c.get());\n    c.add(10);\n    c.add(-3);\n    println!(\"{}\", c.get());\n    let mut other = Counter::new();\n    other.increment();\n    println!(\"{} {}\", c.get(), other.get());\n}",
+    "output": "0\n2\n9\n9 1"
+  },
+  "hints": [
+    "The struct needs one field, for example `value: i32`.",
+    "`new` has no `self` - it builds and returns a `Counter { value: 0 }`. Methods that change the counter take `&mut self`; `get` only reads, so it takes `&self`.",
+    "Inside a method, change the field with `self.value += 1;`. The last expression of `get` (no semicolon) is the returned value."
+  ],
+  "solution": "struct Counter {\n    value: i32,\n}\n\nimpl Counter {\n    fn new() -> Counter {\n        Counter { value: 0 }\n    }\n\n    fn increment(&mut self) {\n        self.value += 1;\n    }\n\n    fn add(&mut self, amount: i32) {\n        self.value += amount;\n    }\n\n    fn get(&self) -> i32 {\n        self.value\n    }\n}",
+  "explanation": "`&mut self` lets a method change the struct, `&self` only reads it. `new` has no `self`, so it is called with `Counter::new()`. Each `Counter` keeps its own value."
+}

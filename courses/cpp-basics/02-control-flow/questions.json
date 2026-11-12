@@ -1,0 +1,100 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What is wrong with `if (x = 5) { ... }` when you meant to compare?",
+    "options": [
+      {
+        "text": "A single `=` assigns 5 to `x`; comparing needs `==`",
+        "correct": true
+      },
+      {
+        "text": "Nothing: `=` also compares",
+        "explain": "`=` is assignment. The condition would assign 5 to `x` and always be true."
+      },
+      {
+        "text": "The condition needs a `:` at the end",
+        "explain": "C++ does not use a colon there. The mistake is `=` instead of `==`."
+      },
+      {
+        "text": "`if` conditions cannot use numbers",
+        "explain": "Numbers work in conditions (0 is false, anything else is true) - which is exactly why this bug compiles."
+      }
+    ],
+    "explanation": "Use `==` to compare. Compilers often warn about this with `-Wall`."
+  },
+  {
+    "type": "choice",
+    "prompt": "How many times does this loop run?",
+    "code": "for (int i = 0; i < 3; i++) {\n    cout << i << \" \";\n}",
+    "options": [
+      {
+        "text": "3 times (i = 0, 1, 2)",
+        "correct": true
+      },
+      {
+        "text": "4 times",
+        "explain": "The condition is `i < 3`, so when `i` becomes 3 the loop stops before running again."
+      },
+      {
+        "text": "2 times",
+        "explain": "`i` starts at 0, so it takes the values 0, 1 and 2: that is three rounds."
+      }
+    ],
+    "explanation": "Start 0, condition `i < 3`, step `i++`: 3 rounds."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the loop prints 3, 2, 1 and stops.",
+    "code": "int n = 3;\nwhile (n ___ 0) {\n    cout << n << endl;\n    n--;\n}",
+    "answer": ">",
+    "checks": [
+      {
+        "regex": "^>=$",
+        "not": true,
+        "explain": "`n >= 0` would run once more with `n` equal to 0 and print an extra `0`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    int n = 3;\n    while (n {{code}} 0) {\n        cout << n << endl;\n        n--;\n    }\n    return 0;\n}",
+      "output": "3\n2\n1"
+    },
+    "hint": "The loop must stop as soon as `n` reaches 0.",
+    "explanation": "`n > 0` is false once `n` hits 0."
+  },
+  {
+    "type": "fix",
+    "prompt": "C++ has no `elseif`. Type the corrected line.",
+    "code": "if (x == 1) {\n    cout << \"one\" << endl;\n} elseif (x == 2) {\n    cout << \"two\" << endl;\n}",
+    "answer": "} else if (x == 2) {",
+    "checks": [
+      {
+        "regex": "elseif",
+        "not": true,
+        "explain": "C++ writes it as two words: `else if`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    int x = 2;\n    if (x == 1) {\n        cout << \"one\" << endl;\n    {{code}}\n        cout << \"two\" << endl;\n    }\n    return 0;\n}",
+      "output": "two"
+    },
+    "solution": "} else if (x == 2) {",
+    "explanation": "`else if` is two separate words."
+  },
+  {
+    "type": "write",
+    "prompt": "Use a loop to print the sum of the numbers from 1 to 10 (the answer is 55).",
+    "checks": [
+      {
+        "has": "cout",
+        "explain": "Your code should contain `cout`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    {{code}}\n    return 0;\n}",
+      "output": "55"
+    },
+    "solution": "int total = 0;\nfor (int i = 1; i <= 10; i++) {\n    total += i;\n}\ncout << total << endl;",
+    "hint": "Start with `int total = 0;` and add each number in a loop.",
+    "explanation": "A running total built in a loop is a very common pattern."
+  }
+]

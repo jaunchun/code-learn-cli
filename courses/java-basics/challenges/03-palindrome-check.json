@@ -1,0 +1,18 @@
+{
+  "title": "Palindrome check",
+  "difficulty": "medium",
+  "prompt": "Write `is_palindrome` for a piece of text: it is `true` when the text reads the same forwards and backwards, otherwise `false`. Treat upper and lower case as different letters (no need to handle spaces).\n\n```text\nis_palindrome(\"racecar\") -> true\nis_palindrome(\"hello\")   -> false\nis_palindrome(\"a\")       -> true\n```\n\nSignature: `static boolean isPalindrome(String s)`",
+  "starter": "static boolean isPalindrome(String s) {\n    $0\n}",
+  "run": {
+    "template": "import java.util.*;\n\npublic class Main {\n    {{code}}\n\n    public static void main(String[] args) {\n        System.out.println(isPalindrome(\"racecar\"));\n        System.out.println(isPalindrome(\"hello\"));\n        System.out.println(isPalindrome(\"a\"));\n        System.out.println(isPalindrome(\"abba\"));\n        System.out.println(isPalindrome(\"abc\"));\n    }\n}",
+    "output": "true\nfalse\ntrue\ntrue\nfalse"
+  },
+  "hints": [
+    "Compare the first character with the last, the second with the second-to-last, and so on.",
+    "Two index variables, one at the start and one at the end, moving towards each other, do the job. Stop when they meet.",
+    "Or: build the reversed text and compare it with the original.",
+    "`s.charAt(i)` gives the character at position `i`."
+  ],
+  "solution": "static boolean isPalindrome(String s) {\n    int i = 0;\n    int j = s.length() - 1;\n    while (i < j) {\n        if (s.charAt(i) != s.charAt(j)) return false;\n        i++;\n        j--;\n    }\n    return true;\n}",
+  "explanation": "A palindrome equals its own reverse. Comparing from both ends toward the middle avoids building a second copy of the text."
+}

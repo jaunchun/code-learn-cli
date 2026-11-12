@@ -1,0 +1,17 @@
+{
+  "title": "FizzBuzz",
+  "difficulty": "easy",
+  "prompt": "Write `fizzbuzz(n: u32) -> String`:\n\n- a multiple of 3 **and** 5 -> `FizzBuzz`\n- a multiple of 3 -> `Fizz`\n- a multiple of 5 -> `Buzz`\n- anything else -> the number itself, as text\n\n```text\nfizzbuzz(3)  -> Fizz\nfizzbuzz(10) -> Buzz\nfizzbuzz(15) -> FizzBuzz\nfizzbuzz(7)  -> 7\n```",
+  "starter": "fn fizzbuzz(n: u32) -> String {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for n in [1, 2, 3, 4, 5, 6, 10, 14, 15, 30] {\n        println!(\"{}\", fizzbuzz(n));\n    }\n}",
+    "output": "1\n2\nFizz\n4\nBuzz\nFizz\nBuzz\n14\nFizzBuzz\nFizzBuzz"
+  },
+  "hints": [
+    "`n % 3 == 0` is true when `n` is a multiple of 3.",
+    "Check the \"both\" case first. If you test for 3 before 15, then 15 stops at `Fizz`.",
+    "Chain `if ... { } else if ... { } else { }`. For the plain-number case, `n.to_string()` turns a number into text."
+  ],
+  "solution": "fn fizzbuzz(n: u32) -> String {\n    if n % 15 == 0 {\n        String::from(\"FizzBuzz\")\n    } else if n % 3 == 0 {\n        String::from(\"Fizz\")\n    } else if n % 5 == 0 {\n        String::from(\"Buzz\")\n    } else {\n        n.to_string()\n    }\n}",
+  "explanation": "The order of the `else if` branches matters: the most specific case (a multiple of both 3 and 5) has to be checked first."
+}

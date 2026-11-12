@@ -1,0 +1,93 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line correctly starts a function called `add`?",
+    "options": [
+      {
+        "text": "`def add(a, b):`",
+        "correct": true
+      },
+      {
+        "text": "`function add(a, b):`",
+        "explain": "Python uses the keyword `def`, not `function`."
+      },
+      {
+        "text": "`def add(a, b) {`",
+        "explain": "Python marks the body with a colon and indentation, not curly braces."
+      },
+      {
+        "text": "`fn add(a, b):`",
+        "explain": "`fn` is Rust. Python functions start with `def`."
+      }
+    ],
+    "explanation": "A function is `def name(parameters):` followed by an indented body."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "def greet(name):\n    print(\"Hi \" + name)\n\nx = greet(\"Ana\")\nprint(x)",
+    "options": [
+      {
+        "text": "`Hi Ana` and then `None`",
+        "correct": true
+      },
+      {
+        "text": "`Hi Ana` twice",
+        "explain": "`greet` prints but returns nothing, so `x` is `None`, not the text."
+      },
+      {
+        "text": "`Hi Ana` and then an error",
+        "explain": "There is no error: a function without `return` just gives back `None`."
+      }
+    ],
+    "explanation": "Printing and returning are different things. `greet` prints, but returns `None`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the default value so `power(3)` prints 9.",
+    "code": "def power(base, exp=___):\n    return base ** exp\n\nprint(power(3))",
+    "answer": "2",
+    "run": {
+      "template": "def power(base, exp={{code}}):\n    return base ** exp\n\nprint(power(3))",
+      "output": "9"
+    },
+    "hint": "What power turns 3 into 9?",
+    "explanation": "With the default `exp=2`, `power(3)` is 3 squared."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` returns `None`. Type the corrected body line.",
+    "code": "def square(n):\n    n * n",
+    "answer": "return n * n",
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n$",
+        "not": true,
+        "explain": "That is the original line: the value is calculated but never returned. Add `return`."
+      }
+    ],
+    "run": {
+      "template": "def square(n):\n    {{code}}\n\nprint(square(5), square(-3))",
+      "output": "25 9"
+    },
+    "solution": "return n * n",
+    "explanation": "A function needs `return` to give a value back."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `is_even(n)` that returns `True` when `n` is even and `False` otherwise.",
+    "checks": [
+      {
+        "has": "def is_even",
+        "explain": "Your code should contain `def is_even`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\nprint(is_even(4), is_even(7), is_even(0))",
+      "output": "True False True"
+    },
+    "solution": "def is_even(n):\n    return n % 2 == 0",
+    "hint": "`n % 2 == 0` is already `True` or `False`.",
+    "explanation": "The comparison itself is the answer, so you can return it directly."
+  }
+]

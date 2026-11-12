@@ -1,0 +1,17 @@
+{
+  "title": "Cart Total",
+  "difficulty": "easy",
+  "prompt": "Write `cartTotal(price, quantity)` that returns the total cost.\n\n```text\ncartTotal(5, 3) -> 15\ncartTotal(2.5, 4) -> 10\n```",
+  "starter": "function cartTotal(price, quantity) {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\nconsole.log(cartTotal(5, 3));\nconsole.log(cartTotal(2.5, 4));\nconsole.log(cartTotal(0, 9));",
+    "output": "15\n10\n0"
+  },
+  "hints": [
+    "Use a function with two parameters.",
+    "Multiply the price by the quantity.",
+    "Return the multiplication result."
+  ],
+  "solution": "function cartTotal(price, quantity) {\n  return price * quantity;\n}",
+  "explanation": "The function multiplies the unit price by the number of items and returns the result."
+}

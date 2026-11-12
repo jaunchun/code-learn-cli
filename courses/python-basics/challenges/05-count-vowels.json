@@ -1,0 +1,18 @@
+{
+  "title": "Count the vowels",
+  "difficulty": "medium",
+  "prompt": "Write `count_vowels` that counts the vowels `a e i o u` in a piece of text. Upper and lower case both count.\n\n```text\ncount_vowels(\"hello\") -> 2\ncount_vowels(\"RUST\")  -> 1\ncount_vowels(\"xyz\")   -> 0\n```\n\nSignature: `def count_vowels(s):`",
+  "starter": "def count_vowels(s):\n    $0",
+  "run": {
+    "template": "{{code}}\n\nprint(count_vowels('hello'))\nprint(count_vowels('RUST'))\nprint(count_vowels('xyz'))\nprint(count_vowels(''))\nprint(count_vowels('Programming is fun'))\n",
+    "output": "2\n1\n0\n0\n5"
+  },
+  "hints": [
+    "Go through the text one character at a time.",
+    "Convert each character to lower case first, so you only have to compare with five letters.",
+    "Keep a counter and add 1 whenever the character is one of `a e i o u`.",
+    "`ch in \"aeiou\"` is `True` for a vowel."
+  ],
+  "solution": "def count_vowels(s):\n    count = 0\n    for ch in s.lower():\n        if ch in \"aeiou\":\n            count += 1\n    return count",
+  "explanation": "Lower-casing each character first means one comparison covers both cases. A counter that grows only for vowels gives the total."
+}

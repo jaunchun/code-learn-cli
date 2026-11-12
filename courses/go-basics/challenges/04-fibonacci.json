@@ -1,0 +1,18 @@
+{
+  "title": "Fibonacci",
+  "difficulty": "medium",
+  "prompt": "Write `fibonacci` so that `fibonacci(n)` returns the n-th Fibonacci number. The sequence starts `0, 1, 1, 2, 3, 5, 8, ...` where every number is the sum of the two before it.\n\n```text\nfibonacci(0)  -> 0\nfibonacci(1)  -> 1\nfibonacci(10) -> 55\n```\n\nSignature: `func fibonacci(n int) int`",
+  "starter": "func fibonacci(n int) int {\n    $0\n}",
+  "run": {
+    "template": "package main\n\nimport (\n    \"fmt\"\n    \"strconv\"\n    \"strings\"\n)\n\nvar _ = strconv.Itoa\nvar _ = strings.ToLower\n\n{{code}}\n\nfunc main() {\n    fmt.Println(fibonacci(0))\n    fmt.Println(fibonacci(1))\n    fmt.Println(fibonacci(2))\n    fmt.Println(fibonacci(10))\n    fmt.Println(fibonacci(20))\n}",
+    "output": "0\n1\n1\n55\n6765"
+  },
+  "hints": [
+    "Keep two variables: the previous number and the current one. Start with 0 and 1.",
+    "Repeat `n` times: the new current is `previous + current`, and the old current becomes the previous one.",
+    "After the loop, the \"previous\" variable holds the n-th number (because it starts at position 0).",
+    "Go can assign several variables at once: `prev, curr = curr, prev+curr`."
+  ],
+  "solution": "func fibonacci(n int) int {\n    prev, curr := 0, 1\n    for i := 0; i < n; i++ {\n        prev, curr = curr, prev+curr\n    }\n    return prev\n}",
+  "explanation": "You only ever need the last two numbers, so a loop with two variables computes the answer in n steps. A plain recursive version works too, but it recalculates the same values again and again and gets very slow."
+}

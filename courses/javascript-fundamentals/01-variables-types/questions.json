@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which declaration can be reassigned?",
+    "options": [
+      {
+        "text": "let",
+        "correct": true
+      },
+      {
+        "text": "const",
+        "explain": "`let` allows reassignment; `const` does not."
+      },
+      {
+        "text": "typeof",
+        "explain": "`let` allows reassignment; `const` does not."
+      },
+      {
+        "text": "null",
+        "explain": "`let` allows reassignment; `const` does not."
+      }
+    ],
+    "explanation": "`let` allows reassignment; `const` does not."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is `typeof \"hello\"`?",
+    "options": [
+      {
+        "text": "string",
+        "correct": true
+      },
+      {
+        "text": "text",
+        "explain": "JavaScript reports string values as `string`."
+      },
+      {
+        "text": "object",
+        "explain": "JavaScript reports string values as `string`."
+      },
+      {
+        "text": "number",
+        "explain": "JavaScript reports string values as `string`."
+      }
+    ],
+    "explanation": "JavaScript reports string values as `string`."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `score += 5` do?",
+    "options": [
+      {
+        "text": "Adds 5 to score",
+        "correct": true
+      },
+      {
+        "text": "Sets score to 5",
+        "explain": "The `+=` operator adds to the current value and stores the result."
+      },
+      {
+        "text": "Subtracts 5",
+        "explain": "The `+=` operator adds to the current value and stores the result."
+      },
+      {
+        "text": "Creates a constant",
+        "explain": "The `+=` operator adds to the current value and stores the result."
+      }
+    ],
+    "explanation": "The `+=` operator adds to the current value and stores the result."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which value represents a deliberate absence of an object value?",
+    "options": [
+      {
+        "text": "null",
+        "correct": true
+      },
+      {
+        "text": "undefined",
+        "explain": "`null` is commonly used to represent an intentional empty value."
+      },
+      {
+        "text": "false",
+        "explain": "`null` is commonly used to represent an intentional empty value."
+      },
+      {
+        "text": "0",
+        "explain": "`null` is commonly used to represent an intentional empty value."
+      }
+    ],
+    "explanation": "`null` is commonly used to represent an intentional empty value."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why prefer `const` when possible?",
+    "options": [
+      {
+        "text": "It prevents accidental reassignment",
+        "correct": true
+      },
+      {
+        "text": "It makes code run asynchronously",
+        "explain": "`const` communicates that the binding should not be reassigned."
+      },
+      {
+        "text": "It changes a value to text",
+        "explain": "`const` communicates that the binding should not be reassigned."
+      },
+      {
+        "text": "It declares a function",
+        "explain": "`const` communicates that the binding should not be reassigned."
+      }
+    ],
+    "explanation": "`const` communicates that the binding should not be reassigned."
+  }
+]

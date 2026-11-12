@@ -1,0 +1,112 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line prints `Hello` in Python?",
+    "options": [
+      {
+        "text": "`print(\"Hello\")`",
+        "correct": true
+      },
+      {
+        "text": "`console.log(\"Hello\")`",
+        "explain": "That is JavaScript. Python prints with `print`."
+      },
+      {
+        "text": "`echo \"Hello\"`",
+        "explain": "`echo` is a shell command. In Python you call the `print` function."
+      },
+      {
+        "text": "`System.out.println(\"Hello\")`",
+        "explain": "That is Java. Python is much shorter: `print(\"Hello\")`."
+      }
+    ],
+    "explanation": "`print` is Python's built-in function for showing text."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "name = \"Ana\"\nprint(\"Hi {name}\")",
+    "options": [
+      {
+        "text": "`Hi {name}`",
+        "correct": true
+      },
+      {
+        "text": "`Hi Ana`",
+        "explain": "Without the `f` before the opening quote, Python does not look inside the braces. It prints them as they are."
+      },
+      {
+        "text": "An error",
+        "explain": "The line is valid Python. The braces are just normal characters here."
+      }
+    ],
+    "explanation": "Only an f-string (`f\"...\"`) fills in `{name}`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol that starts a comment.",
+    "code": "___ this is a comment\nprint(\"ok\")",
+    "answer": "#",
+    "checks": [
+      {
+        "regex": "^//$",
+        "not": true,
+        "explain": "`//` starts a comment in JavaScript, C and Java. Python uses `#`."
+      }
+    ],
+    "run": {
+      "template": "{{code}} this is a comment\nprint(\"ok\")",
+      "output": "ok"
+    },
+    "hint": "It is also called \"hash\" or \"pound\".",
+    "explanation": "Everything after `#` on a line is ignored by Python."
+  },
+  {
+    "type": "fix",
+    "prompt": "This should print `Total: 5` but prints the braces. Type the corrected line.",
+    "code": "total = 5\nprint(\"Total: {total}\")",
+    "answer": [
+      "print(f\"Total: {total}\")",
+      "print(\"Total: \" + str(total))"
+    ],
+    "checks": [
+      {
+        "regex": "^print\\(\"Total: \\{total\\}\"\\)$",
+        "not": true,
+        "explain": "That is the original line. Add an `f` right before the opening quote."
+      }
+    ],
+    "run": {
+      "template": "total = 5\n{{code}}",
+      "output": "Total: 5"
+    },
+    "solution": "print(f\"Total: {total}\")",
+    "hint": "An f goes before the opening quote.",
+    "explanation": "f-strings fill in `{...}`. Joining with `+` needs `str(total)` because you cannot add text and a number."
+  },
+  {
+    "type": "write",
+    "prompt": "Create variables `name` (`\"Ana\"`) and `age` (`30`) and print `Ana is 30 years old` using an f-string.",
+    "checks": [
+      {
+        "has": "name",
+        "explain": "Your code should contain `name`."
+      },
+      {
+        "has": "age",
+        "explain": "Your code should contain `age`."
+      },
+      {
+        "has": "print",
+        "explain": "Your code should contain `print`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\nprint(type(name).__name__, type(age).__name__)",
+      "output": "Ana is 30 years old\nstr int"
+    },
+    "solution": "name = \"Ana\"\nage = 30\nprint(f\"{name} is {age} years old\")",
+    "hint": "Two assignments, then one `print(f\"...\")`.",
+    "explanation": "Variables store values; an f-string puts them into text."
+  }
+]

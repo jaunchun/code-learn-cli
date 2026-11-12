@@ -1,0 +1,17 @@
+{
+  "title": "Fibonacci",
+  "difficulty": "medium",
+  "prompt": "Write `fibonacci` so that `fibonacci(n)` returns the n-th Fibonacci number. The sequence starts `0, 1, 1, 2, 3, 5, 8, ...` where every number is the sum of the two before it.\n\n```text\nfibonacci(0)  -> 0\nfibonacci(1)  -> 1\nfibonacci(10) -> 55\n```\n\nSignature: `long long fibonacci(int n)`",
+  "starter": "long long fibonacci(int n) {\n    $0\n}",
+  "run": {
+    "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    printf(\"%lld\\n\", fibonacci(0));\n    printf(\"%lld\\n\", fibonacci(1));\n    printf(\"%lld\\n\", fibonacci(2));\n    printf(\"%lld\\n\", fibonacci(10));\n    printf(\"%lld\\n\", fibonacci(20));\n    return 0;\n}",
+    "output": "0\n1\n1\n55\n6765"
+  },
+  "hints": [
+    "Keep two variables: the previous number and the current one. Start with 0 and 1.",
+    "Repeat `n` times: the new current is `previous + current`, and the old current becomes the previous one.",
+    "After the loop, the \"previous\" variable holds the n-th number (because it starts at position 0)."
+  ],
+  "solution": "long long fibonacci(int n) {\n    long long prev = 0, curr = 1;\n    for (int i = 0; i < n; i++) {\n        long long next = prev + curr;\n        prev = curr;\n        curr = next;\n    }\n    return prev;\n}",
+  "explanation": "You only ever need the last two numbers, so a loop with two variables computes the answer in n steps. A plain recursive version works too, but it recalculates the same values again and again and gets very slow."
+}

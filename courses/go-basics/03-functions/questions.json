@@ -1,0 +1,97 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which is a valid Go function header?",
+    "options": [
+      {
+        "text": "`func add(a int, b int) int`",
+        "correct": true
+      },
+      {
+        "text": "`func add(int a, int b) int`",
+        "explain": "In Go the type goes **after** the name: `a int`."
+      },
+      {
+        "text": "`function add(a int, b int) int`",
+        "explain": "The keyword is `func`, not `function`."
+      },
+      {
+        "text": "`int add(int a, int b)`",
+        "explain": "That is C/Java style. Go starts with `func`, and the return type comes last."
+      }
+    ],
+    "explanation": "Go reads left to right: name, then type."
+  },
+  {
+    "type": "choice",
+    "prompt": "`divmod` returns two ints. How do you receive both?",
+    "code": "func divmod(a, b int) (int, int) {\n    return a / b, a % b\n}",
+    "options": [
+      {
+        "text": "`q, r := divmod(7, 2)`",
+        "correct": true
+      },
+      {
+        "text": "`q := divmod(7, 2)`",
+        "explain": "You must receive all return values (or ignore them with `_`), otherwise the compiler reports an \"assignment mismatch\"."
+      },
+      {
+        "text": "`[q, r] = divmod(7, 2)`",
+        "explain": "Square brackets are JavaScript destructuring. Go simply lists the variables separated by commas."
+      },
+      {
+        "text": "`(q, r) := divmod(7, 2)`",
+        "explain": "Go does not use parentheses around the variables on the left."
+      }
+    ],
+    "explanation": "List one variable per returned value, separated by commas."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the return type.",
+    "code": "func double(n int) ___ {\n    return n * 2\n}",
+    "answer": "int",
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc double(n int) {{code}} {\n    return n * 2\n}\n\nfunc main() {\n    fmt.Println(double(4))\n}",
+      "output": "8"
+    },
+    "hint": "Doubling an `int` gives an `int`.",
+    "explanation": "The return type comes after the parameter list."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` computes a value but does not return it. Type the corrected body line.",
+    "code": "func square(n int) int {\n    n * n\n}",
+    "answer": "return n * n",
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n$",
+        "not": true,
+        "explain": "That is the original line: the value is computed and thrown away. Add `return`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc square(n int) int {\n    {{code}}\n}\n\nfunc main() {\n    fmt.Println(square(5), square(-3))\n}",
+      "output": "25 9"
+    },
+    "solution": "return n * n",
+    "explanation": "A function with a return type must `return` a value."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `isEven(n int) bool` that returns `true` for even numbers.",
+    "checks": [
+      {
+        "has": "func isEven",
+        "explain": "Your code should contain `func isEven`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\n{{code}}\n\nfunc main() {\n    fmt.Println(isEven(4), isEven(7), isEven(0))\n}",
+      "output": "true false true"
+    },
+    "solution": "func isEven(n int) bool {\n    return n%2 == 0\n}",
+    "hint": "`n % 2 == 0` is already a bool.",
+    "explanation": "A comparison produces a `bool`."
+  }
+]

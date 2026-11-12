@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does `return` do?",
+    "options": [
+      {
+        "text": "Sends a value back to the caller",
+        "correct": true
+      },
+      {
+        "text": "Prints to the terminal",
+        "explain": "Return provides the function's result; console.log is used for output."
+      },
+      {
+        "text": "Repeats a function",
+        "explain": "Return provides the function's result; console.log is used for output."
+      },
+      {
+        "text": "Declares a parameter",
+        "explain": "Return provides the function's result; console.log is used for output."
+      }
+    ],
+    "explanation": "Return provides the function's result; console.log is used for output."
+  },
+  {
+    "type": "choice",
+    "prompt": "In `function add(a, b)`, what are a and b?",
+    "options": [
+      {
+        "text": "Parameters",
+        "correct": true
+      },
+      {
+        "text": "Arguments",
+        "explain": "Parameters are names in the function definition."
+      },
+      {
+        "text": "Properties",
+        "explain": "Parameters are names in the function definition."
+      },
+      {
+        "text": "Modules",
+        "explain": "Parameters are names in the function definition."
+      }
+    ],
+    "explanation": "Parameters are names in the function definition."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is `add(2, 3)` passing to the function?",
+    "options": [
+      {
+        "text": "Arguments",
+        "correct": true
+      },
+      {
+        "text": "Parameters",
+        "explain": "Arguments are the actual values supplied when calling a function."
+      },
+      {
+        "text": "A return type",
+        "explain": "Arguments are the actual values supplied when calling a function."
+      },
+      {
+        "text": "A class",
+        "explain": "Arguments are the actual values supplied when calling a function."
+      }
+    ],
+    "explanation": "Arguments are the actual values supplied when calling a function."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which arrow function returns `x * 2`?",
+    "options": [
+      {
+        "text": "x => x * 2",
+        "correct": true
+      },
+      {
+        "text": "x -> x * 2",
+        "explain": "Arrow functions use `=>`; an expression body is returned implicitly."
+      },
+      {
+        "text": "function => x * 2",
+        "explain": "Arrow functions use `=>`; an expression body is returned implicitly."
+      },
+      {
+        "text": "return x * 2",
+        "explain": "Arrow functions use `=>`; an expression body is returned implicitly."
+      }
+    ],
+    "explanation": "Arrow functions use `=>`; an expression body is returned implicitly."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why extract repeated checkout logic into a function?",
+    "options": [
+      {
+        "text": "To reuse and maintain the logic in one place",
+        "correct": true
+      },
+      {
+        "text": "To make variables global",
+        "explain": "A shared function avoids duplicated calculations."
+      },
+      {
+        "text": "To avoid all parameters",
+        "explain": "A shared function avoids duplicated calculations."
+      },
+      {
+        "text": "To stop errors automatically",
+        "explain": "A shared function avoids duplicated calculations."
+      }
+    ],
+    "explanation": "A shared function avoids duplicated calculations."
+  }
+]

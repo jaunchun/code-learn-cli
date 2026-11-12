@@ -1,0 +1,18 @@
+{
+  "title": "Count the vowels",
+  "difficulty": "medium",
+  "prompt": "Write `count_vowels` that counts the vowels `a e i o u` in a piece of text. Upper and lower case both count.\n\n```text\ncount_vowels(\"hello\") -> 2\ncount_vowels(\"RUST\")  -> 1\ncount_vowels(\"xyz\")   -> 0\n```\n\nSignature: `int countVowels(const string& s)`",
+  "starter": "int countVowels(const string& s) {\n    $0\n}",
+  "run": {
+    "template": "#include <iostream>\n#include <string>\n#include <cctype>\nusing namespace std;\n\n{{code}}\n\nint main() {\n    cout << countVowels(\"hello\") << endl;\n    cout << countVowels(\"RUST\") << endl;\n    cout << countVowels(\"xyz\") << endl;\n    cout << countVowels(\"\") << endl;\n    cout << countVowels(\"Programming is fun\") << endl;\n    return 0;\n}",
+    "output": "2\n1\n0\n0\n5"
+  },
+  "hints": [
+    "Go through the text one character at a time.",
+    "Convert each character to lower case first, so you only have to compare with five letters.",
+    "Keep a counter and add 1 whenever the character is one of `a e i o u`.",
+    "`tolower(ch)` (from `<cctype>`) converts a character to lower case."
+  ],
+  "solution": "int countVowels(const string& s) {\n    int count = 0;\n    for (char ch : s) {\n        ch = tolower(ch);\n        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') count++;\n    }\n    return count;\n}",
+  "explanation": "Lower-casing each character first means one comparison covers both cases. A counter that grows only for vowels gives the total."
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Why does this code fail?",
+    "code": "x = 5\nif x > 3:\nprint(\"big\")",
+    "options": [
+      {
+        "text": "The line below `if` must be indented",
+        "correct": true
+      },
+      {
+        "text": "Python needs curly braces around the block",
+        "explain": "Python uses indentation instead of braces to mark a block."
+      },
+      {
+        "text": "`if` conditions need parentheses",
+        "explain": "Parentheses are optional in Python. The error is about the missing indentation."
+      },
+      {
+        "text": "The `print` line needs a semicolon",
+        "explain": "Python does not use semicolons at the end of lines."
+      }
+    ],
+    "explanation": "An `IndentationError` means a block is not indented."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "for i in range(3):\n    print(i)",
+    "options": [
+      {
+        "text": "`0`, `1`, `2`",
+        "correct": true
+      },
+      {
+        "text": "`1`, `2`, `3`",
+        "explain": "`range(3)` starts counting at 0, not at 1, so 0 is the first value printed."
+      },
+      {
+        "text": "`0`, `1`, `2`, `3`",
+        "explain": "`range(3)` stops before 3."
+      }
+    ],
+    "explanation": "`range(3)` produces 0, 1 and 2."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the end value so the loop prints 1, 2, 3, 4 and 5.",
+    "code": "for i in range(1, ___):\n    print(i)",
+    "answer": "6",
+    "checks": [
+      {
+        "regex": "^5$",
+        "not": true,
+        "explain": "The end of a range is not included, so `range(1, 5)` stops at 4."
+      }
+    ],
+    "run": {
+      "template": "for i in range(1, {{code}}):\n    print(i)",
+      "output": "1\n2\n3\n4\n5"
+    },
+    "hint": "One more than the last number you want.",
+    "explanation": "`range(1, 6)` gives 1, 2, 3, 4, 5."
+  },
+  {
+    "type": "fix",
+    "prompt": "Python has no `else if`. Type the corrected line.",
+    "code": "if x == 1:\n    print(\"one\")\nelse if x == 2:\n    print(\"two\")",
+    "answer": "elif x == 2:",
+    "checks": [
+      {
+        "regex": "else\\s+if",
+        "not": true,
+        "explain": "Python spells it `elif` (one word)."
+      }
+    ],
+    "run": {
+      "template": "x = 2\nif x == 1:\n    print(\"one\")\n{{code}}\n    print(\"two\")",
+      "output": "two"
+    },
+    "solution": "elif x == 2:",
+    "explanation": "`elif` means \"else if\"."
+  },
+  {
+    "type": "write",
+    "prompt": "Use a loop to print the sum of the numbers from 1 to 10 (the answer is 55).",
+    "checks": [
+      {
+        "has": "print",
+        "explain": "Your code should contain `print`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}",
+      "output": "55"
+    },
+    "solution": "total = 0\nfor i in range(1, 11):\n    total += i\nprint(total)",
+    "hint": "Start with `total = 0` and add each number in a loop.",
+    "explanation": "A running total built in a loop is a very common pattern."
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Where does a Go program start running?",
+    "options": [
+      {
+        "text": "`func main()` in `package main`",
+        "correct": true
+      },
+      {
+        "text": "`func start()`",
+        "explain": "Go does not look for `start`. Execution begins at a function named `main`."
+      },
+      {
+        "text": "`func Main()`",
+        "explain": "Go is case-sensitive. The entry point is the lower-case `main`."
+      },
+      {
+        "text": "`public static void main(String[] args)`",
+        "explain": "That is Java. Go's entry point is just `func main()`."
+      }
+    ],
+    "explanation": "A runnable Go program needs `package main` and `func main()`."
+  },
+  {
+    "type": "choice",
+    "prompt": "Where can the short declaration `x := 5` be used?",
+    "options": [
+      {
+        "text": "Only inside functions",
+        "correct": true
+      },
+      {
+        "text": "Anywhere, including at the top level of a file",
+        "explain": "At the top level every declaration must start with a keyword like `var` or `const`."
+      },
+      {
+        "text": "Only for constants",
+        "explain": "Constants use `const`. `:=` declares ordinary variables."
+      },
+      {
+        "text": "Only with strings",
+        "explain": "`:=` works with any type; the compiler infers it from the value."
+      }
+    ],
+    "explanation": "Outside functions use `var name = value`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator that declares and assigns a new variable.",
+    "code": "count ___ 10\nfmt.Println(count)",
+    "answer": ":=",
+    "checks": [
+      {
+        "regex": "^=$",
+        "not": true,
+        "explain": "A plain `=` only assigns to a variable that already exists. To create a new one, use `:=`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    count {{code}} 10\n    fmt.Println(count)\n}",
+      "output": "10"
+    },
+    "hint": "A colon followed by an equals sign.",
+    "explanation": "`:=` is the short variable declaration."
+  },
+  {
+    "type": "fix",
+    "prompt": "Go refuses to compile because `x` is never used. Type a replacement for the `Println` line that uses `x`.",
+    "code": "x := 5\nfmt.Println(\"hi\")",
+    "answer": "fmt.Println(x)",
+    "checks": [
+      {
+        "regex": "Println\\(\"hi\"\\)",
+        "not": true,
+        "explain": "That line does not use `x`. Print the variable itself."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    x := 5\n    {{code}}\n}",
+      "output": "5"
+    },
+    "solution": "fmt.Println(x)",
+    "explanation": "Unused variables are compile errors in Go."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare `name` (`\"Ana\"`) and `age` (`30`), then print `Ana is 30`.",
+    "checks": [
+      {
+        "has": "name",
+        "explain": "Your code should contain `name`."
+      },
+      {
+        "has": "age",
+        "explain": "Your code should contain `age`."
+      },
+      {
+        "has": "fmt.Println",
+        "explain": "Your code should contain `fmt.Println`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    {{code}}\n    fmt.Println(len(name) + age)\n}",
+      "output": "Ana is 30\n33"
+    },
+    "solution": "name := \"Ana\"\nage := 30\nfmt.Println(name, \"is\", age)",
+    "hint": "`fmt.Println` puts a space between its arguments.",
+    "explanation": "`Println` joins its arguments with spaces."
+  }
+]

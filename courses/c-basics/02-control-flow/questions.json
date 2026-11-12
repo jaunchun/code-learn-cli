@@ -1,0 +1,105 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What counts as false in a C condition?",
+    "options": [
+      {
+        "text": "`0`",
+        "correct": true
+      },
+      {
+        "text": "Only the keyword `false`",
+        "explain": "`false` exists only with `<stdbool.h>`, and it is just another name for 0. Any zero value is false."
+      },
+      {
+        "text": "Only the empty string",
+        "explain": "C has no built-in string type, and conditions only look at numeric values (and pointers): 0 is false."
+      },
+      {
+        "text": "Any negative number",
+        "explain": "Negative numbers are true. Only 0 is false."
+      }
+    ],
+    "explanation": "0 is false; every other value is true."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "int x = 1;\nswitch (x) {\n    case 1: printf(\"one \");\n    case 2: printf(\"two \");\n}",
+    "options": [
+      {
+        "text": "`one two`",
+        "correct": true
+      },
+      {
+        "text": "`one`",
+        "explain": "Without a `break`, execution continues into the next `case`. That is called fall-through."
+      },
+      {
+        "text": "`two`",
+        "explain": "The matching case is `case 1`. It runs first, then falls through into `case 2`."
+      }
+    ],
+    "explanation": "Add `break;` at the end of each case to stop the fall-through."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the loop prints 1, 2, 3, 4 and 5.",
+    "code": "for (int i = 1; i ___ 5; i++) {\n    printf(\"%d\\n\", i);\n}",
+    "answer": "<=",
+    "checks": [
+      {
+        "regex": "^<$",
+        "not": true,
+        "explain": "`i < 5` stops before 5, so 5 would not be printed."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    for (int i = 1; i {{code}} 5; i++) {\n        printf(\"%d\\n\", i);\n    }\n    return 0;\n}",
+      "output": "1\n2\n3\n4\n5"
+    },
+    "hint": "5 must be included.",
+    "explanation": "`<=` includes the end value."
+  },
+  {
+    "type": "fix",
+    "prompt": "`=` assigns instead of comparing. Type the corrected `if` line (without the `{`).",
+    "code": "if (x = 2) {",
+    "answer": "if (x == 2)",
+    "checks": [
+      {
+        "regex": "\\{\\s*$",
+        "not": true,
+        "explain": "The `{` is already in the code after your line. Type only the `if (...)` part."
+      },
+      {
+        "regex": "(?<![=!<>])=(?!=)\\s*2\\s*\\)",
+        "not": true,
+        "explain": "A single `=` assigns. To compare, use `==`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    int x = 5;\n    {{code}} {\n        printf(\"two\\n\");\n    } else {\n        printf(\"other\\n\");\n    }\n    return 0;\n}",
+      "output": "other"
+    },
+    "solution": "if (x == 2)",
+    "explanation": "`if (x = 2)` sets `x` to 2 and is always true. Use `==` to compare."
+  },
+  {
+    "type": "write",
+    "prompt": "Print the first five multiples of 3 (3, 6, 9, 12, 15), each on its own line.",
+    "checks": [
+      {
+        "has": "printf",
+        "explain": "Your code should contain `printf`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    {{code}}\n    return 0;\n}",
+      "output": "3\n6\n9\n12\n15"
+    },
+    "solution": "for (int i = 1; i <= 5; i++) {\n    printf(\"%d\\n\", 3 * i);\n}",
+    "hint": "A loop from 1 to 5 that prints `3 * i`.",
+    "explanation": "Multiply the loop counter by 3."
+  }
+]

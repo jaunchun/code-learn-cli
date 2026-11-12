@@ -1,0 +1,6 @@
+{
+  "title": "C Basics",
+  "language": "c",
+  "description": "Variables, control flow, functions, arrays, strings and pointers",
+  "order": 5
+}

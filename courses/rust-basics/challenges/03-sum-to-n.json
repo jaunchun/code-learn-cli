@@ -1,0 +1,17 @@
+{
+  "title": "Sum to n",
+  "difficulty": "easy",
+  "prompt": "Write `sum_to(n: u32) -> u32` that returns `1 + 2 + ... + n`. For `n = 0` the answer is `0`.\n\n```text\nsum_to(5)   -> 15\nsum_to(100) -> 5050\n```",
+  "starter": "fn sum_to(n: u32) -> u32 {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for n in [0, 1, 5, 10, 100] {\n        println!(\"{}\", sum_to(n));\n    }\n}",
+    "output": "0\n1\n15\n55\n5050"
+  },
+  "hints": [
+    "Start with `let mut total = 0;` and add to it as you go.",
+    "`for i in 1..=n` visits every number from 1 up to and including `n`.",
+    "There is also a formula that needs no loop: `n * (n + 1) / 2`. Either way works."
+  ],
+  "solution": "fn sum_to(n: u32) -> u32 {\n    let mut total = 0;\n    for i in 1..=n {\n        total += i;\n    }\n    total\n}",
+  "explanation": "The loop adds each number in turn. The formula `n * (n + 1) / 2` gives the same result without looping - both are accepted."
+}

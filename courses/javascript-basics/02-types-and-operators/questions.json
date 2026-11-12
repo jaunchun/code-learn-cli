@@ -1,0 +1,110 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "console.log(typeof \"5\");",
+    "options": [
+      {
+        "text": "`string`",
+        "correct": true
+      },
+      {
+        "text": "`number`",
+        "explain": "The quotes make `\"5\"` a string, even though it looks like a number."
+      },
+      {
+        "text": "`\"5\"`",
+        "explain": "`typeof` returns the *name* of the type, not the value."
+      },
+      {
+        "text": "`undefined`",
+        "explain": "`typeof` always returns a type name; `undefined` is the type of a variable that has no value."
+      }
+    ],
+    "explanation": "Anything in quotes is a string."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "console.log(2 + \"2\");",
+    "options": [
+      {
+        "text": "`22`",
+        "correct": true
+      },
+      {
+        "text": "`4`",
+        "explain": "When one side of `+` is a string, JavaScript joins instead of adding, so the number 2 becomes the text \"2\"."
+      },
+      {
+        "text": "`NaN`",
+        "explain": "`NaN` appears when a calculation on numbers fails. Here `+` simply joins the text."
+      },
+      {
+        "text": "An error",
+        "explain": "JavaScript does not complain: it converts the number to text and joins them."
+      }
+    ],
+    "explanation": "`+` joins as soon as one operand is a string, giving the text `22`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the program prints `false`.",
+    "code": "console.log(\"5\" ___ 5);",
+    "answer": "===",
+    "checks": [
+      {
+        "regex": "^=$",
+        "not": true,
+        "explain": "A single `=` assigns a value. To compare, use `===`."
+      },
+      {
+        "regex": "^==$",
+        "not": true,
+        "explain": "`\"5\" == 5` is `true`, because `==` converts the string to a number first. The strict `===` compares types too."
+      }
+    ],
+    "run": {
+      "template": "console.log(\"5\" {{code}} 5);",
+      "output": "false"
+    },
+    "hint": "Use the strict equality operator, with three characters.",
+    "explanation": "`===` checks type and value, so a string and a number are never equal."
+  },
+  {
+    "type": "fix",
+    "prompt": "`length` is not a function. Type the corrected line.",
+    "code": "const text = \"abc\";\nconsole.log(text.length());",
+    "answer": "console.log(text.length);",
+    "checks": [
+      {
+        "regex": "length\\(\\)",
+        "not": true,
+        "explain": "`length` is a property, not a method, so it has no parentheses: `text.length`."
+      }
+    ],
+    "run": {
+      "template": "const text = \"abc\";\n{{code}}",
+      "output": "3"
+    },
+    "solution": "console.log(text.length);",
+    "explanation": "Strings have a `length` property. Methods such as `toUpperCase()` have parentheses; properties do not."
+  },
+  {
+    "type": "write",
+    "prompt": "Print the remainder of 17 divided by 5, then print 2 to the power of 10. Each result goes on its own line.",
+    "checks": [
+      {
+        "has": "console.log",
+        "explain": "Your code should contain `console.log`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}",
+      "output": "2\n1024"
+    },
+    "solution": "console.log(17 % 5);\nconsole.log(2 ** 10);",
+    "hint": "Use `%` for the remainder and `**` for the power.",
+    "explanation": "`%` gives the remainder (17 = 3*5 + 2) and `**` raises to a power."
+  }
+]

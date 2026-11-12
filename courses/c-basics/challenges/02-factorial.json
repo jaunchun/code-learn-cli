@@ -1,0 +1,17 @@
+{
+  "title": "Factorial",
+  "difficulty": "easy",
+  "prompt": "Write `factorial` for a number `n >= 0`. The factorial is `n * (n-1) * ... * 1`, and `factorial(0)` is `1`.\n\n```text\nfactorial(0) -> 1\nfactorial(5) -> 120\n```\n\nSignature: `long long factorial(int n)`",
+  "starter": "long long factorial(int n) {\n    $0\n}",
+  "run": {
+    "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    printf(\"%lld\\n\", factorial(0));\n    printf(\"%lld\\n\", factorial(1));\n    printf(\"%lld\\n\", factorial(5));\n    printf(\"%lld\\n\", factorial(10));\n    return 0;\n}",
+    "output": "1\n1\n120\n3628800"
+  },
+  "hints": [
+    "Start with a result of `1` (not `0`), then multiply it by each number from 2 up to `n`.",
+    "A loop from 2 to `n` that does `result *= i` does the job. When `n` is 0 or 1 the loop does nothing, and 1 is the right answer.",
+    "There is also a recursive version: `factorial(n) = n * factorial(n - 1)` with `factorial(0) = 1`."
+  ],
+  "solution": "long long factorial(int n) {\n    long long result = 1;\n    for (int i = 2; i <= n; i++) {\n        result *= i;\n    }\n    return result;\n}",
+  "explanation": "Multiplying by every number from 2 to n builds up the product. Starting from 1 (the \"do nothing\" value for multiplication) also covers n = 0 and n = 1."
+}

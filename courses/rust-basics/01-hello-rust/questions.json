@@ -1,0 +1,141 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which function is the entry point of every Rust program?",
+    "options": [
+      {
+        "text": "`main`",
+        "correct": true
+      },
+      {
+        "text": "`start`",
+        "explain": "`start` has no special meaning in Rust. The compiler always looks for a function named `main` to begin running your program."
+      },
+      {
+        "text": "`run`",
+        "explain": "`run` is just an ordinary name you could give your own function. Execution begins at `main`."
+      },
+      {
+        "text": "`init`",
+        "explain": "`init` isn't special in Rust. Programs begin at `fn main()`."
+      }
+    ],
+    "explanation": "Every executable Rust program begins at `fn main()`."
+  },
+  {
+    "type": "choice",
+    "prompt": "In `println!(\"Hi\")`, what does the `!` after `println` tell you?",
+    "options": [
+      {
+        "text": "`println!` is a macro, not a regular function",
+        "correct": true
+      },
+      {
+        "text": "It negates the text, like `!true`",
+        "explain": "The NOT operator `!` goes *before* a value (like `!true`). After a name it means something different: it marks a macro call."
+      },
+      {
+        "text": "It makes the program stop with an error",
+        "explain": "A `!` never causes an error by itself. (Some macros, like `panic!`, can crash a program, but only because of what *they* do.)"
+      },
+      {
+        "text": "It marks the function as unsafe",
+        "explain": "Unsafe code is marked with the `unsafe` keyword. A `!` after a name marks a macro call."
+      }
+    ],
+    "explanation": "Names ending in `!` are macros. They look like function calls but expand into more code at compile time."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the blank so the program prints a **line** of text (with a new line at the end).",
+    "code": "fn main() {\n    ___!(\"Hello, world!\");\n}",
+    "answer": "println",
+    "checks": [
+      {
+        "regex": "^print$",
+        "not": true,
+        "explain": "`print!` is valid, but it does **not** add a new line at the end. The task asks for a *line*, so you need the version with `ln` (for \"line\")."
+      },
+      {
+        "regex": "^println!$",
+        "not": true,
+        "explain": "The `!` is already in the code, right after the blank. Type only the name, without the `!`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}!(\"Hello, world!\");\n}",
+      "output": "Hello, world!\n",
+      "exact": true
+    },
+    "hint": "It starts with `print` and ends with the short word for \"line\".",
+    "explanation": "`println!` prints its text and then moves to a new line."
+  },
+  {
+    "type": "fix",
+    "prompt": "This program won't compile. Type the corrected first `println!` line.",
+    "code": "fn main() {\n    println!(\"Hello, Rust!\")\n    println!(\"Let's learn.\");\n}",
+    "answer": "println!(\"Hello, Rust!\");",
+    "checks": [
+      {
+        "regex": "\\)\\s*$",
+        "not": true,
+        "explain": "The line still doesn't end with `;`. Rust statements end with a semicolon so the compiler knows where one statement stops and the next begins."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n    println!(\"Let's learn.\");\n}",
+      "output": "Hello, Rust!\nLet's learn."
+    },
+    "solution": "println!(\"Hello, Rust!\");",
+    "hint": "Look at how the second `println!` line ends.",
+    "explanation": "Each statement ends with `;`. Without it, Rust thinks the next line is still part of the first statement."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a complete `main` function that prints `Rust is fun`.",
+    "checks": [
+      {
+        "has": "fn main()",
+        "explain": "Start with `fn main()` - that's where every Rust program begins."
+      },
+      {
+        "regex": "fn main\\(\\)\\s*\\{.*\\}",
+        "explain": "Put the body of the function between `{` and `}`."
+      },
+      {
+        "has": "println!(\"Rust is fun\");",
+        "explain": "Use `println!(\"Rust is fun\");` - the text goes in double quotes and the line ends with `;`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}",
+      "output": "Rust is fun"
+    },
+    "solution": "fn main() {\n    println!(\"Rust is fun\");\n}",
+    "hint": "Combine the pieces from the lesson: `fn main`, curly braces, and `println!`.",
+    "explanation": "A minimal Rust program is a `main` function whose body holds one or more statements."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which command creates a new Cargo project called `app`?",
+    "options": [
+      {
+        "text": "`cargo new app`",
+        "correct": true
+      },
+      {
+        "text": "`cargo create app`",
+        "explain": "There is no `cargo create` command. Cargo uses `new` (or `init` for a folder that already exists)."
+      },
+      {
+        "text": "`rustc new app`",
+        "explain": "`rustc` is the compiler: it turns `.rs` files into programs. Creating projects is Cargo's job."
+      },
+      {
+        "text": "`cargo run app`",
+        "explain": "`cargo run` builds and runs an *existing* project. It doesn't create anything."
+      }
+    ],
+    "explanation": "`cargo new <name>` creates a folder with a `Cargo.toml` file and a starter `src/main.rs`."
+  }
+]

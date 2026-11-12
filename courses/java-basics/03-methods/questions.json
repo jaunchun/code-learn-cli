@@ -1,0 +1,100 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which is a valid header for a static method that takes two ints and returns an int?",
+    "options": [
+      {
+        "text": "`static int add(int a, int b)`",
+        "correct": true
+      },
+      {
+        "text": "`static int add(a, b)`",
+        "explain": "Every parameter needs its type: `int a, int b`."
+      },
+      {
+        "text": "`static add(int a, int b): int`",
+        "explain": "The return type goes before the method name in Java, not after."
+      },
+      {
+        "text": "`def add(int a, int b)`",
+        "explain": "`def` is Python. A Java method starts with modifiers and a return type."
+      }
+    ],
+    "explanation": "Modifiers, return type, name, then typed parameters."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "static void change(int x) { x = 10; }\n\npublic static void main(String[] args) {\n    int n = 5;\n    change(n);\n    System.out.println(n);\n}",
+    "options": [
+      {
+        "text": "`5`",
+        "correct": true
+      },
+      {
+        "text": "`10`",
+        "explain": "Java passes a copy of the int. The method changes its own copy, not `n`."
+      },
+      {
+        "text": "It does not compile",
+        "explain": "The code is valid. It just does not change `n`."
+      }
+    ],
+    "explanation": "Primitive arguments are passed by value."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the return type of a method that returns nothing.",
+    "code": "static ___ greet() {\n    System.out.println(\"Hi\");\n}",
+    "answer": "void",
+    "checks": [
+      {
+        "regex": "^(function|def|func|fn)$",
+        "not": true,
+        "explain": "Java has no such keyword. A method that returns nothing has the return type `void`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    static {{code}} greet() {\n        System.out.println(\"Hi\");\n    }\n\n    public static void main(String[] args) {\n        greet();\n    }\n}",
+      "output": "Hi"
+    },
+    "hint": "Four letters, meaning \"empty\".",
+    "explanation": "`void` means no return value."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` has no `return`. Type the corrected body line.",
+    "code": "static int square(int n) {\n    n * n;\n}",
+    "answer": "return n * n;",
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n\\s*;$",
+        "not": true,
+        "explain": "That is the original line: Java even rejects it as \"not a statement\". Add `return`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    static int square(int n) {\n        {{code}}\n    }\n\n    public static void main(String[] args) {\n        System.out.println(square(5) + \" \" + square(-3));\n    }\n}",
+      "output": "25 9"
+    },
+    "solution": "return n * n;",
+    "explanation": "A method with a return type must `return` a value."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a method `static boolean isEven(int n)` that returns `true` for even numbers.",
+    "checks": [
+      {
+        "has": "isEven",
+        "explain": "Your code should contain `isEven`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    {{code}}\n\n    public static void main(String[] args) {\n        System.out.println(isEven(4) + \" \" + isEven(7) + \" \" + isEven(0));\n    }\n}",
+      "output": "true false true"
+    },
+    "solution": "static boolean isEven(int n) {\n    return n % 2 == 0;\n}",
+    "hint": "`n % 2 == 0` is already a boolean.",
+    "explanation": "A comparison produces a `boolean`."
+  }
+]

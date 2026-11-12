@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What is the first array index?",
+    "options": [
+      {
+        "text": "0",
+        "correct": true
+      },
+      {
+        "text": "1",
+        "explain": "JavaScript arrays are zero-indexed."
+      },
+      {
+        "text": "-1",
+        "explain": "JavaScript arrays are zero-indexed."
+      },
+      {
+        "text": "The array length",
+        "explain": "JavaScript arrays are zero-indexed."
+      }
+    ],
+    "explanation": "JavaScript arrays are zero-indexed."
+  },
+  {
+    "type": "choice",
+    "prompt": "How do you access the title property?",
+    "options": [
+      {
+        "text": "task.title",
+        "correct": true
+      },
+      {
+        "text": "task->title",
+        "explain": "Dot notation accesses an object's named property."
+      },
+      {
+        "text": "task[title]",
+        "explain": "Dot notation accesses an object's named property."
+      },
+      {
+        "text": "title.task",
+        "explain": "Dot notation accesses an object's named property."
+      }
+    ],
+    "explanation": "Dot notation accesses an object's named property."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which method adds an item to the end of an array?",
+    "options": [
+      {
+        "text": "push()",
+        "correct": true
+      },
+      {
+        "text": "pop()",
+        "explain": "push appends one or more items."
+      },
+      {
+        "text": "shift()",
+        "explain": "push appends one or more items."
+      },
+      {
+        "text": "slice()",
+        "explain": "push appends one or more items."
+      }
+    ],
+    "explanation": "push appends one or more items."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `tasks[1]` access in a three-item array?",
+    "options": [
+      {
+        "text": "The second item",
+        "correct": true
+      },
+      {
+        "text": "The first item",
+        "explain": "Index 1 is the second position because indexing starts at zero."
+      },
+      {
+        "text": "The third item",
+        "explain": "Index 1 is the second position because indexing starts at zero."
+      },
+      {
+        "text": "The array length",
+        "explain": "Index 1 is the second position because indexing starts at zero."
+      }
+    ],
+    "explanation": "Index 1 is the second position because indexing starts at zero."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is a common reason to use an object?",
+    "options": [
+      {
+        "text": "To group related named properties",
+        "correct": true
+      },
+      {
+        "text": "To repeat code",
+        "explain": "Objects model entities with named data such as title and done."
+      },
+      {
+        "text": "To compile JavaScript",
+        "explain": "Objects model entities with named data such as title and done."
+      },
+      {
+        "text": "To install packages",
+        "explain": "Objects model entities with named data such as title and done."
+      }
+    ],
+    "explanation": "Objects model entities with named data such as title and done."
+  }
+]

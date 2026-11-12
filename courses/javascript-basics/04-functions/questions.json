@@ -1,0 +1,104 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line is a valid arrow function?",
+    "options": [
+      {
+        "text": "`const add = (a, b) => a + b;`",
+        "correct": true
+      },
+      {
+        "text": "`const add = (a, b) -> a + b;`",
+        "explain": "JavaScript arrows are `=>` (equals then greater-than). `->` is used in languages like Rust and Python type hints."
+      },
+      {
+        "text": "`const add = function(a, b) => a + b;`",
+        "explain": "You write either `function(a, b) { ... }` or `(a, b) => ...`, not both."
+      },
+      {
+        "text": "`add(a, b) => a + b;`",
+        "explain": "An arrow function is a value, so it needs a name to be stored in, such as `const add = ...`."
+      }
+    ],
+    "explanation": "Arrow functions look like `(parameters) => result`."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "function double(x) {\n  x * 2;\n}\nconsole.log(double(4));",
+    "options": [
+      {
+        "text": "`undefined`",
+        "correct": true
+      },
+      {
+        "text": "`8`",
+        "explain": "The function never returns the result, because there is no `return`. The calculation is thrown away."
+      },
+      {
+        "text": "`NaN`",
+        "explain": "`NaN` means a calculation on numbers failed. Here nothing is calculated wrongly: the function just returns nothing."
+      },
+      {
+        "text": "An error",
+        "explain": "Calling a function without a `return` is fine; you get `undefined`."
+      }
+    ],
+    "explanation": "Without `return` a function gives back `undefined`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in a default value so `greet()` prints `Hi friend`.",
+    "code": "function greet(name = ___) {\n  return \"Hi \" + name;\n}\nconsole.log(greet());",
+    "answer": [
+      "\"friend\"",
+      "'friend'",
+      "`friend`"
+    ],
+    "run": {
+      "template": "function greet(name = {{code}}) {\n  return \"Hi \" + name;\n}\nconsole.log(greet());",
+      "output": "Hi friend"
+    },
+    "hint": "The default is a string, so it needs quotes.",
+    "explanation": "A default parameter is used when no argument is passed."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` returns `undefined`. Type the corrected body line.",
+    "code": "function square(n) {\n  n * n;\n}",
+    "answer": [
+      "return n * n;",
+      "return n ** 2;"
+    ],
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n;?$",
+        "not": true,
+        "explain": "That is the original line. The value is calculated but never returned. Add `return`."
+      }
+    ],
+    "run": {
+      "template": "function square(n) {\n  {{code}}\n}\nconsole.log(square(5), square(-3));",
+      "output": "25 9"
+    },
+    "solution": "return n * n;",
+    "explanation": "Use `return` to send a value back to the caller."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `isAdult(age)` that returns `true` when `age` is 18 or more, otherwise `false`.",
+    "checks": [
+      {
+        "has": "isAdult",
+        "explain": "Your code should contain `isAdult`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\nconsole.log(isAdult(18), isAdult(17), isAdult(40));",
+      "output": "true false true"
+    },
+    "solution": "function isAdult(age) {\n  return age >= 18;\n}",
+    "hint": "A comparison already gives `true` or `false`, so you can return it directly.",
+    "explanation": "`age >= 18` is a boolean expression, so `return age >= 18;` needs no `if`."
+  }
+]

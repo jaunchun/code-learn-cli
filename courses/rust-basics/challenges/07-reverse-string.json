@@ -1,0 +1,17 @@
+{
+  "title": "Reverse a string",
+  "difficulty": "medium",
+  "prompt": "Write `reverse(s: &str) -> String` that returns the text backwards.\n\n```text\nreverse(\"hello\")   -> olleh\nreverse(\"Rust\")    -> tsuR\nreverse(\"\")        -> (empty)\n```",
+  "starter": "fn reverse(s: &str) -> String {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for text in [\"hello\", \"Rust\", \"\", \"a\", \"racecar\", \"ab cd\"] {\n        println!(\"[{}]\", reverse(text));\n    }\n}",
+    "output": "[olleh]\n[tsuR]\n[]\n[a]\n[racecar]\n[dc ba]"
+  },
+  "hints": [
+    "`s.chars()` gives you the characters one by one, and `.rev()` walks them backwards.",
+    "`.collect::<String>()` glues characters back into a `String`.",
+    "All together: `s.chars().rev().collect()`. (A `for` loop that builds a new `String` with `result.push(c)` works too.)"
+  ],
+  "solution": "fn reverse(s: &str) -> String {\n    s.chars().rev().collect()\n}",
+  "explanation": "`chars().rev().collect()` reads the characters backwards and builds a new `String`. Reversing characters (not bytes) is what keeps non-English letters intact."
+}

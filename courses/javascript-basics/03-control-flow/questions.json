@@ -1,0 +1,105 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this loop print?",
+    "code": "for (let i = 0; i < 3; i++) {\n  console.log(i);\n}",
+    "options": [
+      {
+        "text": "`0`, `1`, `2`",
+        "correct": true
+      },
+      {
+        "text": "`1`, `2`, `3`",
+        "explain": "The loop starts at `i = 0`, not 1."
+      },
+      {
+        "text": "`0`, `1`, `2`, `3`",
+        "explain": "The condition is `i < 3`, so the loop stops before 3 is printed."
+      }
+    ],
+    "explanation": "It starts at 0 and stops when `i < 3` is false."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which of these values is falsy?",
+    "options": [
+      {
+        "text": "`0`",
+        "correct": true
+      },
+      {
+        "text": "`\"0\"`",
+        "explain": "A non-empty string is truthy, even if it contains the character 0."
+      },
+      {
+        "text": "`[]`",
+        "explain": "An empty array is an object, and every object is truthy."
+      },
+      {
+        "text": "`\"false\"`",
+        "explain": "Any non-empty string is truthy, whatever it says."
+      }
+    ],
+    "explanation": "The falsy values are `false`, `0`, `\"\"`, `null`, `undefined` and `NaN`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the loop prints 1, 2, 3 and 4.",
+    "code": "for (let i = 1; i ___ 4; i++) {\n  console.log(i);\n}",
+    "answer": "<=",
+    "checks": [
+      {
+        "regex": "^<$",
+        "not": true,
+        "explain": "`i < 4` stops before 4, so 4 would not be printed."
+      }
+    ],
+    "run": {
+      "template": "for (let i = 1; i {{code}} 4; i++) {\n  console.log(i);\n}",
+      "output": "1\n2\n3\n4"
+    },
+    "hint": "The loop must also run when `i` equals 4.",
+    "explanation": "`<=` means \"less than or equal to\", so 4 is included."
+  },
+  {
+    "type": "fix",
+    "prompt": "This loop never ends because `n` never changes. Type the line to add inside the loop.",
+    "code": "let n = 3;\nwhile (n > 0) {\n  console.log(n);\n}",
+    "answer": [
+      "n--;",
+      "n -= 1;",
+      "n = n - 1;"
+    ],
+    "checks": [
+      {
+        "regex": "^n\\s*-\\s*1;?$",
+        "not": true,
+        "explain": "`n - 1;` calculates a value but throws it away. Store it back with `n--;` or `n -= 1;`."
+      }
+    ],
+    "run": {
+      "template": "let n = 3;\nwhile (n > 0) {\n  console.log(n);\n  {{code}}\n}",
+      "output": "3\n2\n1"
+    },
+    "solution": "n--;",
+    "hint": "Reduce `n` by 1 each time.",
+    "explanation": "The loop condition can only become false if `n` shrinks each round."
+  },
+  {
+    "type": "write",
+    "prompt": "Use a loop to print the even numbers from 2 to 10, one per line.",
+    "checks": [
+      {
+        "has": "console.log",
+        "explain": "Your code should contain `console.log`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}",
+      "output": "2\n4\n6\n8\n10"
+    },
+    "solution": "for (let i = 2; i <= 10; i += 2) {\n  console.log(i);\n}",
+    "hint": "`i += 2` steps by two. An `if (i % 2 === 0)` inside a normal loop also works.",
+    "explanation": "Either step by 2, or loop over everything and print only when `i % 2 === 0`."
+  }
+]

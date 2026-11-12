@@ -1,0 +1,116 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line prints `Hello` followed by a new line?",
+    "options": [
+      {
+        "text": "`System.out.println(\"Hello\");`",
+        "correct": true
+      },
+      {
+        "text": "`print(\"Hello\");`",
+        "explain": "That is Python. Java prints through `System.out`."
+      },
+      {
+        "text": "`console.log(\"Hello\");`",
+        "explain": "That is JavaScript. In Java use `System.out.println`."
+      },
+      {
+        "text": "`cout << \"Hello\";`",
+        "explain": "That is C++. Java has no `cout`."
+      }
+    ],
+    "explanation": "`System.out.println` prints a value and ends the line."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens with `int x = 3.5;`?",
+    "options": [
+      {
+        "text": "A compile error: possible lossy conversion from double to int",
+        "correct": true
+      },
+      {
+        "text": "`x` becomes 3",
+        "explain": "Java refuses to throw away the decimals silently. You would have to write `(int) 3.5` yourself."
+      },
+      {
+        "text": "`x` becomes 4",
+        "explain": "Java never rounds automatically, and an `int` cannot hold a decimal value at all."
+      },
+      {
+        "text": "`x` holds 3.5",
+        "explain": "An `int` can only hold whole numbers. Use `double` for decimals."
+      }
+    ],
+    "explanation": "Narrowing conversions need an explicit cast."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the type of the text variable (mind the capital letter).",
+    "code": "___ name = \"Ana\";\nSystem.out.println(name);",
+    "answer": "String",
+    "checks": [
+      {
+        "regex": "^string$",
+        "not": true,
+        "explain": "Java is case-sensitive. The text type is `String` with a capital S."
+      },
+      {
+        "regex": "^(str|text|char)$",
+        "not": true,
+        "explain": "The type for text is `String`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        {{code}} name = \"Ana\";\n        System.out.println(name);\n    }\n}",
+      "output": "Ana"
+    },
+    "hint": "A capital S.",
+    "explanation": "`String` is a class, so its name starts with a capital letter."
+  },
+  {
+    "type": "fix",
+    "prompt": "Text needs double quotes; single quotes are only for one `char`. Type the corrected line.",
+    "code": "String s = 'hello';",
+    "answer": "String s = \"hello\";",
+    "checks": [
+      {
+        "regex": "'hello'",
+        "not": true,
+        "explain": "Single quotes make a `char` (one character). Use double quotes for a `String`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        {{code}}\n        System.out.println(s);\n    }\n}",
+      "output": "hello"
+    },
+    "solution": "String s = \"hello\";",
+    "explanation": "`\"...\"` is a String, `'x'` is a char."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare `String name = \"Ana\"` and `int age = 30`, then print `Ana is 30`.",
+    "checks": [
+      {
+        "has": "name",
+        "explain": "Your code should contain `name`."
+      },
+      {
+        "has": "age",
+        "explain": "Your code should contain `age`."
+      },
+      {
+        "has": "System.out.println",
+        "explain": "Your code should contain `System.out.println`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        {{code}}\n        System.out.println(name.length() + age);\n    }\n}",
+      "output": "Ana is 30\n33"
+    },
+    "solution": "String name = \"Ana\";\nint age = 30;\nSystem.out.println(name + \" is \" + age);",
+    "hint": "Join text and values with `+`.",
+    "explanation": "`+` joins a String with other values."
+  }
+]

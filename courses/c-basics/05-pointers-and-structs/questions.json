@@ -1,0 +1,104 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does `&x` give you?",
+    "options": [
+      {
+        "text": "The address of `x` in memory",
+        "correct": true
+      },
+      {
+        "text": "The value stored in `x`",
+        "explain": "The value is just `x`. The `&` in front asks for where it lives."
+      },
+      {
+        "text": "A copy of `x`",
+        "explain": "`&x` is not a copy; it is the location of the original variable."
+      },
+      {
+        "text": "The size of `x`",
+        "explain": "The size is `sizeof(x)`. The `&` operator gives the address."
+      }
+    ],
+    "explanation": "`&` means \"address of\", `*` means \"the value at this address\"."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "int x = 5;\nint *p = &x;\n*p = 10;\nprintf(\"%d\\n\", x);",
+    "options": [
+      {
+        "text": "`10`",
+        "correct": true
+      },
+      {
+        "text": "`5`",
+        "explain": "`p` points to `x`, so `*p = 10;` writes 10 into `x` itself."
+      },
+      {
+        "text": "The address of `x`",
+        "explain": "`%d` prints the value of `x`. Nothing here prints an address."
+      }
+    ],
+    "explanation": "Writing through the pointer changes the original variable."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol that declares `p` as a pointer to an int.",
+    "code": "void inc(int ___p) {\n    (*p)++;\n}",
+    "answer": "*",
+    "checks": [
+      {
+        "regex": "^&$",
+        "not": true,
+        "explain": "`int &p` is C++ reference syntax. In C a pointer parameter is declared with `*`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nvoid inc(int {{code}}p) {\n    (*p)++;\n}\n\nint main(void) {\n    int n = 5;\n    inc(&n);\n    printf(\"%d\\n\", n);\n    return 0;\n}",
+      "output": "6"
+    },
+    "hint": "The same symbol you use to follow a pointer.",
+    "explanation": "`int *p` means \"p is a pointer to an int\"."
+  },
+  {
+    "type": "fix",
+    "prompt": "A struct definition needs a semicolon after the closing brace. Type the corrected last line.",
+    "code": "struct Point {\n    int x;\n    int y;\n}",
+    "answer": "};",
+    "checks": [
+      {
+        "regex": "^\\}$",
+        "not": true,
+        "explain": "The line still has no `;` after the closing brace."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nstruct Point {\n    int x;\n    int y;\n{{code}}\n\nint main(void) {\n    struct Point p = {3, 4};\n    printf(\"%d\\n\", p.x + p.y);\n    return 0;\n}",
+      "output": "7"
+    },
+    "solution": "};",
+    "explanation": "In C a `struct` definition is a declaration, so it ends with `;`."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `void swap(int *a, int *b)` that swaps the two values.",
+    "checks": [
+      {
+        "has": "swap",
+        "explain": "Your code should contain `swap`."
+      },
+      {
+        "has": "*a",
+        "explain": "Your code should contain `*a`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    int x = 1, y = 2;\n    swap(&x, &y);\n    printf(\"%d %d\\n\", x, y);\n    return 0;\n}",
+      "output": "2 1"
+    },
+    "solution": "void swap(int *a, int *b) {\n    int tmp = *a;\n    *a = *b;\n    *b = tmp;\n}",
+    "hint": "Save `*a` in a temporary variable first.",
+    "explanation": "Writing through the pointers changes the caller's variables."
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "title": "Stock Warning",
+  "difficulty": "easy",
+  "prompt": "Write `stock_message(quantity)` that returns `In stock` when quantity is above zero and `Out of stock` otherwise.\n\n```text\nstock_message(3) -> In stock\nstock_message(0) -> Out of stock\n```",
+  "starter": "def stock_message(quantity):\n    $0",
+  "run": {
+    "template": "{{code}}\n\nprint(stock_message(3))\nprint(stock_message(0))\nprint(stock_message(-2))",
+    "output": "In stock\nOut of stock\nOut of stock"
+  },
+  "hints": [
+    "Use an if/else decision.",
+    "Compare quantity with zero.",
+    "Return a different string from each branch."
+  ],
+  "solution": "def stock_message(quantity):\n    if quantity > 0:\n        return \"In stock\"\n    else:\n        return \"Out of stock\"",
+  "explanation": "The function checks whether the quantity is positive and returns the matching status."
+}

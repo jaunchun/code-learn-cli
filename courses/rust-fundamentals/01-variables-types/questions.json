@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Are Rust variables mutable by default?",
+    "options": [
+      {
+        "text": "No",
+        "correct": true
+      },
+      {
+        "text": "Yes",
+        "explain": "Rust requires `mut` to make a binding mutable."
+      },
+      {
+        "text": "Only inside functions",
+        "explain": "Rust requires `mut` to make a binding mutable."
+      },
+      {
+        "text": "Only integers",
+        "explain": "Rust requires `mut` to make a binding mutable."
+      }
+    ],
+    "explanation": "Rust requires `mut` to make a binding mutable."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which declaration allows reassignment?",
+    "options": [
+      {
+        "text": "let mut count = 0;",
+        "correct": true
+      },
+      {
+        "text": "let count = 0;",
+        "explain": "`mut` explicitly permits changing the value bound to count."
+      },
+      {
+        "text": "const mut count = 0;",
+        "explain": "`mut` explicitly permits changing the value bound to count."
+      },
+      {
+        "text": "var count = 0;",
+        "explain": "`mut` explicitly permits changing the value bound to count."
+      }
+    ],
+    "explanation": "`mut` explicitly permits changing the value bound to count."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which type is commonly used for a 64-bit decimal?",
+    "options": [
+      {
+        "text": "f64",
+        "correct": true
+      },
+      {
+        "text": "i32",
+        "explain": "f64 is a 64-bit floating-point type."
+      },
+      {
+        "text": "bool",
+        "explain": "f64 is a 64-bit floating-point type."
+      },
+      {
+        "text": "char",
+        "explain": "f64 is a 64-bit floating-point type."
+      }
+    ],
+    "explanation": "f64 is a 64-bit floating-point type."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `println!` represent?",
+    "options": [
+      {
+        "text": "A macro",
+        "correct": true
+      },
+      {
+        "text": "A variable",
+        "explain": "The exclamation mark indicates macro invocation."
+      },
+      {
+        "text": "A type",
+        "explain": "The exclamation mark indicates macro invocation."
+      },
+      {
+        "text": "A module",
+        "explain": "The exclamation mark indicates macro invocation."
+      }
+    ],
+    "explanation": "The exclamation mark indicates macro invocation."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens if you assign to an immutable binding?",
+    "options": [
+      {
+        "text": "The compiler reports an error",
+        "correct": true
+      },
+      {
+        "text": "The value silently changes",
+        "explain": "Rust catches this mistake during compilation."
+      },
+      {
+        "text": "The program always crashes at runtime",
+        "explain": "Rust catches this mistake during compilation."
+      },
+      {
+        "text": "Rust ignores the assignment",
+        "explain": "Rust catches this mistake during compilation."
+      }
+    ],
+    "explanation": "Rust catches this mistake during compilation."
+  }
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "type": "choice",
+    "prompt": "How many loop keywords does Go have?",
+    "options": [
+      {
+        "text": "One: `for` does everything",
+        "correct": true
+      },
+      {
+        "text": "Two: `for` and `while`",
+        "explain": "Go has no `while` keyword. A `for` with only a condition does the same job."
+      },
+      {
+        "text": "Three: `for`, `while` and `do`",
+        "explain": "Go has neither `while` nor `do`. Everything is a `for` loop."
+      },
+      {
+        "text": "Two: `loop` and `for`",
+        "explain": "There is no `loop` keyword. `for` without a condition loops forever."
+      }
+    ],
+    "explanation": "`for init; cond; step`, `for cond` and `for {}` cover every case."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which `if` statement is valid Go?",
+    "options": [
+      {
+        "text": "`if x > 3 {`",
+        "correct": true
+      },
+      {
+        "text": "`if (x > 3)` followed by an unbraced statement",
+        "explain": "In Go the braces are mandatory, even for one statement."
+      },
+      {
+        "text": "`if x > 3:`",
+        "explain": "The colon form is Python. Go uses braces."
+      },
+      {
+        "text": "`if x > 3 then`",
+        "explain": "Go has no `then`. The block is simply wrapped in braces."
+      }
+    ],
+    "explanation": "Go conditions need no parentheses but the braces are required."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the loop prints 1, 2 and 3.",
+    "code": "for i := 1; i ___ 3; i++ {\n    fmt.Println(i)\n}",
+    "answer": "<=",
+    "checks": [
+      {
+        "regex": "^<$",
+        "not": true,
+        "explain": "`i < 3` stops before 3, so 3 would not be printed."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    for i := 1; i {{code}} 3; i++ {\n        fmt.Println(i)\n    }\n}",
+      "output": "1\n2\n3"
+    },
+    "hint": "3 should be included.",
+    "explanation": "`<=` includes the end value."
+  },
+  {
+    "type": "fix",
+    "prompt": "Go has no `while`. Type the corrected first line of the loop.",
+    "code": "while n > 0 {\n    fmt.Println(n)\n    n--\n}",
+    "answer": "for n > 0 {",
+    "checks": [
+      {
+        "regex": "^while",
+        "not": true,
+        "explain": "Go has no `while` keyword. A `for` with just a condition does the same thing."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    n := 3\n    {{code}}\n        fmt.Println(n)\n        n--\n    }\n}",
+      "output": "3\n2\n1"
+    },
+    "solution": "for n > 0 {",
+    "explanation": "`for condition { ... }` is Go's while loop."
+  },
+  {
+    "type": "write",
+    "prompt": "Use a loop to print the sum of the numbers from 1 to 10 (the answer is 55).",
+    "checks": [
+      {
+        "has": "fmt.Println",
+        "explain": "Your code should contain `fmt.Println`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    {{code}}\n}",
+      "output": "55"
+    },
+    "solution": "total := 0\nfor i := 1; i <= 10; i++ {\n    total += i\n}\nfmt.Println(total)",
+    "hint": "Start with `total := 0` and add `i` in a loop.",
+    "explanation": "A running total built in a loop."
+  }
+]

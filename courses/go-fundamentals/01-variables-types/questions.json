@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which package name is used for an executable entry point?",
+    "options": [
+      {
+        "text": "main",
+        "correct": true
+      },
+      {
+        "text": "fmt",
+        "explain": "An executable Go program uses package main."
+      },
+      {
+        "text": "system",
+        "explain": "An executable Go program uses package main."
+      },
+      {
+        "text": "start",
+        "explain": "An executable Go program uses package main."
+      }
+    ],
+    "explanation": "An executable Go program uses package main."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is the entry function called?",
+    "options": [
+      {
+        "text": "main",
+        "correct": true
+      },
+      {
+        "text": "start",
+        "explain": "The Go runtime starts an executable by calling main.main."
+      },
+      {
+        "text": "initProgram",
+        "explain": "The Go runtime starts an executable by calling main.main."
+      },
+      {
+        "text": "run",
+        "explain": "The Go runtime starts an executable by calling main.main."
+      }
+    ],
+    "explanation": "The Go runtime starts an executable by calling main.main."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which package provides `Println`?",
+    "options": [
+      {
+        "text": "fmt",
+        "correct": true
+      },
+      {
+        "text": "http",
+        "explain": "fmt contains formatted I/O functions."
+      },
+      {
+        "text": "os",
+        "explain": "fmt contains formatted I/O functions."
+      },
+      {
+        "text": "json",
+        "explain": "fmt contains formatted I/O functions."
+      }
+    ],
+    "explanation": "fmt contains formatted I/O functions."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `:=` do?",
+    "options": [
+      {
+        "text": "Declares and initializes a local variable",
+        "correct": true
+      },
+      {
+        "text": "Compares values",
+        "explain": "Short declaration creates a local variable and infers its type."
+      },
+      {
+        "text": "Imports a package",
+        "explain": "Short declaration creates a local variable and infers its type."
+      },
+      {
+        "text": "Ends a function",
+        "explain": "Short declaration creates a local variable and infers its type."
+      }
+    ],
+    "explanation": "Short declaration creates a local variable and infers its type."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens to an unused import?",
+    "options": [
+      {
+        "text": "The compiler reports an error",
+        "correct": true
+      },
+      {
+        "text": "It is silently removed",
+        "explain": "Go deliberately rejects unused imports."
+      },
+      {
+        "text": "It runs at startup",
+        "explain": "Go deliberately rejects unused imports."
+      },
+      {
+        "text": "It becomes a comment",
+        "explain": "Go deliberately rejects unused imports."
+      }
+    ],
+    "explanation": "Go deliberately rejects unused imports."
+  }
+]

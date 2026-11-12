@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What type is `149.99`?",
+    "options": [
+      {
+        "text": "float",
+        "correct": true
+      },
+      {
+        "text": "int",
+        "explain": "A decimal number is a float; int is for whole numbers."
+      },
+      {
+        "text": "str",
+        "explain": "A decimal number is a float; int is for whole numbers."
+      },
+      {
+        "text": "bool",
+        "explain": "A decimal number is a float; int is for whole numbers."
+      }
+    ],
+    "explanation": "A decimal number is a float; int is for whole numbers."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `stock = stock - 2` do when stock is 8?",
+    "options": [
+      {
+        "text": "6",
+        "correct": true
+      },
+      {
+        "text": "10",
+        "explain": "The assignment stores the result of subtracting two."
+      },
+      {
+        "text": "8",
+        "explain": "The assignment stores the result of subtracting two."
+      },
+      {
+        "text": "2",
+        "explain": "The assignment stores the result of subtracting two."
+      }
+    ],
+    "explanation": "The assignment stores the result of subtracting two."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which value is a boolean?",
+    "options": [
+      {
+        "text": "True",
+        "correct": true
+      },
+      {
+        "text": "\"True\"",
+        "explain": "True without quotation marks is a bool; quoted text is a string."
+      },
+      {
+        "text": "1.5",
+        "explain": "True without quotation marks is a bool; quoted text is a string."
+      },
+      {
+        "text": "\"yes\"",
+        "explain": "True without quotation marks is a bool; quoted text is a string."
+      }
+    ],
+    "explanation": "True without quotation marks is a bool; quoted text is a string."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `type(\"hello\")` identify?",
+    "options": [
+      {
+        "text": "str",
+        "correct": true
+      },
+      {
+        "text": "int",
+        "explain": "Text in quotation marks is a string."
+      },
+      {
+        "text": "float",
+        "explain": "Text in quotation marks is a string."
+      },
+      {
+        "text": "bool",
+        "explain": "Text in quotation marks is a string."
+      }
+    ],
+    "explanation": "Text in quotation marks is a string."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which expression inserts `name` into a string?",
+    "options": [
+      {
+        "text": "f\"Hello, {name}\"",
+        "correct": true
+      },
+      {
+        "text": "\"Hello, name\"",
+        "explain": "An f-string uses an f prefix and braces around the variable."
+      },
+      {
+        "text": "f\"Hello, name\"",
+        "explain": "An f-string uses an f prefix and braces around the variable."
+      },
+      {
+        "text": "\"{name}\"",
+        "explain": "An f-string uses an f prefix and braces around the variable."
+      }
+    ],
+    "explanation": "An f-string uses an f prefix and braces around the variable."
+  }
+]

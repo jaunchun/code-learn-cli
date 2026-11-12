@@ -1,0 +1,97 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Why do you write `nums = append(nums, 4)` and not just `append(nums, 4)`?",
+    "options": [
+      {
+        "text": "`append` returns the (possibly new) slice, so you must store the result",
+        "correct": true
+      },
+      {
+        "text": "It is only a style choice",
+        "explain": "Calling `append` without using the result is a compile error. The result is the grown slice."
+      },
+      {
+        "text": "`append` already changes `nums` in place",
+        "explain": "The slice may need a bigger underlying array, so `append` hands back a new slice value. You have to keep it."
+      }
+    ],
+    "explanation": "Always assign the result: `s = append(s, x)`."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "m := map[string]int{\"a\": 1}\nfmt.Println(m[\"b\"])",
+    "options": [
+      {
+        "text": "`0`",
+        "correct": true
+      },
+      {
+        "text": "It crashes with an error",
+        "explain": "Reading a missing key from a map does not fail. You get the value type's zero value."
+      },
+      {
+        "text": "`nil`",
+        "explain": "An `int` can never be `nil`. The zero value of `int` is `0`."
+      },
+      {
+        "text": "`key not found`",
+        "explain": "Go gives no message. Use `v, ok := m[key]` to detect a missing key."
+      }
+    ],
+    "explanation": "Missing keys give the zero value; the \"comma ok\" form tells you whether the key exists."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the built-in function that returns the number of items.",
+    "code": "nums := []int{1, 2, 3}\nfmt.Println(___(nums))",
+    "answer": "len",
+    "checks": [
+      {
+        "regex": "^(length|size|count)$",
+        "not": true,
+        "explain": "Go's built-in is spelled `len`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    nums := []int{1, 2, 3}\n    fmt.Println({{code}}(nums))\n}",
+      "output": "3"
+    },
+    "hint": "Three letters.",
+    "explanation": "`len` works for slices, maps, strings and arrays."
+  },
+  {
+    "type": "fix",
+    "prompt": "`i` is never used, so this does not compile. Type the corrected `for` line.",
+    "code": "for i, v := range nums {",
+    "answer": "for _, v := range nums {",
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    nums := []int{1, 2, 3}\n    sum := 0\n    {{code}}\n        sum += v\n    }\n    fmt.Println(sum)\n}",
+      "output": "6"
+    },
+    "solution": "for _, v := range nums {",
+    "explanation": "Use the blank identifier `_` for values you do not need."
+  },
+  {
+    "type": "write",
+    "prompt": "A map `ages` is given. Print the sum of all the ages.",
+    "checks": [
+      {
+        "has": "range",
+        "explain": "Your code should contain `range`."
+      },
+      {
+        "has": "fmt.Println",
+        "explain": "Your code should contain `fmt.Println`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\nfunc main() {\n    ages := map[string]int{\"ana\": 30, \"bo\": 25}\n    {{code}}\n}",
+      "output": "55"
+    },
+    "solution": "total := 0\nfor _, age := range ages {\n    total += age\n}\nfmt.Println(total)",
+    "hint": "`for _, age := range ages` visits every value.",
+    "explanation": "Ranging over a map gives key and value."
+  }
+]

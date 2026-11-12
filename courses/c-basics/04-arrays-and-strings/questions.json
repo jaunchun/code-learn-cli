@@ -1,0 +1,114 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What happens when this code reads `a[3]`?",
+    "code": "int a[3] = {1, 2, 3};\nprintf(\"%d\\n\", a[3]);",
+    "options": [
+      {
+        "text": "Undefined behavior: it may print garbage or crash",
+        "correct": true
+      },
+      {
+        "text": "It prints `3`",
+        "explain": "The array has indexes 0, 1 and 2. Index 3 is outside it, so you read whatever lies next in memory."
+      },
+      {
+        "text": "The compiler stops with an error",
+        "explain": "C does not check array bounds, so the program compiles. The bug appears (or hides) at run time."
+      }
+    ],
+    "explanation": "C trusts you with indexes: staying in bounds is your job."
+  },
+  {
+    "type": "choice",
+    "prompt": "How does C know where a string ends?",
+    "options": [
+      {
+        "text": "A `'\\0'` (zero) byte marks the end",
+        "correct": true
+      },
+      {
+        "text": "The first byte stores the length",
+        "explain": "That is how some other languages work. C strings have no length field; they end at the zero byte."
+      },
+      {
+        "text": "Strings end at the first newline",
+        "explain": "A newline is an ordinary character inside a string. Only the zero byte terminates it."
+      },
+      {
+        "text": "Strings are objects with a `.length` property",
+        "explain": "C has no objects or properties. `strlen` walks through the characters until it finds the zero byte."
+      }
+    ],
+    "explanation": "This is why `strlen` has to count characters one by one."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the function that returns the length of a string.",
+    "code": "printf(\"%zu\\n\", ___(\"hello\"));",
+    "answer": "strlen",
+    "checks": [
+      {
+        "regex": "^sizeof$",
+        "not": true,
+        "explain": "`sizeof(\"hello\")` is 6, because it counts the hidden `'\\0'` byte too. `strlen` counts only the visible characters."
+      },
+      {
+        "regex": "^(len|length|size)$",
+        "not": true,
+        "explain": "C has no such function. The `<string.h>` function is `strlen`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    printf(\"%zu\\n\", {{code}}(\"hello\"));\n    return 0;\n}",
+      "output": "5"
+    },
+    "hint": "\"string length\", with the vowels removed.",
+    "explanation": "`strlen` returns the number of characters before the `'\\0'`."
+  },
+  {
+    "type": "fix",
+    "prompt": "`==` compares addresses, not text. Type the corrected `if` line (without the `{`).",
+    "code": "if (a == b) {",
+    "answer": "if (strcmp(a, b) == 0)",
+    "checks": [
+      {
+        "regex": "\\{\\s*$",
+        "not": true,
+        "explain": "The `{` is already in the code after your line."
+      },
+      {
+        "regex": "^if\\s*\\(\\s*a\\s*==\\s*b\\s*\\)$",
+        "not": true,
+        "explain": "That is the original line: it compares memory addresses. Use `strcmp(a, b) == 0`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    char a[] = \"hi\";\n    char b[] = \"hi\";\n    {{code}} {\n        printf(\"same\\n\");\n    } else {\n        printf(\"different\\n\");\n    }\n    return 0;\n}",
+      "output": "same"
+    },
+    "solution": "if (strcmp(a, b) == 0)",
+    "explanation": "`strcmp` returns 0 when the two strings are equal."
+  },
+  {
+    "type": "write",
+    "prompt": "`nums` and its length `n` are given. Print the sum of all numbers in `nums`.",
+    "checks": [
+      {
+        "has": "printf",
+        "explain": "Your code should contain `printf`."
+      },
+      {
+        "has": "nums",
+        "explain": "Your code should contain `nums`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    int nums[] = {4, 8, 15, 16, 23, 42};\n    int n = sizeof(nums) / sizeof(nums[0]);\n    {{code}}\n    return 0;\n}",
+      "output": "108"
+    },
+    "solution": "int total = 0;\nfor (int i = 0; i < n; i++) {\n    total += nums[i];\n}\nprintf(\"%d\\n\", total);",
+    "hint": "Loop from 0 to `n - 1` and add `nums[i]`.",
+    "explanation": "A loop with a running total visits every element."
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "title": "Is it prime?",
+  "difficulty": "medium",
+  "prompt": "Write `is_prime(n: u32) -> bool`. A prime is a number greater than 1 that is only divisible by 1 and itself.\n\n```text\nis_prime(2)  -> true\nis_prime(9)  -> false\nis_prime(17) -> true\nis_prime(1)  -> false\n```",
+  "starter": "fn is_prime(n: u32) -> bool {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\n\nfn main() {\n    for n in [0, 1, 2, 3, 4, 5, 9, 17, 18, 97, 100, 7919] {\n        println!(\"{}\", is_prime(n));\n    }\n}",
+    "output": "false\nfalse\ntrue\ntrue\nfalse\ntrue\nfalse\ntrue\nfalse\ntrue\nfalse\ntrue"
+  },
+  "hints": [
+    "Numbers below 2 are never prime - handle them first.",
+    "Try dividing by every number from 2 up to `n - 1`. If one divides evenly (`n % d == 0`), `n` is not prime.",
+    "You can stop early: only test divisors `d` while `d * d <= n`. A `while` loop with a mutable `d` works well, and `return false;` leaves the function immediately."
+  ],
+  "solution": "fn is_prime(n: u32) -> bool {\n    if n < 2 {\n        return false;\n    }\n    let mut d = 2;\n    while d * d <= n {\n        if n % d == 0 {\n            return false;\n        }\n        d += 1;\n    }\n    true\n}",
+  "explanation": "If a number has a divisor bigger than its square root, it must also have a smaller one - so testing divisors only up to the square root is enough. Testing every number below `n` is slower but also correct."
+}

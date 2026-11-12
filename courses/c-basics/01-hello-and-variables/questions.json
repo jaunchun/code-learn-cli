@@ -1,0 +1,114 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line prints `Hello` followed by a new line?",
+    "options": [
+      {
+        "text": "`printf(\"Hello\\n\");`",
+        "correct": true
+      },
+      {
+        "text": "`print(\"Hello\");`",
+        "explain": "That is Python. In C you call `printf`."
+      },
+      {
+        "text": "`cout << \"Hello\";`",
+        "explain": "`cout` is C++. C prints with `printf` from `<stdio.h>`."
+      },
+      {
+        "text": "`System.out.println(\"Hello\");`",
+        "explain": "That is Java. In C the print function is `printf`."
+      }
+    ],
+    "explanation": "`printf` prints formatted text; `\\n` ends the line."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which `printf` format specifier prints an `int`?",
+    "options": [
+      {
+        "text": "`%d`",
+        "correct": true
+      },
+      {
+        "text": "`%s`",
+        "explain": "`%s` is for strings (text). An int needs `%d`."
+      },
+      {
+        "text": "`%f`",
+        "explain": "`%f` is for floating-point numbers like `double`. Using it for an int prints garbage."
+      },
+      {
+        "text": "`%c`",
+        "explain": "`%c` prints one character. An int needs `%d`."
+      }
+    ],
+    "explanation": "`%d` stands for \"decimal integer\"."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the format specifier letter that prints a `double`.",
+    "code": "printf(\"%___\\n\", 3.5);",
+    "answer": [
+      "f",
+      "lf"
+    ],
+    "checks": [
+      {
+        "regex": "^d$",
+        "not": true,
+        "explain": "`%d` is for ints. A double needs `%f`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    printf(\"%{{code}}\\n\", 3.5);\n    return 0;\n}",
+      "output": "3.500000"
+    },
+    "hint": "It is the first letter of \"floating point\".",
+    "explanation": "`%f` prints a double with 6 decimals by default."
+  },
+  {
+    "type": "fix",
+    "prompt": "The comma between the format and the value is missing. Type the corrected line.",
+    "code": "int x = 5;\nprintf(\"%d\\n\" x);",
+    "answer": "printf(\"%d\\n\", x);",
+    "checks": [
+      {
+        "regex": "\"\\s*x\\)",
+        "not": true,
+        "explain": "That is the original line. Arguments to `printf` are separated by commas."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    int x = 5;\n    {{code}}\n    return 0;\n}",
+      "output": "5"
+    },
+    "solution": "printf(\"%d\\n\", x);",
+    "explanation": "Arguments are separated by commas."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare `int a = 7` and `int b = 2`. Print `a / b` with integer division, a space, then the exact result `3.5`.",
+    "checks": [
+      {
+        "has": "printf",
+        "explain": "Your code should contain `printf`."
+      },
+      {
+        "has": "a",
+        "explain": "Your code should contain `a`."
+      },
+      {
+        "has": "b",
+        "explain": "Your code should contain `b`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint main(void) {\n    {{code}}\n    return 0;\n}",
+      "output": "3 3.5"
+    },
+    "solution": "int a = 7;\nint b = 2;\nprintf(\"%d %.1f\\n\", a / b, (double)a / b);",
+    "hint": "`(double)a / b` converts `a` to a double before dividing.",
+    "explanation": "Casting one operand to `double` turns the division into floating-point division."
+  }
+]

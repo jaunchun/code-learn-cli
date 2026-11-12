@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which operator checks equality?",
+    "options": [
+      {
+        "text": "==",
+        "correct": true
+      },
+      {
+        "text": "=",
+        "explain": "A double equals sign compares two values. A single equals sign assigns."
+      },
+      {
+        "text": "!=",
+        "explain": "A double equals sign compares two values. A single equals sign assigns."
+      },
+      {
+        "text": ">=",
+        "explain": "A double equals sign compares two values. A single equals sign assigns."
+      }
+    ],
+    "explanation": "A double equals sign compares two values. A single equals sign assigns."
+  },
+  {
+    "type": "choice",
+    "prompt": "If score is 42, does `score >= 50` pass?",
+    "options": [
+      {
+        "text": "No",
+        "correct": true
+      },
+      {
+        "text": "Yes",
+        "explain": "42 is less than 50, so the condition is false."
+      },
+      {
+        "text": "It causes an error",
+        "explain": "42 is less than 50, so the condition is false."
+      },
+      {
+        "text": "It changes score",
+        "explain": "42 is less than 50, so the condition is false."
+      }
+    ],
+    "explanation": "42 is less than 50, so the condition is false."
+  },
+  {
+    "type": "choice",
+    "prompt": "When does an `else` block run?",
+    "options": [
+      {
+        "text": "When previous conditions are false",
+        "correct": true
+      },
+      {
+        "text": "Always",
+        "explain": "Else is the fallback branch when earlier conditions did not match."
+      },
+      {
+        "text": "Only when a variable is zero",
+        "explain": "Else is the fallback branch when earlier conditions did not match."
+      },
+      {
+        "text": "Before the if block",
+        "explain": "Else is the fallback branch when earlier conditions did not match."
+      }
+    ],
+    "explanation": "Else is the fallback branch when earlier conditions did not match."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `and` require?",
+    "options": [
+      {
+        "text": "Both conditions must be true",
+        "correct": true
+      },
+      {
+        "text": "At least one true",
+        "explain": "The and operator is true only when both sides are true."
+      },
+      {
+        "text": "Both false",
+        "explain": "The and operator is true only when both sides are true."
+      },
+      {
+        "text": "It changes a value",
+        "explain": "The and operator is true only when both sides are true."
+      }
+    ],
+    "explanation": "The and operator is true only when both sides are true."
+  },
+  {
+    "type": "choice",
+    "prompt": "A store should print `In stock` if quantity is above zero. Which condition is correct?",
+    "options": [
+      {
+        "text": "quantity > 0",
+        "correct": true
+      },
+      {
+        "text": "quantity = 0",
+        "explain": "Greater than zero means at least one item is available."
+      },
+      {
+        "text": "quantity < 0",
+        "explain": "Greater than zero means at least one item is available."
+      },
+      {
+        "text": "quantity != 0",
+        "explain": "Greater than zero means at least one item is available."
+      }
+    ],
+    "explanation": "Greater than zero means at least one item is available."
+  }
+]

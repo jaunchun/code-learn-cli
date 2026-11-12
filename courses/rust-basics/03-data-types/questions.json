@@ -1,0 +1,145 @@
+[
+  {
+    "type": "choice",
+    "prompt": "You need a type for a number that is never negative and can be as large as 200. Which type is the best fit?",
+    "options": [
+      {
+        "text": "`u8`",
+        "correct": true
+      },
+      {
+        "text": "`i8`",
+        "explain": "`i8` is signed and only goes up to 127, so 200 wouldn't fit."
+      },
+      {
+        "text": "`f32`",
+        "explain": "`f32` is a floating-point type for numbers with decimals. A whole number like 200 is better stored in an integer type."
+      },
+      {
+        "text": "`char`",
+        "explain": "`char` holds a single character such as `'A'`, not a number to calculate with."
+      }
+    ],
+    "explanation": "`u8` is unsigned and holds 0 to 255, which covers 200."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is the type of the value `'a'` (with single quotes)?",
+    "options": [
+      {
+        "text": "`char`",
+        "correct": true
+      },
+      {
+        "text": "`&str` (a string)",
+        "explain": "A string uses *double* quotes, like `\"a\"`. Single quotes create a single character."
+      },
+      {
+        "text": "`String`",
+        "explain": "`String` is an owned, growable text type, created for example with `String::from(\"a\")`. A single-quoted value is a `char`."
+      },
+      {
+        "text": "`u8`",
+        "explain": "A plain `'a'` is a `char`. (A byte literal `b'a'` would be a `u8`, but that has a `b` in front.)"
+      }
+    ],
+    "explanation": "Single quotes make a `char`, double quotes make a string."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the type: this variable stores a floating-point number.",
+    "code": "let pi: ___ = 3.14;",
+    "answer": [
+      "f64",
+      "f32"
+    ],
+    "checks": [
+      {
+        "regex": "^(float|double)$",
+        "not": true,
+        "explain": "Rust names its float types by size: `f32` and `f64`. There are no `float` or `double` types."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let pi: {{code}} = 3.14;\n    println!(\"{}\", pi);\n}",
+      "output": "3.14"
+    },
+    "hint": "It starts with `f` and ends with the number of bits.",
+    "explanation": "`f64` is the default float type (`f32` also works and uses less memory but is less precise)."
+  },
+  {
+    "type": "fix",
+    "prompt": "This line doesn't compile because 300 is too big for a `u8`. Type the corrected line (keep the value `300`).",
+    "code": "let big: u8 = 300;",
+    "checks": [
+      {
+        "regex": ":\\s*(u8|i8)\\s*=",
+        "not": true,
+        "explain": "`u8` only holds 0 to 255 and `i8` only -128 to 127, so 300 still doesn't fit."
+      },
+      {
+        "regex": "^let big(\\s*:\\s*(u16|u32|u64|u128|i16|i32|i64|i128|usize|isize))?\\s*=\\s*300\\s*;$",
+        "explain": "Keep `let big ... = 300;` but use a type that can hold 300, such as `u16` or `i32` (or leave the type out and let Rust pick `i32`)."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n    println!(\"{}\", big);\n}",
+      "output": "300"
+    },
+    "solution": "let big: u16 = 300;",
+    "hint": "You need a type with more than 8 bits.",
+    "explanation": "300 needs at least 9 bits. `u16` (0 to 65535) and `i32` both work."
+  },
+  {
+    "type": "choice",
+    "prompt": "Given this tuple, how do you read the value `7`?",
+    "code": "let point = (3, 7);",
+    "options": [
+      {
+        "text": "`point.1`",
+        "correct": true
+      },
+      {
+        "text": "`point[1]`",
+        "explain": "Square brackets index arrays (and vectors). Tuples use a dot followed by the index."
+      },
+      {
+        "text": "`point.2`",
+        "explain": "Indexes start at 0, so `point.2` would be the *third* item - which doesn't exist in a pair."
+      },
+      {
+        "text": "`point(1)`",
+        "explain": "Parentheses call functions. A tuple isn't a function, so you access its items with `.index`."
+      }
+    ],
+    "explanation": "Tuple items are read with `.0`, `.1`, ... so the second item is `point.1`."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare an **array** named `days` that holds the numbers 1, 2 and 3.",
+    "checks": [
+      {
+        "regex": "=\\s*\\(",
+        "not": true,
+        "explain": "Parentheses `( )` create a tuple. Arrays use square brackets `[ ]`."
+      },
+      {
+        "regex": "vec!",
+        "not": true,
+        "explain": "`vec!` makes a growable `Vec`, not a fixed-size array. This task asks for a plain array: `[1, 2, 3]`.",
+        "enforce": true
+      },
+      {
+        "regex": "let\\s+days\\s*(:[^=]+)?=\\s*\\[\\s*1\\s*,\\s*2\\s*,\\s*3\\s*\\]\\s*;",
+        "explain": "Write it as `let days = [1, 2, 3];` - a `let`, the name `days`, and the values in square brackets."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n    println!(\"{} {} {}\", days[0], days[1], days[2]);\n}",
+      "output": "1 2 3"
+    },
+    "solution": "let days = [1, 2, 3];",
+    "hint": "Arrays use square brackets and commas between the values.",
+    "explanation": "An array is written `[a, b, c]` and every item has the same type."
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "title": "Count the vowels",
+  "difficulty": "medium",
+  "prompt": "Write `count_vowels` that counts the vowels `a e i o u` in a piece of text. Upper and lower case both count.\n\n```text\ncount_vowels(\"hello\") -> 2\ncount_vowels(\"RUST\")  -> 1\ncount_vowels(\"xyz\")   -> 0\n```\n\nSignature: `static int countVowels(String s)`",
+  "starter": "static int countVowels(String s) {\n    $0\n}",
+  "run": {
+    "template": "import java.util.*;\n\npublic class Main {\n    {{code}}\n\n    public static void main(String[] args) {\n        System.out.println(countVowels(\"hello\"));\n        System.out.println(countVowels(\"RUST\"));\n        System.out.println(countVowels(\"xyz\"));\n        System.out.println(countVowels(\"\"));\n        System.out.println(countVowels(\"Programming is fun\"));\n    }\n}",
+    "output": "2\n1\n0\n0\n5"
+  },
+  "hints": [
+    "Go through the text one character at a time.",
+    "Convert each character to lower case first, so you only have to compare with five letters.",
+    "Keep a counter and add 1 whenever the character is one of `a e i o u`.",
+    "`\"aeiou\".indexOf(ch) >= 0` is true when `ch` is a vowel. `s.toCharArray()` gives an array of its characters."
+  ],
+  "solution": "static int countVowels(String s) {\n    int count = 0;\n    for (char ch : s.toLowerCase().toCharArray()) {\n        if (\"aeiou\".indexOf(ch) >= 0) {\n            count++;\n        }\n    }\n    return count;\n}",
+  "explanation": "Lower-casing each character first means one comparison covers both cases. A counter that grows only for vowels gives the total."
+}

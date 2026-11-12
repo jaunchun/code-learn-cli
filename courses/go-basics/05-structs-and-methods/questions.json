@@ -1,0 +1,108 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which code defines a struct type `Person`?",
+    "options": [
+      {
+        "text": "`type Person struct { Name string }`",
+        "correct": true
+      },
+      {
+        "text": "`struct Person { string Name }`",
+        "explain": "Go uses `type Name struct { ... }`, and a field is written name first, then type."
+      },
+      {
+        "text": "`class Person { Name string }`",
+        "explain": "Go has no `class` keyword. Use a struct and attach methods to it."
+      },
+      {
+        "text": "`Person = struct { Name: string }`",
+        "explain": "A named type is declared with the `type` keyword, and fields are `Name string` (no colon)."
+      }
+    ],
+    "explanation": "`type X struct { fields }`."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why does `Inc` use a pointer receiver `(c *Counter)`?",
+    "code": "func (c *Counter) Inc() {\n    c.n++\n}",
+    "options": [
+      {
+        "text": "So the method changes the original counter, not a copy",
+        "correct": true
+      },
+      {
+        "text": "Pointer receivers are required for every method",
+        "explain": "Value receivers are perfectly fine for methods that only read."
+      },
+      {
+        "text": "It makes the method private",
+        "explain": "Visibility is decided by capital letters, not by the receiver type."
+      },
+      {
+        "text": "It makes the program faster in every case",
+        "explain": "It avoids copying big structs, but the key reason here is that a value receiver would only change a copy."
+      }
+    ],
+    "explanation": "Value receivers work on a copy."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol that makes `c` a pointer receiver.",
+    "code": "func (c ___Counter) Inc() {\n    c.n++\n}",
+    "answer": "*",
+    "checks": [
+      {
+        "regex": "^&$",
+        "not": true,
+        "explain": "`&` takes an address when you *call* something. In a receiver type you write `*Counter`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\ntype Counter struct {\n    n int\n}\n\nfunc (c {{code}}Counter) Inc() {\n    c.n++\n}\n\nfunc main() {\n    c := Counter{}\n    c.Inc()\n    c.Inc()\n    fmt.Println(c.n)\n}",
+      "output": "2"
+    },
+    "hint": "The same symbol that means \"pointer to\".",
+    "explanation": "`*Counter` is a pointer to a Counter."
+  },
+  {
+    "type": "fix",
+    "prompt": "Struct literal fields are separated by commas, not semicolons. Type the corrected line.",
+    "code": "p := Person{\"Ana\"; 30}",
+    "answer": "p := Person{\"Ana\", 30}",
+    "checks": [
+      {
+        "regex": "Person\\{[^}]*;",
+        "not": true,
+        "explain": "Values inside `{ }` are separated by commas."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\ntype Person struct {\n    Name string\n    Age  int\n}\n\nfunc main() {\n    {{code}}\n    fmt.Println(p.Name, p.Age)\n}",
+      "output": "Ana 30"
+    },
+    "solution": "p := Person{\"Ana\", 30}",
+    "explanation": "Use commas between fields."
+  },
+  {
+    "type": "write",
+    "prompt": "Define a struct `Rect` with `W` and `H` (ints) and a method `Area() int` that returns `W * H`.",
+    "checks": [
+      {
+        "has": "type Rect struct",
+        "explain": "Your code should contain `type Rect struct`."
+      },
+      {
+        "has": "Area",
+        "explain": "Your code should contain `Area`."
+      }
+    ],
+    "run": {
+      "template": "package main\n\nimport \"fmt\"\n\nvar _ = fmt.Sprint\n\n{{code}}\n\nfunc main() {\n    r := Rect{W: 3, H: 4}\n    fmt.Println(r.Area())\n}",
+      "output": "12"
+    },
+    "solution": "type Rect struct {\n    W, H int\n}\n\nfunc (r Rect) Area() int {\n    return r.W * r.H\n}",
+    "hint": "`func (r Rect) Area() int { ... }`",
+    "explanation": "A method is a function with a receiver."
+  }
+]

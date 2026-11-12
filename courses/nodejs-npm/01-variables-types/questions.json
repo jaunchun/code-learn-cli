@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which command runs a file with Node.js?",
+    "options": [
+      {
+        "text": "node app.js",
+        "correct": true
+      },
+      {
+        "text": "npm app.js",
+        "explain": "The node executable runs JavaScript files."
+      },
+      {
+        "text": "run node app.js",
+        "explain": "The node executable runs JavaScript files."
+      },
+      {
+        "text": "javascript app.js",
+        "explain": "The node executable runs JavaScript files."
+      }
+    ],
+    "explanation": "The node executable runs JavaScript files."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is Node.js used for?",
+    "options": [
+      {
+        "text": "Running JavaScript outside a browser",
+        "correct": true
+      },
+      {
+        "text": "Styling HTML",
+        "explain": "Node.js is a JavaScript runtime."
+      },
+      {
+        "text": "Compiling C++",
+        "explain": "Node.js is a JavaScript runtime."
+      },
+      {
+        "text": "Managing Git branches",
+        "explain": "Node.js is a JavaScript runtime."
+      }
+    ],
+    "explanation": "Node.js is a JavaScript runtime."
+  },
+  {
+    "type": "choice",
+    "prompt": "Where are command-line arguments exposed?",
+    "options": [
+      {
+        "text": "process.argv",
+        "correct": true
+      },
+      {
+        "text": "console.args",
+        "explain": "Node exposes command-line arguments through process.argv."
+      },
+      {
+        "text": "npm.argv",
+        "explain": "Node exposes command-line arguments through process.argv."
+      },
+      {
+        "text": "node.input",
+        "explain": "Node exposes command-line arguments through process.argv."
+      }
+    ],
+    "explanation": "Node exposes command-line arguments through process.argv."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which API is commonly used to read files?",
+    "options": [
+      {
+        "text": "node:fs",
+        "correct": true
+      },
+      {
+        "text": "node:html",
+        "explain": "The fs module provides file-system operations."
+      },
+      {
+        "text": "node:css",
+        "explain": "The fs module provides file-system operations."
+      },
+      {
+        "text": "node:git",
+        "explain": "The fs module provides file-system operations."
+      }
+    ],
+    "explanation": "The fs module provides file-system operations."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why is Node useful for CLI tools?",
+    "options": [
+      {
+        "text": "It can access runtime and operating-system APIs",
+        "correct": true
+      },
+      {
+        "text": "It only runs inside a webpage",
+        "explain": "Node provides APIs for files, processes and other local tasks."
+      },
+      {
+        "text": "It replaces the operating system",
+        "explain": "Node provides APIs for files, processes and other local tasks."
+      },
+      {
+        "text": "It automatically publishes packages",
+        "explain": "Node provides APIs for files, processes and other local tasks."
+      }
+    ],
+    "explanation": "Node provides APIs for files, processes and other local tasks."
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which signature declares a function `add` that takes two `i32` numbers and returns an `i32`?",
+    "options": [
+      {
+        "text": "`fn add(a: i32, b: i32) -> i32`",
+        "correct": true
+      },
+      {
+        "text": "`fn add(a, b) -> i32`",
+        "explain": "Rust requires a type for every parameter. Without `: i32` the compiler doesn't know what `a` and `b` are."
+      },
+      {
+        "text": "`fn add(a: i32, b: i32): i32`",
+        "explain": "A return type is introduced with an arrow `->`. A colon is only used for parameter types."
+      },
+      {
+        "text": "`function add(a: i32, b: i32) -> i32`",
+        "explain": "Functions are declared with the keyword `fn`. There is no `function` keyword in Rust."
+      }
+    ],
+    "explanation": "Parameters are `name: Type`, and the return type follows `->`."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why doesn't this function compile?",
+    "code": "fn double(x: i32) -> i32 {\n    x * 2;\n}",
+    "options": [
+      {
+        "text": "The semicolon turns `x * 2` into a statement, so nothing is returned",
+        "correct": true
+      },
+      {
+        "text": "`x` is not mutable",
+        "explain": "`x * 2` only *reads* `x`. Mutability is needed to change a variable, not to calculate with it."
+      },
+      {
+        "text": "A function must always use the `return` keyword",
+        "explain": "`return` is optional. If the last line is an expression without a semicolon, its value is returned automatically."
+      },
+      {
+        "text": "`double` is a reserved word",
+        "explain": "`double` isn't reserved in Rust (it isn't even a Rust type). The problem is the semicolon on the last line."
+      }
+    ],
+    "explanation": "The function promises an `i32`, but the trailing `;` makes the body end with a statement that returns `()`. Remove the `;`."
+  },
+  {
+    "type": "fix",
+    "prompt": "The parameter has no type. Type the corrected function signature line.",
+    "code": "fn add_one(x) -> i32 {\n    x + 1\n}",
+    "checks": [
+      {
+        "regex": "^fn add_one\\(\\s*x\\s*\\)",
+        "not": true,
+        "explain": "`x` still has no type. Every parameter needs `name: Type`."
+      },
+      {
+        "regex": "^fn add_one\\(\\s*x\\s*:\\s*i32\\s*\\)\\s*->\\s*i32\\s*\\{?$",
+        "explain": "The signature should be `fn add_one(x: i32) -> i32 {` - the parameter needs a type annotation."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n    x + 1\n}\n\nfn main() {\n    println!(\"{}\", add_one(4));\n}",
+      "output": "5"
+    },
+    "solution": "fn add_one(x: i32) -> i32 {",
+    "hint": "Put a colon and a type after `x`. The function adds 1 and returns an `i32`.",
+    "explanation": "Rust never guesses parameter types: you must write them."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol that introduces the return type.",
+    "code": "fn add(a: i32, b: i32) ___ i32 {\n    a + b\n}",
+    "answer": "->",
+    "checks": [
+      {
+        "regex": "^:$",
+        "not": true,
+        "explain": "A colon is for parameter types (`a: i32`). The return type is introduced with an arrow."
+      },
+      {
+        "regex": "^=>$",
+        "not": true,
+        "explain": "`=>` is used in `match` arms. A function's return type uses the thin arrow `->`."
+      }
+    ],
+    "run": {
+      "template": "fn add(a: i32, b: i32) {{code}} i32 {\n    a + b\n}\n\nfn main() {\n    println!(\"{}\", add(2, 3));\n}",
+      "output": "5"
+    },
+    "hint": "It looks like an arrow made of a dash and a greater-than sign.",
+    "explanation": "`->` means \"returns\"."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this program print?",
+    "code": "fn main() {\n    let result = plus_one(4);\n    println!(\"{}\", result);\n}\n\nfn plus_one(x: i32) -> i32 {\n    x + 1\n}",
+    "options": [
+      {
+        "text": "5",
+        "correct": true
+      },
+      {
+        "text": "4",
+        "explain": "4 is the argument that goes in. The function returns `x + 1`, which is 5."
+      },
+      {
+        "text": "`plus_one(4)`",
+        "explain": "`{}` prints the *value* stored in `result`, not the code that created it."
+      },
+      {
+        "text": "Nothing - it doesn't compile because `x + 1` has no `return`",
+        "explain": "It compiles fine. The last expression `x + 1` has no semicolon, so it is returned automatically."
+      }
+    ],
+    "explanation": "`plus_one(4)` returns 4 + 1 = 5, which is stored in `result` and printed."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `triple` that takes an `i32` called `n` and returns it multiplied by 3.",
+    "checks": [
+      {
+        "regex": "^(?!.*\\breturn\\b).*(n\\s*\\*\\s*3|3\\s*\\*\\s*n)\\s*;\\s*\\}\\s*$",
+        "not": true,
+        "explain": "The semicolon after `n * 3` turns the value into a statement, so nothing is returned. Remove the `;` or write `return n * 3;`."
+      },
+      {
+        "regex": "fn\\s+triple\\s*\\(\\s*n\\s*:\\s*i32\\s*\\)\\s*->\\s*i32\\s*\\{",
+        "explain": "The signature should be `fn triple(n: i32) -> i32 {`."
+      },
+      {
+        "regex": "n\\s*\\*\\s*3|3\\s*\\*\\s*n",
+        "explain": "The body should multiply `n` by 3, for example `n * 3`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}\n\nfn main() {\n    println!(\"{} {} {}\", triple(4), triple(0), triple(-2));\n}",
+      "output": "12 0 -6"
+    },
+    "solution": "fn triple(n: i32) -> i32 {\n    n * 3\n}",
+    "hint": "Signature: `fn name(param: Type) -> Type`. The last expression has no semicolon.",
+    "explanation": "The last expression, `n * 3`, becomes the return value."
+  }
+]

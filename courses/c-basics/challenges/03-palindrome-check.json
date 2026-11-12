@@ -1,0 +1,18 @@
+{
+  "title": "Palindrome check",
+  "difficulty": "medium",
+  "prompt": "Write `is_palindrome` for a piece of text: it is `true` when the text reads the same forwards and backwards, otherwise `false`. Treat upper and lower case as different letters (no need to handle spaces).\n\n```text\nis_palindrome(\"racecar\") -> true\nis_palindrome(\"hello\")   -> false\nis_palindrome(\"a\")       -> true\n```\n\nSignature: `bool is_palindrome(const char *s)`",
+  "starter": "bool is_palindrome(const char *s) {\n    $0\n}",
+  "run": {
+    "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    printf(\"%s\\n\", is_palindrome(\"racecar\") ? \"true\" : \"false\");\n    printf(\"%s\\n\", is_palindrome(\"hello\") ? \"true\" : \"false\");\n    printf(\"%s\\n\", is_palindrome(\"a\") ? \"true\" : \"false\");\n    printf(\"%s\\n\", is_palindrome(\"abba\") ? \"true\" : \"false\");\n    printf(\"%s\\n\", is_palindrome(\"abc\") ? \"true\" : \"false\");\n    return 0;\n}",
+    "output": "true\nfalse\ntrue\ntrue\nfalse"
+  },
+  "hints": [
+    "Compare the first character with the last, the second with the second-to-last, and so on.",
+    "Two index variables, one at the start and one at the end, moving towards each other, do the job. Stop when they meet.",
+    "Or: build the reversed text and compare it with the original.",
+    "`strlen(s)` is unsigned; cast it with `(int)strlen(s)` before subtracting 1."
+  ],
+  "solution": "bool is_palindrome(const char *s) {\n    int i = 0;\n    int j = (int)strlen(s) - 1;\n    while (i < j) {\n        if (s[i] != s[j]) return false;\n        i++;\n        j--;\n    }\n    return true;\n}",
+  "explanation": "A palindrome equals its own reverse. Comparing from both ends toward the middle avoids building a second copy of the text."
+}

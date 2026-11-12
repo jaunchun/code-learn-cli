@@ -1,0 +1,6 @@
+{
+  "title": "Go Basics",
+  "language": "go",
+  "description": "Variables, control flow, functions, slices, maps and structs",
+  "order": 6
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Palindrome check",
+  "difficulty": "medium",
+  "prompt": "Write `is_palindrome` for a piece of text: it is `true` when the text reads the same forwards and backwards, otherwise `false`. Treat upper and lower case as different letters (no need to handle spaces).\n\n```text\nis_palindrome(\"racecar\") -> true\nis_palindrome(\"hello\")   -> false\nis_palindrome(\"a\")       -> true\n```\n\nSignature: `def is_palindrome(s):  # returns True or False`",
+  "starter": "def is_palindrome(s):\n    $0",
+  "run": {
+    "template": "{{code}}\n\nprint(str(is_palindrome('racecar')).lower())\nprint(str(is_palindrome('hello')).lower())\nprint(str(is_palindrome('a')).lower())\nprint(str(is_palindrome('abba')).lower())\nprint(str(is_palindrome('abc')).lower())\n",
+    "output": "true\nfalse\ntrue\ntrue\nfalse"
+  },
+  "hints": [
+    "Compare the first character with the last, the second with the second-to-last, and so on.",
+    "Two index variables, one at the start and one at the end, moving towards each other, do the job. Stop when they meet.",
+    "Or: build the reversed text and compare it with the original.",
+    "`s[::-1]` is the text reversed."
+  ],
+  "solution": "def is_palindrome(s):\n    return s == s[::-1]",
+  "explanation": "A palindrome equals its own reverse. Comparing from both ends toward the middle avoids building a second copy of the text."
+}

@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Where does a standard C++ program begin?",
+    "options": [
+      {
+        "text": "main",
+        "correct": true
+      },
+      {
+        "text": "start",
+        "explain": "`main` is the entry point called by the runtime."
+      },
+      {
+        "text": "include",
+        "explain": "`main` is the entry point called by the runtime."
+      },
+      {
+        "text": "cout",
+        "explain": "`main` is the entry point called by the runtime."
+      }
+    ],
+    "explanation": "`main` is the entry point called by the runtime."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which header provides `std::cout`?",
+    "options": [
+      {
+        "text": "iostream",
+        "correct": true
+      },
+      {
+        "text": "string",
+        "explain": "`iostream` declares the standard input and output stream objects."
+      },
+      {
+        "text": "vector",
+        "explain": "`iostream` declares the standard input and output stream objects."
+      },
+      {
+        "text": "fstream",
+        "explain": "`iostream` declares the standard input and output stream objects."
+      }
+    ],
+    "explanation": "`iostream` declares the standard input and output stream objects."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `std::cout` do?",
+    "options": [
+      {
+        "text": "Writes output",
+        "correct": true
+      },
+      {
+        "text": "Reads a file",
+        "explain": "`cout` is the standard output stream."
+      },
+      {
+        "text": "Allocates memory",
+        "explain": "`cout` is the standard output stream."
+      },
+      {
+        "text": "Declares a function",
+        "explain": "`cout` is the standard output stream."
+      }
+    ],
+    "explanation": "`cout` is the standard output stream."
+  },
+  {
+    "type": "choice",
+    "prompt": "What usually ends a C++ statement?",
+    "options": [
+      {
+        "text": "A semicolon",
+        "correct": true
+      },
+      {
+        "text": "A colon",
+        "explain": "Most C++ statements end with a semicolon."
+      },
+      {
+        "text": "A comma",
+        "explain": "Most C++ statements end with a semicolon."
+      },
+      {
+        "text": "A period",
+        "explain": "Most C++ statements end with a semicolon."
+      }
+    ],
+    "explanation": "Most C++ statements end with a semicolon."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `return 0` from main conventionally indicate?",
+    "options": [
+      {
+        "text": "Successful program completion",
+        "correct": true
+      },
+      {
+        "text": "A request to repeat main",
+        "explain": "Zero is the conventional success exit status."
+      },
+      {
+        "text": "A memory allocation",
+        "explain": "Zero is the conventional success exit status."
+      },
+      {
+        "text": "A syntax error",
+        "explain": "Zero is the conventional success exit status."
+      }
+    ],
+    "explanation": "Zero is the conventional success exit status."
+  }
+]

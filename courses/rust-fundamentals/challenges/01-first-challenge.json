@@ -1,0 +1,17 @@
+{
+  "title": "Even or Odd",
+  "difficulty": "easy",
+  "prompt": "Write `fn is_even(n: i32) -> bool` that returns true when n is even.\n\n```text\nis_even(4) -> true\nis_even(7) -> false\n```",
+  "starter": "fn is_even(n: i32) -> bool {\n    $0\n}",
+  "run": {
+    "template": "{{code}}\nfn main() {\n println!(\"{}\", is_even(4));\n println!(\"{}\", is_even(7));\n println!(\"{}\", is_even(0));\n}",
+    "output": "true\nfalse\ntrue"
+  },
+  "hints": [
+    "Use the remainder operator `%`.",
+    "An even number has remainder zero when divided by two.",
+    "Compare `n % 2` with zero."
+  ],
+  "solution": "fn is_even(n: i32) -> bool {\n    n % 2 == 0\n}",
+  "explanation": "The remainder after division by two is zero exactly for even integers."
+}

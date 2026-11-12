@@ -1,0 +1,100 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which is a valid C function header?",
+    "options": [
+      {
+        "text": "`int add(int a, int b)`",
+        "correct": true
+      },
+      {
+        "text": "`add(int a, int b)`",
+        "explain": "Modern C requires a return type. Write `int add(...)`."
+      },
+      {
+        "text": "`int add(a, b)`",
+        "explain": "Every parameter needs its type: `int a, int b`."
+      },
+      {
+        "text": "`def add(int a, int b)`",
+        "explain": "`def` is Python. A C function starts with its return type."
+      }
+    ],
+    "explanation": "Return type, name, then typed parameters."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this program print?",
+    "code": "void inc(int x) { x++; }\n\nint main(void) {\n    int n = 5;\n    inc(n);\n    printf(\"%d\\n\", n);\n}",
+    "options": [
+      {
+        "text": "`5`",
+        "correct": true
+      },
+      {
+        "text": "`6`",
+        "explain": "C passes a copy of `n`, so the increment affects only the copy. Passing a pointer would be needed to change `n`."
+      },
+      {
+        "text": "Garbage",
+        "explain": "The copy is well-defined; `n` simply stays unchanged."
+      }
+    ],
+    "explanation": "Arguments are passed by value."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the return type of a function that returns nothing.",
+    "code": "___ greet(void) {\n    printf(\"Hi\\n\");\n}",
+    "answer": "void",
+    "checks": [
+      {
+        "regex": "^(function|def|fn|func)$",
+        "not": true,
+        "explain": "C functions begin with a return type. The \"nothing\" type is `void`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}} greet(void) {\n    printf(\"Hi\\n\");\n}\n\nint main(void) {\n    greet();\n    return 0;\n}",
+      "output": "Hi"
+    },
+    "hint": "A four-letter word meaning \"empty\".",
+    "explanation": "`void` means the function returns no value."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` has no `return`. Type the corrected body line.",
+    "code": "int square(int n) {\n    n * n;\n}",
+    "answer": "return n * n;",
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n\\s*;$",
+        "not": true,
+        "explain": "That is the original line: the value is computed and discarded. Add `return`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\nint square(int n) {\n    {{code}}\n}\n\nint main(void) {\n    printf(\"%d %d\\n\", square(5), square(-3));\n    return 0;\n}",
+      "output": "25 9"
+    },
+    "solution": "return n * n;",
+    "explanation": "A non-void function must `return` its result."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `bool is_even(int n)` that returns `true` when `n` is even.",
+    "checks": [
+      {
+        "has": "is_even",
+        "explain": "Your code should contain `is_even`."
+      }
+    ],
+    "run": {
+      "template": "#include <stdio.h>\n#include <string.h>\n#include <stdbool.h>\n#include <ctype.h>\n\n{{code}}\n\nint main(void) {\n    printf(\"%s %s %s\\n\", is_even(4) ? \"true\" : \"false\", is_even(7) ? \"true\" : \"false\", is_even(0) ? \"true\" : \"false\");\n    return 0;\n}",
+      "output": "true false true"
+    },
+    "solution": "bool is_even(int n) {\n    return n % 2 == 0;\n}",
+    "hint": "`n % 2 == 0` is already true or false.",
+    "explanation": "A comparison gives 1 (true) or 0 (false)."
+  }
+]

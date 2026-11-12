@@ -1,0 +1,17 @@
+{
+  "title": "Factorial",
+  "difficulty": "easy",
+  "prompt": "Write `factorial` for a number `n >= 0`. The factorial is `n * (n-1) * ... * 1`, and `factorial(0)` is `1`.\n\n```text\nfactorial(0) -> 1\nfactorial(5) -> 120\n```\n\nSignature: `func factorial(n int) int`",
+  "starter": "func factorial(n int) int {\n    $0\n}",
+  "run": {
+    "template": "package main\n\nimport (\n    \"fmt\"\n    \"strconv\"\n    \"strings\"\n)\n\nvar _ = strconv.Itoa\nvar _ = strings.ToLower\n\n{{code}}\n\nfunc main() {\n    fmt.Println(factorial(0))\n    fmt.Println(factorial(1))\n    fmt.Println(factorial(5))\n    fmt.Println(factorial(10))\n}",
+    "output": "1\n1\n120\n3628800"
+  },
+  "hints": [
+    "Start with a result of `1` (not `0`), then multiply it by each number from 2 up to `n`.",
+    "A loop from 2 to `n` that does `result *= i` does the job. When `n` is 0 or 1 the loop does nothing, and 1 is the right answer.",
+    "There is also a recursive version: `factorial(n) = n * factorial(n - 1)` with `factorial(0) = 1`."
+  ],
+  "solution": "func factorial(n int) int {\n    result := 1\n    for i := 2; i <= n; i++ {\n        result *= i\n    }\n    return result\n}",
+  "explanation": "Multiplying by every number from 2 to n builds up the product. Starting from 1 (the \"do nothing\" value for multiplication) also covers n = 0 and n = 1."
+}

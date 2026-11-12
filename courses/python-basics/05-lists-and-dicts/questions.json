@@ -1,0 +1,105 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "a = [10, 20, 30]\nprint(a[-1])",
+    "options": [
+      {
+        "text": "`30`",
+        "correct": true
+      },
+      {
+        "text": "`10`",
+        "explain": "A negative index counts from the end. `-1` is the last item, not the first."
+      },
+      {
+        "text": "`20`",
+        "explain": "`-2` would be the second-to-last item. `-1` is the last."
+      },
+      {
+        "text": "An error",
+        "explain": "Negative indexes are valid Python."
+      }
+    ],
+    "explanation": "`a[-1]` is the last item of the list."
+  },
+  {
+    "type": "choice",
+    "prompt": "What happens when this runs?",
+    "code": "d = {\"a\": 1}\nprint(d[\"b\"])",
+    "options": [
+      {
+        "text": "A `KeyError`",
+        "correct": true
+      },
+      {
+        "text": "It prints `None`",
+        "explain": "Square brackets raise an error for a missing key. `d.get(\"b\")` is the version that returns `None`."
+      },
+      {
+        "text": "It prints `0`",
+        "explain": "Python never makes up a default value for a missing key."
+      }
+    ],
+    "explanation": "Use `.get(key)` when the key might be missing."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the list method that adds an item to the end.",
+    "code": "nums = [1, 2, 3]\nnums.___(4)\nprint(len(nums))",
+    "answer": "append",
+    "checks": [
+      {
+        "regex": "^(push|add|insert)$",
+        "not": true,
+        "explain": "Python lists have no `push` or `add` for this. The method that adds to the end is `append`."
+      }
+    ],
+    "run": {
+      "template": "nums = [1, 2, 3]\nnums.{{code}}(4)\nprint(len(nums))",
+      "output": "4"
+    },
+    "hint": "To \"append\" is to attach at the end.",
+    "explanation": "`append` adds one item to the end of a list."
+  },
+  {
+    "type": "fix",
+    "prompt": "Looping over a dictionary gives only the keys. Type the corrected `for` line to get keys and values.",
+    "code": "scores = {\"a\": 1, \"b\": 2}\nfor key, value in scores:\n    print(key, value)",
+    "answer": "for key, value in scores.items():",
+    "checks": [
+      {
+        "regex": "in\\s+scores\\s*:",
+        "not": true,
+        "explain": "Looping over `scores` directly yields only the keys. Use `scores.items()` to get (key, value) pairs."
+      }
+    ],
+    "run": {
+      "template": "scores = {\"a\": 1, \"b\": 2}\n{{code}}\n    print(key, value)",
+      "output": "a 1\nb 2"
+    },
+    "solution": "for key, value in scores.items():",
+    "explanation": "`.items()` gives key-value pairs you can unpack in the loop."
+  },
+  {
+    "type": "write",
+    "prompt": "Create a list `squares` with the squares of 1 to 5 and print it.",
+    "checks": [
+      {
+        "has": "squares",
+        "explain": "Your code should contain `squares`."
+      },
+      {
+        "has": "print",
+        "explain": "Your code should contain `print`."
+      }
+    ],
+    "run": {
+      "template": "{{code}}",
+      "output": "[1, 4, 9, 16, 25]"
+    },
+    "solution": "squares = [n * n for n in range(1, 6)]\nprint(squares)",
+    "hint": "A comprehension: `[n * n for n in range(1, 6)]`. A loop with `append` works too.",
+    "explanation": "A comprehension builds a list from a loop in one line."
+  }
+]

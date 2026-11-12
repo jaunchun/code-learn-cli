@@ -1,0 +1,100 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which expression gives the number of items in a `std::vector<int> v`?",
+    "options": [
+      {
+        "text": "`v.size()`",
+        "correct": true
+      },
+      {
+        "text": "`v.length`",
+        "explain": "There is no `length` member on vectors. The size is a function call: `v.size()`."
+      },
+      {
+        "text": "`len(v)`",
+        "explain": "`len` is Python. In C++ you call the `size()` method on the vector."
+      },
+      {
+        "text": "`v.count()`",
+        "explain": "C++ vectors have no `count()` method. Use `size()`."
+      }
+    ],
+    "explanation": "`size()` is the number of elements."
+  },
+  {
+    "type": "choice",
+    "prompt": "`vector<int> v = {1, 2, 3};` What happens when you read `v[5]`?",
+    "options": [
+      {
+        "text": "Undefined behavior: no check is made, so it may print garbage or crash",
+        "correct": true
+      },
+      {
+        "text": "It always throws `std::out_of_range`",
+        "explain": "That is what `v.at(5)` does. The `[]` operator does not check the index."
+      },
+      {
+        "text": "It prints `0`",
+        "explain": "C++ does not give a default value. It reads whatever happens to be in memory at that spot."
+      }
+    ],
+    "explanation": "Use `.at()` if you want a checked access."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the method that adds an item to the end of the vector.",
+    "code": "vector<int> v = {1, 2, 3};\nv.___(4);\ncout << v.size() << endl;",
+    "answer": "push_back",
+    "checks": [
+      {
+        "regex": "^(push|append|add|insert)$",
+        "not": true,
+        "explain": "The C++ vector method that adds to the end is spelled `push_back`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    vector<int> v = {1, 2, 3};\n    v.{{code}}(4);\n    cout << v.size() << endl;\n    return 0;\n}",
+      "output": "4"
+    },
+    "hint": "It \"pushes\" to the \"back\".",
+    "explanation": "`push_back` appends an element."
+  },
+  {
+    "type": "fix",
+    "prompt": "You cannot add two string literals. Type a corrected line that makes `s` equal to `ab`.",
+    "code": "string s = \"a\" + \"b\";",
+    "answer": [
+      "string s = string(\"a\") + \"b\";",
+      "string s = \"ab\";"
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    {{code}}\n    cout << s << endl;\n    return 0;\n}",
+      "output": "ab"
+    },
+    "solution": "string s = string(\"a\") + \"b\";",
+    "hint": "Make at least one side a `std::string`.",
+    "explanation": "`+` works with a `std::string` on at least one side."
+  },
+  {
+    "type": "write",
+    "prompt": "A vector `v` holds `{4, 8, 15, 16, 23, 42}`. Print the sum of all its items.",
+    "checks": [
+      {
+        "has": "cout",
+        "explain": "Your code should contain `cout`."
+      },
+      {
+        "has": "v",
+        "explain": "Your code should contain `v`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    vector<int> v = {4, 8, 15, 16, 23, 42};\n    {{code}}\n    return 0;\n}",
+      "output": "108"
+    },
+    "solution": "int total = 0;\nfor (int x : v) {\n    total += x;\n}\ncout << total << endl;",
+    "hint": "Loop over the vector with `for (int x : v)` and keep a running total.",
+    "explanation": "Range-based `for` visits every element."
+  }
+]

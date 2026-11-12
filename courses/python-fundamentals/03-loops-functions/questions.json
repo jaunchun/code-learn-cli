@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What values does `range(1, 4)` produce?",
+    "options": [
+      {
+        "text": "1, 2, 3",
+        "correct": true
+      },
+      {
+        "text": "1, 2, 3, 4",
+        "explain": "The stop value 4 is excluded."
+      },
+      {
+        "text": "0, 1, 2, 3",
+        "explain": "The stop value 4 is excluded."
+      },
+      {
+        "text": "2, 3, 4",
+        "explain": "The stop value 4 is excluded."
+      }
+    ],
+    "explanation": "The stop value 4 is excluded."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which loop is useful for processing every item in a list?",
+    "options": [
+      {
+        "text": "for",
+        "correct": true
+      },
+      {
+        "text": "if",
+        "explain": "A for loop visits each item in an iterable."
+      },
+      {
+        "text": "else",
+        "explain": "A for loop visits each item in an iterable."
+      },
+      {
+        "text": "break",
+        "explain": "A for loop visits each item in an iterable."
+      }
+    ],
+    "explanation": "A for loop visits each item in an iterable."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `break` do?",
+    "options": [
+      {
+        "text": "Exits the loop",
+        "correct": true
+      },
+      {
+        "text": "Skips one iteration",
+        "explain": "Break immediately leaves the nearest loop."
+      },
+      {
+        "text": "Restarts the program",
+        "explain": "Break immediately leaves the nearest loop."
+      },
+      {
+        "text": "Pauses for input",
+        "explain": "Break immediately leaves the nearest loop."
+      }
+    ],
+    "explanation": "Break immediately leaves the nearest loop."
+  },
+  {
+    "type": "choice",
+    "prompt": "What can cause an endless while loop?",
+    "options": [
+      {
+        "text": "Its condition never becomes false",
+        "correct": true
+      },
+      {
+        "text": "Using print",
+        "explain": "A while loop continues until its condition becomes false or it exits."
+      },
+      {
+        "text": "Using an integer",
+        "explain": "A while loop continues until its condition becomes false or it exits."
+      },
+      {
+        "text": "Using indentation",
+        "explain": "A while loop continues until its condition becomes false or it exits."
+      }
+    ],
+    "explanation": "A while loop continues until its condition becomes false or it exits."
+  },
+  {
+    "type": "choice",
+    "prompt": "A timer should count 5, 4, 3, 2, 1. Which range is correct?",
+    "options": [
+      {
+        "text": "range(5, 0, -1)",
+        "correct": true
+      },
+      {
+        "text": "range(5, 1)",
+        "explain": "A negative step counts downward, and zero is the excluded endpoint."
+      },
+      {
+        "text": "range(0, 5)",
+        "explain": "A negative step counts downward, and zero is the excluded endpoint."
+      },
+      {
+        "text": "range(5, 0)",
+        "explain": "A negative step counts downward, and zero is the excluded endpoint."
+      }
+    ],
+    "explanation": "A negative step counts downward, and zero is the excluded endpoint."
+  }
+]

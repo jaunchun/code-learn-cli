@@ -1,0 +1,17 @@
+{
+  "title": "Fibonacci",
+  "difficulty": "medium",
+  "prompt": "Write `fibonacci` so that `fibonacci(n)` returns the n-th Fibonacci number. The sequence starts `0, 1, 1, 2, 3, 5, 8, ...` where every number is the sum of the two before it.\n\n```text\nfibonacci(0)  -> 0\nfibonacci(1)  -> 1\nfibonacci(10) -> 55\n```\n\nSignature: `function fibonacci(n)`",
+  "starter": "function fibonacci(n) {\n  $0\n}",
+  "run": {
+    "template": "{{code}}\n\nconsole.log(fibonacci(0));\nconsole.log(fibonacci(1));\nconsole.log(fibonacci(2));\nconsole.log(fibonacci(10));\nconsole.log(fibonacci(20));\n",
+    "output": "0\n1\n1\n55\n6765"
+  },
+  "hints": [
+    "Keep two variables: the previous number and the current one. Start with 0 and 1.",
+    "Repeat `n` times: the new current is `previous + current`, and the old current becomes the previous one.",
+    "After the loop, the \"previous\" variable holds the n-th number (because it starts at position 0)."
+  ],
+  "solution": "function fibonacci(n) {\n  let prev = 0;\n  let curr = 1;\n  for (let i = 0; i < n; i++) {\n    [prev, curr] = [curr, prev + curr];\n  }\n  return prev;\n}",
+  "explanation": "You only ever need the last two numbers, so a loop with two variables computes the answer in n steps. A plain recursive version works too, but it recalculates the same values again and again and gets very slow."
+}

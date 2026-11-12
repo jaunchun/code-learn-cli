@@ -1,0 +1,100 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which is a valid function header for `add` that takes two ints and returns an int?",
+    "options": [
+      {
+        "text": "`int add(int a, int b)`",
+        "correct": true
+      },
+      {
+        "text": "`int add(a, b)`",
+        "explain": "C++ needs the type of every parameter: `int a, int b`."
+      },
+      {
+        "text": "`add(int a, int b): int`",
+        "explain": "The return type goes in front of the name in C++, not after it."
+      },
+      {
+        "text": "`def add(int a, int b)`",
+        "explain": "`def` is Python. A C++ function begins with its return type."
+      }
+    ],
+    "explanation": "Return type, name, then typed parameters."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this program print?",
+    "code": "void inc(int x) { x++; }\n\nint main() {\n    int n = 5;\n    inc(n);\n    cout << n << endl;\n}",
+    "options": [
+      {
+        "text": "`5`",
+        "correct": true
+      },
+      {
+        "text": "`6`",
+        "explain": "`x` is a copy. The increment changes only the copy, so `n` stays 5. Use `int& x` to change the original."
+      },
+      {
+        "text": "It does not compile",
+        "explain": "The code is valid. It just does not do what you might expect."
+      }
+    ],
+    "explanation": "Arguments are copied unless you take them by reference."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the symbol so `inc` changes the caller's variable.",
+    "code": "void inc(int___ x) {\n    x++;\n}",
+    "answer": "&",
+    "checks": [
+      {
+        "regex": "^\\*$",
+        "not": true,
+        "explain": "`*` makes a pointer, which would also need `*x` inside and `&n` at the call. For a reference, use `&`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nvoid inc(int{{code}} x) {\n    x++;\n}\n\nint main() {\n    int n = 5;\n    inc(n);\n    cout << n << endl;\n    return 0;\n}",
+      "output": "6"
+    },
+    "hint": "The ampersand makes a reference.",
+    "explanation": "`int& x` is a reference: it is another name for the caller's variable."
+  },
+  {
+    "type": "fix",
+    "prompt": "`square` has no `return`. Type the corrected body line.",
+    "code": "int square(int n) {\n    n * n;\n}",
+    "answer": "return n * n;",
+    "checks": [
+      {
+        "regex": "^n\\s*\\*\\s*n\\s*;$",
+        "not": true,
+        "explain": "That is the original line: the value is calculated and thrown away. Add `return`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint square(int n) {\n    {{code}}\n}\n\nint main() {\n    cout << square(5) << \" \" << square(-3) << endl;\n    return 0;\n}",
+      "output": "25 9"
+    },
+    "solution": "return n * n;",
+    "explanation": "A function with a return type must `return` a value."
+  },
+  {
+    "type": "write",
+    "prompt": "Write a function `bool isEven(int n)` that returns `true` when `n` is even.",
+    "checks": [
+      {
+        "has": "isEven",
+        "explain": "Your code should contain `isEven`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\n{{code}}\n\nint main() {\n    cout << boolalpha << isEven(4) << \" \" << isEven(7) << \" \" << isEven(0) << endl;\n    return 0;\n}",
+      "output": "true false true"
+    },
+    "solution": "bool isEven(int n) {\n    return n % 2 == 0;\n}",
+    "hint": "`n % 2 == 0` is already a bool.",
+    "explanation": "A comparison produces a `bool`, so you can return it directly."
+  }
+]

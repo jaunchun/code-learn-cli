@@ -1,0 +1,106 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "int total = 0;\nfor (int i = 1; i <= 4; i++) {\n    total += i;\n}\nSystem.out.println(total);",
+    "options": [
+      {
+        "text": "`10`",
+        "correct": true
+      },
+      {
+        "text": "`4`",
+        "explain": "The loop adds every number from 1 to 4 to `total`; it does not print the last `i`."
+      },
+      {
+        "text": "`6`",
+        "explain": "`i <= 4` includes 4, so the sum is 1 + 2 + 3 + 4 = 10."
+      },
+      {
+        "text": "`15`",
+        "explain": "The loop stops after `i = 4`, so 5 is never added."
+      }
+    ],
+    "explanation": "1 + 2 + 3 + 4 = 10."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this print?",
+    "code": "int x = 1;\nswitch (x) {\n    case 1: System.out.println(\"one\");\n    case 2: System.out.println(\"two\");\n}",
+    "options": [
+      {
+        "text": "`one` and then `two`",
+        "correct": true
+      },
+      {
+        "text": "Only `one`",
+        "explain": "There is no `break`, so execution continues into `case 2`."
+      },
+      {
+        "text": "Only `two`",
+        "explain": "`case 1` matches first and runs; then it falls through to `case 2`."
+      }
+    ],
+    "explanation": "Add `break;` to stop the fall-through."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the operator so the loop prints 3, 2, 1 and stops.",
+    "code": "int n = 3;\nwhile (n ___ 0) {\n    System.out.println(n);\n    n--;\n}",
+    "answer": ">",
+    "checks": [
+      {
+        "regex": "^>=$",
+        "not": true,
+        "explain": "`n >= 0` would run once more with `n` equal to 0 and print an extra `0`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        int n = 3;\n        while (n {{code}} 0) {\n            System.out.println(n);\n            n--;\n        }\n    }\n}",
+      "output": "3\n2\n1"
+    },
+    "hint": "Stop as soon as `n` reaches 0.",
+    "explanation": "`n > 0` becomes false when `n` is 0."
+  },
+  {
+    "type": "fix",
+    "prompt": "`=` assigns, it does not compare, and Java rejects it in a condition. Type the corrected `if` line (without the `{`).",
+    "code": "if (x = 5) {",
+    "answer": "if (x == 5)",
+    "checks": [
+      {
+        "regex": "\\{\\s*$",
+        "not": true,
+        "explain": "The `{` is already in the code after your line."
+      },
+      {
+        "regex": "(?<![=!<>])=(?!=)\\s*5\\s*\\)",
+        "not": true,
+        "explain": "A single `=` assigns. To compare, use `==`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        int x = 5;\n        {{code}} {\n            System.out.println(\"five\");\n        }\n    }\n}",
+      "output": "five"
+    },
+    "solution": "if (x == 5)",
+    "explanation": "Use `==` to compare numbers."
+  },
+  {
+    "type": "write",
+    "prompt": "Use a loop to print the sum of the numbers from 1 to 10 (the answer is 55).",
+    "checks": [
+      {
+        "has": "System.out.println",
+        "explain": "Your code should contain `System.out.println`."
+      }
+    ],
+    "run": {
+      "template": "public class Main {\n    public static void main(String[] args) {\n        {{code}}\n    }\n}",
+      "output": "55"
+    },
+    "solution": "int total = 0;\nfor (int i = 1; i <= 10; i++) {\n    total += i;\n}\nSystem.out.println(total);",
+    "hint": "Start with `int total = 0;` and add `i` in a loop.",
+    "explanation": "A running total built in a loop."
+  }
+]

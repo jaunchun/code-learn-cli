@@ -1,0 +1,18 @@
+{
+  "title": "Count the vowels",
+  "difficulty": "medium",
+  "prompt": "Write `count_vowels` that counts the vowels `a e i o u` in a piece of text. Upper and lower case both count.\n\n```text\ncount_vowels(\"hello\") -> 2\ncount_vowels(\"RUST\")  -> 1\ncount_vowels(\"xyz\")   -> 0\n```\n\nSignature: `func countVowels(s string) int`",
+  "starter": "func countVowels(s string) int {\n    $0\n}",
+  "run": {
+    "template": "package main\n\nimport (\n    \"fmt\"\n    \"strconv\"\n    \"strings\"\n)\n\nvar _ = strconv.Itoa\nvar _ = strings.ToLower\n\n{{code}}\n\nfunc main() {\n    fmt.Println(countVowels(\"hello\"))\n    fmt.Println(countVowels(\"RUST\"))\n    fmt.Println(countVowels(\"xyz\"))\n    fmt.Println(countVowels(\"\"))\n    fmt.Println(countVowels(\"Programming is fun\"))\n}",
+    "output": "2\n1\n0\n0\n5"
+  },
+  "hints": [
+    "Go through the text one character at a time.",
+    "Convert each character to lower case first, so you only have to compare with five letters.",
+    "Keep a counter and add 1 whenever the character is one of `a e i o u`.",
+    "`strings.ToLower(s)` and `strings.ContainsRune(\"aeiou\", r)` do most of the work (`strings` is already imported)."
+  ],
+  "solution": "func countVowels(s string) int {\n    count := 0\n    for _, r := range strings.ToLower(s) {\n        if strings.ContainsRune(\"aeiou\", r) {\n            count++\n        }\n    }\n    return count\n}",
+  "explanation": "Lower-casing each character first means one comparison covers both cases. A counter that grows only for vowels gives the total."
+}

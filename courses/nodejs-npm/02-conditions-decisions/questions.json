@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which file stores npm project metadata?",
+    "options": [
+      {
+        "text": "package.json",
+        "correct": true
+      },
+      {
+        "text": "package.lock",
+        "explain": "package.json contains project metadata and dependency declarations."
+      },
+      {
+        "text": "node.config",
+        "explain": "package.json contains project metadata and dependency declarations."
+      },
+      {
+        "text": "npm.txt",
+        "explain": "package.json contains project metadata and dependency declarations."
+      }
+    ],
+    "explanation": "package.json contains project metadata and dependency declarations."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `npm init -y` do?",
+    "options": [
+      {
+        "text": "Creates package.json using default answers",
+        "correct": true
+      },
+      {
+        "text": "Deletes node_modules",
+        "explain": "The -y option skips interactive setup by accepting defaults."
+      },
+      {
+        "text": "Publishes the package",
+        "explain": "The -y option skips interactive setup by accepting defaults."
+      },
+      {
+        "text": "Runs every test",
+        "explain": "The -y option skips interactive setup by accepting defaults."
+      }
+    ],
+    "explanation": "The -y option skips interactive setup by accepting defaults."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which command runs a script named test?",
+    "options": [
+      {
+        "text": "npm run test",
+        "correct": true
+      },
+      {
+        "text": "node test",
+        "explain": "Custom scripts are run using npm run followed by the script name."
+      },
+      {
+        "text": "npm install test",
+        "explain": "Custom scripts are run using npm run followed by the script name."
+      },
+      {
+        "text": "npm init test",
+        "explain": "Custom scripts are run using npm run followed by the script name."
+      }
+    ],
+    "explanation": "Custom scripts are run using npm run followed by the script name."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does npm install generally do?",
+    "options": [
+      {
+        "text": "Installs project dependencies",
+        "correct": true
+      },
+      {
+        "text": "Creates a Git branch",
+        "explain": "npm install installs dependencies declared by the project."
+      },
+      {
+        "text": "Compiles the operating system",
+        "explain": "npm install installs dependencies declared by the project."
+      },
+      {
+        "text": "Deletes package.json",
+        "explain": "npm install installs dependencies declared by the project."
+      }
+    ],
+    "explanation": "npm install installs dependencies declared by the project."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why commit a lockfile?",
+    "options": [
+      {
+        "text": "To record a reproducible dependency resolution",
+        "correct": true
+      },
+      {
+        "text": "To store passwords",
+        "explain": "The lockfile records exact resolved package versions and dependency structure."
+      },
+      {
+        "text": "To replace source files",
+        "explain": "The lockfile records exact resolved package versions and dependency structure."
+      },
+      {
+        "text": "To make code private",
+        "explain": "The lockfile records exact resolved package versions and dependency structure."
+      }
+    ],
+    "explanation": "The lockfile records exact resolved package versions and dependency structure."
+  }
+]

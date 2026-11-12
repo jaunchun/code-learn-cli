@@ -1,0 +1,138 @@
+[
+  {
+    "type": "choice",
+    "prompt": "What happens when you compile this code?",
+    "code": "let x = 5;\nx = 6;",
+    "options": [
+      {
+        "text": "Compile error: cannot assign twice to an immutable variable",
+        "correct": true
+      },
+      {
+        "text": "`x` becomes 6",
+        "explain": "That would only work if `x` were declared with `mut`. Rust variables are immutable by default."
+      },
+      {
+        "text": "`x` quietly stays 5",
+        "explain": "Rust never silently ignores an assignment. The compiler stops you with an error instead."
+      },
+      {
+        "text": "The program compiles, then crashes while running",
+        "explain": "This mistake is caught at compile time, so the program never even starts running."
+      }
+    ],
+    "explanation": "Without `mut`, a variable can't be assigned a second time."
+  },
+  {
+    "type": "fill",
+    "prompt": "Make `count` changeable by filling in the missing keyword.",
+    "code": "let ___ count = 0;\ncount = count + 1;",
+    "answer": "mut",
+    "checks": [
+      {
+        "regex": "^(var|mutable|let)$",
+        "not": true,
+        "explain": "Rust has no `var` or `mutable` keyword here. The keyword is shorter: `mut`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    let {{code}} count = 0;\n    count = count + 1;\n    println!(\"{}\", count);\n}",
+      "output": "1"
+    },
+    "hint": "It's the three-letter short form of \"mutable\".",
+    "explanation": "`let mut name = value;` declares a variable that can be changed later."
+  },
+  {
+    "type": "fix",
+    "prompt": "This code fails to compile because `score` can't be changed. Type the corrected **first** line.",
+    "code": "let score = 10;\nscore = score + 5;",
+    "answer": "let mut score = 10;",
+    "checks": [
+      {
+        "regex": "let\\s+score\\s+mut",
+        "not": true,
+        "explain": "`mut` goes between `let` and the name: `let mut score`, not `let score mut`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n    score = score + 5;\n    println!(\"{}\", score);\n}",
+      "output": "15"
+    },
+    "solution": "let mut score = 10;",
+    "hint": "The second line changes `score`, so the first line must allow that.",
+    "explanation": "A variable that gets a new value later must be declared with `let mut`."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does this program print?",
+    "code": "let x = 5;\nlet x = x * 2;\nlet x = x + 1;\nprintln!(\"{}\", x);",
+    "options": [
+      {
+        "text": "11",
+        "correct": true
+      },
+      {
+        "text": "5",
+        "explain": "The value 5 was shadowed twice. Each `let x = ...` creates a new `x`, and the last one is what gets printed."
+      },
+      {
+        "text": "10",
+        "explain": "10 is the value after the second line, but the third line shadows `x` again with `x + 1`, giving 11."
+      },
+      {
+        "text": "Nothing - it's a compile error because `x` is declared three times",
+        "explain": "Declaring the same name again with `let` is allowed - that's shadowing. (Assigning with `=` to an immutable variable is the part that fails.)"
+      }
+    ],
+    "explanation": "5, then 5 * 2 = 10, then 10 + 1 = 11. Each `let` creates a new variable that shadows the previous one."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which line correctly declares a constant?",
+    "options": [
+      {
+        "text": "`const MAX_USERS: u32 = 100;`",
+        "correct": true
+      },
+      {
+        "text": "`const MAX_USERS = 100;`",
+        "explain": "Constants must have an explicit type annotation. Add `: u32` (or another type) after the name."
+      },
+      {
+        "text": "`const mut MAX_USERS: u32 = 100;`",
+        "explain": "Constants are *always* immutable, so `mut` is not allowed with `const`."
+      },
+      {
+        "text": "`let const MAX_USERS: u32 = 100;`",
+        "explain": "`const` replaces `let`; the two aren't combined. A constant is declared with `const` alone."
+      }
+    ],
+    "explanation": "A constant uses `const`, an UPPER_SNAKE_CASE name, a type annotation, and a value."
+  },
+  {
+    "type": "write",
+    "prompt": "Write two lines of code: declare a mutable variable `lives` set to 3, then change it to 2.",
+    "checks": [
+      {
+        "regex": "let\\s+(mut\\s+)?lives\\s*=\\s*2",
+        "not": true,
+        "explain": "Using `let` again would create a *new* variable (shadowing). To change the existing one, write only `lives = 2;`."
+      },
+      {
+        "regex": "let\\s+mut\\s+lives\\s*=\\s*3\\s*;",
+        "explain": "Declare the variable with `let mut lives = 3;`."
+      },
+      {
+        "regex": "lives\\s*=\\s*2\\s*;",
+        "explain": "After the declaration, assign the new value with `lives = 2;`."
+      }
+    ],
+    "run": {
+      "template": "fn main() {\n    {{code}}\n    println!(\"{}\", lives);\n}",
+      "output": "2"
+    },
+    "solution": "let mut lives = 3;\nlives = 2;",
+    "hint": "The first line uses `let mut`. The second line has no `let` at all.",
+    "explanation": "`let mut` creates a changeable variable; later you assign with a plain `name = value;`."
+  }
+]

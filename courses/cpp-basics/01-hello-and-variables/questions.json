@@ -1,0 +1,115 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which line prints `Hello` followed by a new line?",
+    "options": [
+      {
+        "text": "`std::cout << \"Hello\" << std::endl;`",
+        "correct": true
+      },
+      {
+        "text": "`std::cout >> \"Hello\" >> std::endl;`",
+        "explain": "The arrows must point toward `cout` (`<<`). `>>` is for reading input with `cin`."
+      },
+      {
+        "text": "`print(\"Hello\");`",
+        "explain": "`print` belongs to Python. C++ prints through the `std::cout` stream."
+      },
+      {
+        "text": "`Console.WriteLine(\"Hello\");`",
+        "explain": "That is C#. In C++ you write to the `std::cout` stream."
+      }
+    ],
+    "explanation": "`cout << value` sends a value to the screen; `endl` ends the line."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `std::cout << 7 / 2;` print?",
+    "options": [
+      {
+        "text": "`3`",
+        "correct": true
+      },
+      {
+        "text": "`3.5`",
+        "explain": "Both numbers are `int`, so C++ does integer division and drops the decimals. Write `7 / 2.0` to get 3.5."
+      },
+      {
+        "text": "`4`",
+        "explain": "Integer division cuts off the decimals; it does not round."
+      }
+    ],
+    "explanation": "`int / int` is an `int`."
+  },
+  {
+    "type": "fill",
+    "prompt": "Fill in the type so the decimals are kept.",
+    "code": "___ price = 9.99;\ncout << price << endl;",
+    "answer": [
+      "double",
+      "float"
+    ],
+    "checks": [
+      {
+        "regex": "^int$",
+        "not": true,
+        "explain": "`int` can only hold whole numbers, so it would cut 9.99 down to 9."
+      },
+      {
+        "regex": "^(number|decimal|var|let)$",
+        "not": true,
+        "explain": "C++ has no such type. Decimal numbers use `double` (or `float`)."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    {{code}} price = 9.99;\n    cout << price << endl;\n    return 0;\n}",
+      "output": "9.99"
+    },
+    "hint": "The usual type for decimals starts with `d`.",
+    "explanation": "`double` holds decimal numbers with high precision."
+  },
+  {
+    "type": "fix",
+    "prompt": "This line does not compile. Type the corrected first line.",
+    "code": "int x = 5\ncout << x << endl;",
+    "answer": "int x = 5;",
+    "checks": [
+      {
+        "regex": "^int x = 5$",
+        "not": true,
+        "explain": "The line still has no `;` at the end. Every C++ statement ends with a semicolon."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    {{code}}\n    cout << x << endl;\n    return 0;\n}",
+      "output": "5"
+    },
+    "solution": "int x = 5;",
+    "explanation": "Missing semicolons are the most common C++ compile error."
+  },
+  {
+    "type": "write",
+    "prompt": "Declare `string name = \"Ana\"` and `int age = 30`, then print `Ana is 30`.",
+    "checks": [
+      {
+        "has": "name",
+        "explain": "Your code should contain `name`."
+      },
+      {
+        "has": "age",
+        "explain": "Your code should contain `age`."
+      },
+      {
+        "has": "cout",
+        "explain": "Your code should contain `cout`."
+      }
+    ],
+    "run": {
+      "template": "#include <iostream>\n#include <string>\n#include <vector>\n#include <cctype>\nusing namespace std;\n\nint main() {\n    {{code}}\n    cout << name.size() + age << endl;\n    return 0;\n}",
+      "output": "Ana is 30\n33"
+    },
+    "solution": "string name = \"Ana\";\nint age = 30;\ncout << name << \" is \" << age << endl;",
+    "hint": "`cout << name << \" is \" << age << endl;` chains several values.",
+    "explanation": "You can chain many values with `<<`."
+  }
+]

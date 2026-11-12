@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which keyword declares a function?",
+    "options": [
+      {
+        "text": "func",
+        "correct": true
+      },
+      {
+        "text": "fn",
+        "explain": "Go uses func for function declarations."
+      },
+      {
+        "text": "function",
+        "explain": "Go uses func for function declarations."
+      },
+      {
+        "text": "def",
+        "explain": "Go uses func for function declarations."
+      }
+    ],
+    "explanation": "Go uses func for function declarations."
+  },
+  {
+    "type": "choice",
+    "prompt": "Where is the return type written?",
+    "options": [
+      {
+        "text": "After the parameter list",
+        "correct": true
+      },
+      {
+        "text": "Before func",
+        "explain": "Go places return types after the parameters."
+      },
+      {
+        "text": "Inside the function name",
+        "explain": "Go places return types after the parameters."
+      },
+      {
+        "text": "After the closing brace",
+        "explain": "Go places return types after the parameters."
+      }
+    ],
+    "explanation": "Go places return types after the parameters."
+  },
+  {
+    "type": "choice",
+    "prompt": "What does `return` do?",
+    "options": [
+      {
+        "text": "Sends a result to the caller",
+        "correct": true
+      },
+      {
+        "text": "Imports a package",
+        "explain": "Return exits the function and provides its result."
+      },
+      {
+        "text": "Starts a loop",
+        "explain": "Return exits the function and provides its result."
+      },
+      {
+        "text": "Prints text",
+        "explain": "Return exits the function and provides its result."
+      }
+    ],
+    "explanation": "Return exits the function and provides its result."
+  },
+  {
+    "type": "choice",
+    "prompt": "How do you call `isHealthy` with 200?",
+    "options": [
+      {
+        "text": "isHealthy(200)",
+        "correct": true
+      },
+      {
+        "text": "call isHealthy 200",
+        "explain": "A function call uses its name and arguments in parentheses."
+      },
+      {
+        "text": "isHealthy = 200",
+        "explain": "A function call uses its name and arguments in parentheses."
+      },
+      {
+        "text": "func isHealthy(200)",
+        "explain": "A function call uses its name and arguments in parentheses."
+      }
+    ],
+    "explanation": "A function call uses its name and arguments in parentheses."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why might a Go function return `(value, error)`?",
+    "options": [
+      {
+        "text": "To provide a result and report a possible failure",
+        "correct": true
+      },
+      {
+        "text": "To run twice",
+        "explain": "Returning an error is a common Go pattern for explicit failure handling."
+      },
+      {
+        "text": "To create two packages",
+        "explain": "Returning an error is a common Go pattern for explicit failure handling."
+      },
+      {
+        "text": "To avoid parameters",
+        "explain": "Returning an error is a common Go pattern for explicit failure handling."
+      }
+    ],
+    "explanation": "Returning an error is a common Go pattern for explicit failure handling."
+  }
+]

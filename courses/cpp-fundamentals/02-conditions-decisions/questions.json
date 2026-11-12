@@ -1,0 +1,117 @@
+[
+  {
+    "type": "choice",
+    "prompt": "Which type is suitable for a whole item count?",
+    "options": [
+      {
+        "text": "int",
+        "correct": true
+      },
+      {
+        "text": "double",
+        "explain": "An item count is a whole number, so int is suitable."
+      },
+      {
+        "text": "bool",
+        "explain": "An item count is a whole number, so int is suitable."
+      },
+      {
+        "text": "std::string",
+        "explain": "An item count is a whole number, so int is suitable."
+      }
+    ],
+    "explanation": "An item count is a whole number, so int is suitable."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which type stores true or false?",
+    "options": [
+      {
+        "text": "bool",
+        "correct": true
+      },
+      {
+        "text": "int",
+        "explain": "bool represents logical values."
+      },
+      {
+        "text": "double",
+        "explain": "bool represents logical values."
+      },
+      {
+        "text": "char",
+        "explain": "bool represents logical values."
+      }
+    ],
+    "explanation": "bool represents logical values."
+  },
+  {
+    "type": "choice",
+    "prompt": "Which type is appropriate for a product label?",
+    "options": [
+      {
+        "text": "std::string",
+        "correct": true
+      },
+      {
+        "text": "int",
+        "explain": "std::string stores a sequence of characters."
+      },
+      {
+        "text": "bool",
+        "explain": "std::string stores a sequence of characters."
+      },
+      {
+        "text": "double",
+        "explain": "std::string stores a sequence of characters."
+      }
+    ],
+    "explanation": "std::string stores a sequence of characters."
+  },
+  {
+    "type": "choice",
+    "prompt": "What is initialization?",
+    "options": [
+      {
+        "text": "Giving a variable its first value",
+        "correct": true
+      },
+      {
+        "text": "Deleting a variable",
+        "explain": "Initialization sets the starting value when an object is created."
+      },
+      {
+        "text": "Printing a variable",
+        "explain": "Initialization sets the starting value when an object is created."
+      },
+      {
+        "text": "Changing a compiler",
+        "explain": "Initialization sets the starting value when an object is created."
+      }
+    ],
+    "explanation": "Initialization sets the starting value when an object is created."
+  },
+  {
+    "type": "choice",
+    "prompt": "Why initialize `stock` when declaring it?",
+    "options": [
+      {
+        "text": "To ensure it starts with a known value",
+        "correct": true
+      },
+      {
+        "text": "To make it a string",
+        "explain": "A known starting value avoids relying on an indeterminate value."
+      },
+      {
+        "text": "To prevent all future changes",
+        "explain": "A known starting value avoids relying on an indeterminate value."
+      },
+      {
+        "text": "To compile without a main function",
+        "explain": "A known starting value avoids relying on an indeterminate value."
+      }
+    ],
+    "explanation": "A known starting value avoids relying on an indeterminate value."
+  }
+]
