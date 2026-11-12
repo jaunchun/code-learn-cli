@@ -32,7 +32,10 @@ Zero dependencies - just Node.js 18+.
 ```text
 node bin/clx.js
 ```
-
+Also on npm
+```
+npm install code-learn-cli
+```
 Or install the `clx` command globally from this folder:
 
 ```text
